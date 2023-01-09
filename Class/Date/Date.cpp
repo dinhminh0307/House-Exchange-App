@@ -27,8 +27,19 @@ int Date:: countLeapYear() {
     return leapYear;
 }
 
+bool Date::operator < (Date &date2) {
+    if(countDate() - date2.countDate() <= 0) {
+        return true;
+    }
+    else return false;
+}
 
-string Date ::convertDatetoString() {
+int Date::operator - (Date &date2) {
+    // Get the difference between two dates
+    return countDate() - date2.countDate();
+}
+
+std::string Date ::convertDatetoString() {
     std::stringstream ss;
     ss << date << "/" << month << "/" << year;
 }

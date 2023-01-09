@@ -3,3 +3,7 @@
 //
 
 #include "House.h"
+
+void House::showInfo() {
+    
+}

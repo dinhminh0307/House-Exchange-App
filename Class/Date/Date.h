@@ -3,7 +3,7 @@
 #include <iostream>
 #include <sstream>
 #define SIZE 50
-using std::string;
+
 const int daysOfMonth[SIZE] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 class Date {
     private:
@@ -15,7 +15,9 @@ class Date {
         Date(int date, int month, int year);
         int countLeapYear();
         int countDate();
-        string convertDatetoString();
+        bool operator < (Date &date2);
+        int operator - (Date &date2);
+        std::string convertDatetoString();
         friend class System;
 };
 #endif

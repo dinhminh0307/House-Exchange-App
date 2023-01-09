@@ -8,15 +8,15 @@
 #include "../Member/Member.h"
 #include "../Date/Date.h"
 #include "../Request/Request.h"
-
-using std::string;
-using std::vector;
+#include "../Review/Review.h"
+class Request;
+class Review;
 class House {
 
-    string houseID;
+    std::string houseID;
     std::string location;
     std::string houseDescription;
-    string houseStatus;
+    std::string houseStatus;
     Member* owner;
 
     bool isAdded;
