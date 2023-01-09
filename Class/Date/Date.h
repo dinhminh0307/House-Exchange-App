@@ -19,5 +19,6 @@ class Date {
         bool operator < (Date &date2);
         int operator - (Date &date2);
         string convertDatetoString();
+        friend class System;
 };
 #endif

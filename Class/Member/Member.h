@@ -8,6 +8,7 @@
 
 class Member {
 public:
+    
     friend class System;
 };
 
