@@ -10,14 +10,14 @@ Admin::Admin(std::string username, std::string password, std::string fullName, s
 
 void Admin::adminShowAccountInfo()
 {
-    cout << "\nYour information: \n";
-    cout << "Your username: " << this->username << "\n";
-    cout << "Your name: " << this->fullName << "\n";
+    std::cout << "\nYour information: \n";
+    std::cout << "Your username: " << this->username << "\n";
+    std::cout << "Your name: " << this->fullName << "\n";
 }
 
 void Admin::adminShowAllMember() {
-    cout << "All the member of the system: " << "\n";
-    cout
+    std::cout << "All the member of the system: " << "\n";
+    std::cout
             << std::left
             << std::setw(8)
             << "MemberID"
@@ -25,9 +25,9 @@ void Admin::adminShowAllMember() {
             << std::setw(15)
             << "Full Name"
             << "\n";
-    vector<vector<string> > memberList = System::extractByRow(memberFile);
+    std::vector<vector<string> > memberList = System::extractByRow(memberFile);
     for (int i = 0; i < memberList.size(); i++) {
-        cout
+        std::cout
                 << std::left
                 << std::setw(8)
                 << memberList[i][0]
@@ -39,10 +39,10 @@ void Admin::adminShowAllMember() {
 }
 
 void Admin::adminViewMemberDetail() {
-    vector<vector<string> > memberList = System::extractByRow(memberFile);
+    std::vector<vector<string> > memberList = System::extractByRow(memberFile);
 
-    cout << "\nAll members: " << "\n";
-    cout
+    std::cout << "\nAll members: " << "\n";
+    std::cout
             << std::left
             << std::setw(15)
             << "Full Name"
@@ -60,7 +60,7 @@ void Admin::adminViewMemberDetail() {
             << "Rating Score"
             << std::endl;
     for (int i = 0; i < memberList.size(); i++) {
-        cout
+        std::cout
                 << std::left
                 << std::setw(15)
                 << memberList[i][0]
@@ -81,10 +81,10 @@ void Admin::adminViewMemberDetail() {
 };
 
 void Admin::adminSortByMemberScore() {
-    vector<vector<string> > sortList = System::sortAscending(4, memberFile);
+    std::vector<vector<string> > sortList = System::sortAscending(4, memberFile);
 
-    cout << "\nAll members after sorted will be displayed: " << "\n";
-    cout
+    std::cout << "\nAll members after sorted will be displayed: " << "\n";
+    std::cout
             << std::left
             << std::setw(15)
             << "Full Name"
@@ -102,7 +102,7 @@ void Admin::adminSortByMemberScore() {
             << "Rating Score"
             << std::endl;
     for (int i = 0; i < sortList.size(); i++) {
-        cout
+        std::cout
                 << std::left
                 << std::setw(15)
                 << sortList[i][0]
@@ -123,19 +123,19 @@ void Admin::adminSortByMemberScore() {
 };
 
 void Admin::adminShowAllHouse() {
-    cout << "List of available houses is being showed below:\n";
-    vector<string> listofHouse;
+    std::cout << "List of available houses is being showed below:\n";
+    std::vector<string> listofHouse;
     listofHouse = System::extractByColumnIndex(0, houseFile);
 
-    cout << "House name: \n";
-    for (string &obj: listofHouse) {
+    std::cout << "House name: \n";
+    for (std::string &obj: listofHouse) {
         cout << obj << " ";
     }
 };
 
 void Admin::adminViewHouseDetail(int id) {
-    cout << "\nHouse with this ID will be displayed " << "\n";
-    cout
+    std::cout << "\nHouse with this ID will be displayed " << "\n";
+    std::cout
             << std::left
             << std::setw(10)
             << "HouseID"
@@ -167,7 +167,7 @@ void Admin::adminViewHouseDetail(int id) {
 
     for (auto & i : houseList) {
         if (id == std::stoi(i[0])) {
-            cout
+            std::cout
                     << std::left
                     << std::setw(10)
                     << i[0]
@@ -194,14 +194,14 @@ void Admin::adminViewHouseDetail(int id) {
                     << i[7]
                     << "\n";
         } else {
-            cout << "\nThere is no house with this ID" << "\n";
+            std::cout << "\nThere is no house with this ID" << "\n";
         }
     }
 };
 
 void Admin::adminSearchHouseByDateRange(string dateRange) {
-    cout << "\nAll houses with this date range will be displayed: " << "\n";
-    cout
+    std::cout << "\nAll houses with this date range will be displayed: " << "\n";
+    std::cout
             << std::left
             << std::setw(10)
             << "HouseID"
@@ -229,11 +229,11 @@ void Admin::adminSearchHouseByDateRange(string dateRange) {
             << "\n";
 
 
-    vector<vector<string> > houseList = System::extractByRow(houseFile);
+    std::vector<vector<string> > houseList = System::extractByRow(houseFile);
 
     for (int i = 0; i < houseList.size(); i++) {
         if (dateRange == houseList[i][3]) {
-            cout
+            std::cout
                     << std::left
                     << std::setw(10)
                     << houseList[i][0]
@@ -264,8 +264,8 @@ void Admin::adminSearchHouseByDateRange(string dateRange) {
 };
 
 void Admin::adminSearchHouseByCredit(int credit) {
-    cout << "\nAll houses with this credit will be displayed: " << "\n";
-    cout
+    std::cout << "\nAll houses with this credit will be displayed: " << "\n";
+    std::cout
             << std::left
             << std::setw(10)
             << "HouseID"
@@ -296,7 +296,7 @@ void Admin::adminSearchHouseByCredit(int credit) {
 
     for (int i = 0; i < houseList.size(); i++) {
         if (credit == std::stoi(houseList[i][4])) {
-            cout
+            std::cout
                     << std::left
                     << std::setw(10)
                     << houseList[i][0]
@@ -327,12 +327,12 @@ void Admin::adminSearchHouseByCredit(int credit) {
 };
 
 void Admin::adminViewAllReQuest() {
-    vector<vector<string> > list_of_request = System::extractByRow(requestFile); // Get data into a 2D vector
+    std::vector<vector<string> > list_of_request = System::extractByRow(requestFile); // Get data into a 2D vector
 
-    cout << "Your request today is: \n";
-    for (vector<string> &obj: list_of_request) {
-        for (string &temp: obj) {
-            cout << "temp ";
+    std::cout << "Your request today is: \n";
+    for (std::vector<string> &obj: list_of_request) {
+        for (std::string &temp: obj) {
+            std::cout << "temp ";
         }
     }
 };
