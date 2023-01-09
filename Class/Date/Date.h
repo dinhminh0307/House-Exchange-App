@@ -3,7 +3,10 @@
 #include <iostream>
 #include <sstream>
 #define SIZE 50
+<<<<<<< HEAD
 
+=======
+>>>>>>> a4ac98ebc9bd402663195869800385c827969747
 const int daysOfMonth[SIZE] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 class Date {
     private:
@@ -21,3 +24,4 @@ class Date {
         friend class System;
 };
 #endif
+

@@ -74,6 +74,48 @@ build CMakeFiles/dapdixaylai.dir/Class/Admin/Admin.cpp.o: CXX_COMPILER__dapdixay
   OBJECT_DIR = CMakeFiles/dapdixaylai.dir
   OBJECT_FILE_DIR = CMakeFiles/dapdixaylai.dir/Class/Admin
 
+build CMakeFiles/dapdixaylai.dir/Class/House/House.cpp.o: CXX_COMPILER__dapdixaylai_Debug /Users/trungngo/Desktop/dapdixaylai/Class/House/House.cpp || cmake_object_order_depends_target_dapdixaylai
+  DEP_FILE = CMakeFiles/dapdixaylai.dir/Class/House/House.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk -std=gnu++14
+  INCLUDES = -I/Users/trungngo/Desktop/dapdixaylai/System
+  OBJECT_DIR = CMakeFiles/dapdixaylai.dir
+  OBJECT_FILE_DIR = CMakeFiles/dapdixaylai.dir/Class/House
+
+build CMakeFiles/dapdixaylai.dir/Class/Rating/Rating.cpp.o: CXX_COMPILER__dapdixaylai_Debug /Users/trungngo/Desktop/dapdixaylai/Class/Rating/Rating.cpp || cmake_object_order_depends_target_dapdixaylai
+  DEP_FILE = CMakeFiles/dapdixaylai.dir/Class/Rating/Rating.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk -std=gnu++14
+  INCLUDES = -I/Users/trungngo/Desktop/dapdixaylai/System
+  OBJECT_DIR = CMakeFiles/dapdixaylai.dir
+  OBJECT_FILE_DIR = CMakeFiles/dapdixaylai.dir/Class/Rating
+
+build CMakeFiles/dapdixaylai.dir/Class/Request/Request.cpp.o: CXX_COMPILER__dapdixaylai_Debug /Users/trungngo/Desktop/dapdixaylai/Class/Request/Request.cpp || cmake_object_order_depends_target_dapdixaylai
+  DEP_FILE = CMakeFiles/dapdixaylai.dir/Class/Request/Request.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk -std=gnu++14
+  INCLUDES = -I/Users/trungngo/Desktop/dapdixaylai/System
+  OBJECT_DIR = CMakeFiles/dapdixaylai.dir
+  OBJECT_FILE_DIR = CMakeFiles/dapdixaylai.dir/Class/Request
+
+build CMakeFiles/dapdixaylai.dir/Class/HouseList/HouseList.cpp.o: CXX_COMPILER__dapdixaylai_Debug /Users/trungngo/Desktop/dapdixaylai/Class/HouseList/HouseList.cpp || cmake_object_order_depends_target_dapdixaylai
+  DEP_FILE = CMakeFiles/dapdixaylai.dir/Class/HouseList/HouseList.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk -std=gnu++14
+  INCLUDES = -I/Users/trungngo/Desktop/dapdixaylai/System
+  OBJECT_DIR = CMakeFiles/dapdixaylai.dir
+  OBJECT_FILE_DIR = CMakeFiles/dapdixaylai.dir/Class/HouseList
+
+build CMakeFiles/dapdixaylai.dir/Class/Date/Date.cpp.o: CXX_COMPILER__dapdixaylai_Debug /Users/trungngo/Desktop/dapdixaylai/Class/Date/Date.cpp || cmake_object_order_depends_target_dapdixaylai
+  DEP_FILE = CMakeFiles/dapdixaylai.dir/Class/Date/Date.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk -std=gnu++14
+  INCLUDES = -I/Users/trungngo/Desktop/dapdixaylai/System
+  OBJECT_DIR = CMakeFiles/dapdixaylai.dir
+  OBJECT_FILE_DIR = CMakeFiles/dapdixaylai.dir/Class/Date
+
+build CMakeFiles/dapdixaylai.dir/main.cpp.o: CXX_COMPILER__dapdixaylai_Debug /Users/trungngo/Desktop/dapdixaylai/main.cpp || cmake_object_order_depends_target_dapdixaylai
+  DEP_FILE = CMakeFiles/dapdixaylai.dir/main.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk -std=gnu++14
+  INCLUDES = -I/Users/trungngo/Desktop/dapdixaylai/System
+  OBJECT_DIR = CMakeFiles/dapdixaylai.dir
+  OBJECT_FILE_DIR = CMakeFiles/dapdixaylai.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target dapdixaylai
@@ -82,7 +124,7 @@ build CMakeFiles/dapdixaylai.dir/Class/Admin/Admin.cpp.o: CXX_COMPILER__dapdixay
 #############################################
 # Link the executable dapdixaylai
 
-build dapdixaylai: CXX_EXECUTABLE_LINKER__dapdixaylai_Debug CMakeFiles/dapdixaylai.dir/System/System.cpp.o CMakeFiles/dapdixaylai.dir/Class/Member/Member.cpp.o CMakeFiles/dapdixaylai.dir/Class/User/User.cpp.o CMakeFiles/dapdixaylai.dir/Class/Admin/Admin.cpp.o
+build dapdixaylai: CXX_EXECUTABLE_LINKER__dapdixaylai_Debug CMakeFiles/dapdixaylai.dir/System/System.cpp.o CMakeFiles/dapdixaylai.dir/Class/Member/Member.cpp.o CMakeFiles/dapdixaylai.dir/Class/User/User.cpp.o CMakeFiles/dapdixaylai.dir/Class/Admin/Admin.cpp.o CMakeFiles/dapdixaylai.dir/Class/House/House.cpp.o CMakeFiles/dapdixaylai.dir/Class/Rating/Rating.cpp.o CMakeFiles/dapdixaylai.dir/Class/Request/Request.cpp.o CMakeFiles/dapdixaylai.dir/Class/HouseList/HouseList.cpp.o CMakeFiles/dapdixaylai.dir/Class/Date/Date.cpp.o CMakeFiles/dapdixaylai.dir/main.cpp.o
   FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk
   OBJECT_DIR = CMakeFiles/dapdixaylai.dir
   POST_BUILD = :

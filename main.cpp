@@ -1,6 +1,12 @@
-#include "./CLass/Date/Date.h"
-int main() {
-    Date minh(1,12,2022);
-    
-    std ::cout << minh.countDate();
+
+#include "System/System.h"
+
+int main(){
+    System sys;
+    sys.inputMemberToSys();
+    if(sys.loginMember()){
+        std::cout << "Logged in successfully!";
+    }
+    sys.outputMemberToFile();
+
 }

@@ -5,13 +5,13 @@
 #include "Member.h"
 #include <algorithm>
 #include <utility>
-Member::Member(string username, string password, string memberID, string fullName, string phoneNum,
-               double credit, int score, string location) : User(std::move(username), std::move(password)) {
+Member::Member(std::string username, std::string password, std::string memberID, std::string fullName, std::string phoneNum,
+               double credit, int score, std::string location) : User(std::move(username), std::move(password)) {
     this->memberId = memberID;
     this->fullName = fullName;
     this->phoneNum = phoneNum;
-    this->credit = BEGIN_CREDIT;
-    this->score = score;
+    this->credit = INITIAL_CREDITS;
+    this->score = INITIAL_SCORES;
     this->location = location;
 
     this->houseOwner = nullptr;
@@ -40,9 +40,10 @@ void Member::showAccountInfo() {
     std::cout << "Your location: " << this->location << "\n";
     std::cout << "Your score: " << this->getRatingScore() << "\n";
     if (houseOwner == nullptr) {
-        cout << "\nYou have not added a house\n";
-    } else {
-        houseOwner->showInfo();
+        std::cout << "\nYou have not added a house\n";
+    }
+    else {
+        houseOwner->viewHouseInfo();
     }
 }
 //add credit to member's credit
@@ -58,25 +59,25 @@ bool Member::minusCredit(int creditPoint) {
     this->credit -= creditPoint;
     return true;
 }
-string Member::showReview() {
-    std::stringstream ss;
+void  Member::showReview() {
+
     if (this->tenantReviewList.empty()) {
-        cout << "\nThere are no reviews for this member\n";
+        std::cout << "\nThere are no reviews for this member\n";
     } else {
-        cout << "\nAll review for this member: \n";
+        std::cout << "\nAll review for this member: \n";
         for (int i = 0; i < this->tenantReviewList.size(); i++) {
             Review *review = tenantReviewList[i];
-            string tempComment = review->comment;
+            std::string tempComment = review->comment;
             int tempScore = review->ratingScore;
             Member *member = review->memberReview;
-            ss << "\n-----------------------"
+            std::cout << "\n-----------------------"
                << "\n\nReview by member: " << member->fullName
                << "\n-----------------------"
                << "Score: " << tempScore << "\n"
                << "Comment: " << tempComment;
 
         }
-        return ss.str();
+
     }
 }
 
@@ -92,7 +93,9 @@ bool Member::createHouse(House *house) {
 }
 
 
+
 bool Member::addHouse(Date *startDate, Date *endDate, int consumingPointsPerDay, std::string description) {
+
     if(houseOwner->isAdded) {
         return false;
     }
@@ -103,6 +106,7 @@ bool Member::addHouse(Date *startDate, Date *endDate, int consumingPointsPerDay,
     houseOwner->consumingPointsPerDay = consumingPointsPerDay;
     houseOwner->houseDescription = description;
     houseOwner->houseStatus = "Available";
+
     return true;
 }
 
@@ -160,6 +164,7 @@ bool Member::viewAllRequest() {
                 << i->requestStatus
                 << "\n";
     }
+    return true;
 }
 
 bool Member:: declineRequest(std::string requestID) {
@@ -179,7 +184,7 @@ bool Member:: declineRequest(std::string requestID) {
         houseOwner->listHouseRequest.erase(houseOwner->listHouseRequest.begin() + index); //Delete accepted request
         return true;
 }
-bool Member:: acceptRequest(string requestID) {
+bool Member:: acceptRequest(std::string requestID) {
     for(int i = 0; i < houseOwner->listHouseRequest.size(); i++) {
         if(houseOwner->listHouseRequest[i]->requestID == requestID) {
             // cout << "\nThe request does not match\n";

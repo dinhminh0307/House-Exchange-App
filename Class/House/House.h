@@ -1,33 +1,41 @@
-//
 // Created by Vo Nguyen Kien on 09/01/2023.
-//
+
 
 #ifndef DAPDIXAYLAI_HOUSE_H
 #define DAPDIXAYLAI_HOUSE_H
+
 #include <iostream>
-#include "../Member/Member.h"
-#include "../Date/Date.h"
-#include "../Request/Request.h"
-#include "../Review/Review.h"
-class Request;
+
+#include <vector>
+
+class Member;
+
 class Review;
+
+class Date;
+
+class Request;
+
 class House {
+private:
 
     std::string houseID;
     std::string location;
     std::string houseDescription;
     std::string houseStatus;
-    Member* owner;
+
+    Member *owner;
+
 
     bool isAdded;
     Date *startingDate;
     Date *endingDate;
     int consumingPointsPerDay;
-    double minOccupierRating;
+    double minRating;
 
-    std::vector<Review*> listHouseReview;
+    std::vector<Review *> listHouseReview;
 
-    std::vector<Request*> listHouseRequest;
+    std::vector<Request *> listHouseRequest;
 
     // std::vector<HouseOccupy*> houseOccupyList;
 
@@ -35,32 +43,23 @@ class House {
 
 public:
 
-    House(string houseID, std::string location,  std::string houseDescription, string houseStatus);
+    House(std::string houseID, std::string location, std::string houseDescription);
 
-    void showInfo();
-
-    std::string getCityName();
-
-    std::string getHouseAddress();
 
     double getRatingScore();
 
-    bool addRequestToHouseRequestList(Request *request);
+    void addRequestToHouseRequestList(Request *request);
 
     bool removeRequestFromHouseRequestList(Request *request);
 
-//    bool removeOccupyFromHouseOccupyList(Date *occupyFromDate, Date *occupyToDate, Member *occupiedByMember);
 
-    bool addReviewToHouseReviewList(Review *houseReview);
-
-    // bool addOccupierToUnratedOccupierList(HouseOccupy *houseOccupier);
-
-    // bool removeOccupierFromUnratedOccupierList(HouseOccupy *houseOccupier);
-
-    std::string viewHouseInfo();
+    void addReviewToHouseReviewList(Review *houseReview);
 
 
-    std::string viewHouseReview();
+    void viewHouseInfo();
+
+
+    void viewHouseReview();
 
     std::string viewHouseInfoByGuest();
 
@@ -71,4 +70,6 @@ public:
     friend class System;
 
 };
+
+
 #endif //DAPDIXAYLAI_HOUSE_H
