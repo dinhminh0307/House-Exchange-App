@@ -4,9 +4,11 @@
 
 #ifndef DAPDIXAYLAI_SYSTEM_H
 #define DAPDIXAYLAI_SYSTEM_H
-
 #include <iostream>
 #include <vector>
+using std::string;
+const string CITY_NAME_LIST[] = {"Hanoi", "Saigon", "Hue"};
+const int BEGIN_CREDIT = 500;
 
 using std::vector;
 using std::cin;
