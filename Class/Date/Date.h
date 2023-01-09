@@ -20,3 +20,4 @@ class Date {
         friend class System;
 };
 #endif
+

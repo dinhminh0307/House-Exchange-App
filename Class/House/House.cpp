@@ -1,4 +1,4 @@
-//
+
 // Created by Vo Nguyen Kien on 09/01/2023.
 //
 
@@ -17,7 +17,7 @@ House::House(std::string houseID, std::string location, std::string houseDescrip
 
 double House::getRatingScore() {
     if(this->listHouseReview.empty()){
-        cout << "\nThere are no reviews for this house\n";
+        std::cout << "\nThere are no reviews for this house\n";
         return 0;
     }
     double tempScore = 0;
@@ -28,19 +28,19 @@ double House::getRatingScore() {
     return avgScore;
 }
 void House::viewHouseInfo() {
-    cout << "\nOwner: " << owner->fullName << "\n";
-    cout << "Location: " << location << "\n";
-    cout << "Description: " << houseDescription << "\n";
-    cout << "Rating score: " << this->getRatingScore() << "\n";
+    std::cout << "\nOwner: " << owner->fullName << "\n";
+    std::cout << "Location: " << location << "\n";
+    std::cout << "Description: " << houseDescription << "\n";
+    std::cout << "Rating score: " << this->getRatingScore() << "\n";
     if(!isAdded){
-        cout << "Available from: " << this->startingDate << " to " << this->endingDate << "\n";
-        cout << "Credit per day: " << consumingPointsPerDay << "\n";
-        cout << "Minimum rating score of tenant: " << minRating << "\n";
+        std::cout << "Available from: " << this->startingDate << " to " << this->endingDate << "\n";
+        std::cout << "Credit per day: " << consumingPointsPerDay << "\n";
+        std::cout << "Minimum rating score of tenant: " << minRating << "\n";
     }
 }
 void House::viewHouseReview() {
     if(listHouseReview.empty()){
-        cout << "\nThere are no reviews for this house\n";
+        std::cout << "\nThere are no reviews for this house\n";
     }
     else {
         for(auto &i : listHouseReview){
@@ -61,3 +61,4 @@ void House::addRequestToHouseRequestList(Request *request) {
 void House::addReviewToHouseReviewList(Review *houseReview) {
     listHouseReview.push_back(houseReview);
 }
+

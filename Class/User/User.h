@@ -6,7 +6,9 @@
 #define DAPDIXAYLAI_USER_H
 
 
+
 #include "../../System/System.h"
+
 #include <iostream>
 
 
@@ -14,8 +16,10 @@ class User {
 protected:
     std::string username;
     std::string password;
+
 public:
     User(std::string username, std::string password);
+
 };
 
 

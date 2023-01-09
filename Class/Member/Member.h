@@ -6,6 +6,7 @@
 #define DAPDIXAYLAI_MEMBER_H
 
 #include "../User/User.h"
+
 #include "../../System/System.h"
 #include "../House/House.h"
 #include "../Review/Review.h"
@@ -50,6 +51,7 @@ public:
     bool deleteHouse();
 
     bool viewAllRequest();
+
 
     friend class System;
 
