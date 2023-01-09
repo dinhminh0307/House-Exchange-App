@@ -27,18 +27,6 @@ int Date:: countLeapYear() {
     return leapYear;
 }
 
-bool Date:: operator < (Date &date2) {
-    int currentDate = countDate();
-    int comparedDate = currentDate - date2.countDate();
-    if(comparedDate <= 0) {
-        return true;
-    }
-    else return false;
-}
-
-int Date ::operator- (Date &date2) {
-    return countDate() - date2.countDate();
-}
 
 string Date ::convertDatetoString() {
     std::stringstream ss;

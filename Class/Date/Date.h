@@ -15,8 +15,6 @@ class Date {
         Date(int date, int month, int year);
         int countLeapYear();
         int countDate();
-        bool operator < (Date &date2);
-        int operator - (Date &date2);
         string convertDatetoString();
         friend class System;
 };
