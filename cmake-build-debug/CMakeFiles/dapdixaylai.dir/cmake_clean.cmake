@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/dapdixaylai.dir/Class/Admin/Admin.cpp.o"
   "CMakeFiles/dapdixaylai.dir/Class/Admin/Admin.cpp.o.d"
+  "CMakeFiles/dapdixaylai.dir/Class/Date/Date.cpp.o"
+  "CMakeFiles/dapdixaylai.dir/Class/Date/Date.cpp.o.d"
   "CMakeFiles/dapdixaylai.dir/Class/House/House.cpp.o"
   "CMakeFiles/dapdixaylai.dir/Class/House/House.cpp.o.d"
   "CMakeFiles/dapdixaylai.dir/Class/Member/Member.cpp.o"

@@ -153,6 +153,30 @@ Class/Admin/Admin.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/dapdixaylai.dir/build.make CMakeFiles/dapdixaylai.dir/Class/Admin/Admin.cpp.s
 .PHONY : Class/Admin/Admin.cpp.s
 
+Class/Date/Date.o: Class/Date/Date.cpp.o
+.PHONY : Class/Date/Date.o
+
+# target to build an object file
+Class/Date/Date.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dapdixaylai.dir/build.make CMakeFiles/dapdixaylai.dir/Class/Date/Date.cpp.o
+.PHONY : Class/Date/Date.cpp.o
+
+Class/Date/Date.i: Class/Date/Date.cpp.i
+.PHONY : Class/Date/Date.i
+
+# target to preprocess a source file
+Class/Date/Date.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dapdixaylai.dir/build.make CMakeFiles/dapdixaylai.dir/Class/Date/Date.cpp.i
+.PHONY : Class/Date/Date.cpp.i
+
+Class/Date/Date.s: Class/Date/Date.cpp.s
+.PHONY : Class/Date/Date.s
+
+# target to generate assembly for a file
+Class/Date/Date.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dapdixaylai.dir/build.make CMakeFiles/dapdixaylai.dir/Class/Date/Date.cpp.s
+.PHONY : Class/Date/Date.cpp.s
+
 Class/House/House.o: Class/House/House.cpp.o
 .PHONY : Class/House/House.o
 
@@ -285,6 +309,9 @@ help:
 	@echo "... Class/Admin/Admin.o"
 	@echo "... Class/Admin/Admin.i"
 	@echo "... Class/Admin/Admin.s"
+	@echo "... Class/Date/Date.o"
+	@echo "... Class/Date/Date.i"
+	@echo "... Class/Date/Date.s"
 	@echo "... Class/House/House.o"
 	@echo "... Class/House/House.i"
 	@echo "... Class/House/House.s"

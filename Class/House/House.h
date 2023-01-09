@@ -5,15 +5,19 @@
 #ifndef DAPDIXAYLAI_HOUSE_H
 #define DAPDIXAYLAI_HOUSE_H
 #include <iostream>
-#include "./Date/Date.h"
-#include "./Request/Request.h"
+#include "../Member/Member.h"
+#include "../Date/Date.h"
+#include "../Request/Request.h"
 
+using std::string;
+using std::vector;
 class House {
+
     string houseID;
     std::string location;
     std::string houseDescription;
     string houseStatus;
-    Member* houseOwner;
+    Member* owner;
 
     bool isAdded;
     Date *startingDate;
@@ -30,7 +34,10 @@ class House {
     // std::vector<HouseOccupy*> unratedOccupierList;
 
 public:
+
     House(string houseID, std::string location,  std::string houseDescription, string houseStatus);
+
+    void showInfo();
 
     std::string getCityName();
 
@@ -63,8 +70,5 @@ public:
 
     friend class System;
 
-    friend class InputStorageManager;
-
-    friend class OutputStorageManager;
 };
 #endif //DAPDIXAYLAI_HOUSE_H
