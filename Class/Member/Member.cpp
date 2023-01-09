@@ -4,15 +4,14 @@
 
 #include "Member.h"
 
-<<<<<<< HEAD
 #include <utility>
 Member::Member(std::string username, std::string password, std::string memberID, std::string fullName, std::string phoneNum,
                double credit, int score, std::string location) : User(std::move(username), std::move(password)) {
     this->memberId = memberID;
     this->fullName = fullName;
     this->phoneNum = phoneNum;
-    this->credit = BEGIN_CREDIT;
-    this->score = score;
+    this->credit = INITIAL_CREDITS;
+    this->score = INITIAL_SCORES;
     this->location = location;
 
     this->houseOwner = nullptr;
@@ -163,20 +162,3 @@ bool Member::viewAllRequest() {
     return true;
 }
 
-=======
-
-#include "../House/House.h"
-
-#include <utility>
-
-Member::Member(std::string memId, std::string fName, std::string phoneNum, std::string username, std::string password, std::string location, double credits, double scores) :
-    User(std::move(username), std::move(password)) {
-    this->memberId = std::move(memId);
-    this->fullName = std::move(fName);
-    this->phoneNum = std::move(phoneNum);
-    this->location = std::move(location);
-    this->ownedHouse = nullptr;
-    this->credit = credits;
-    this->score = scores;
-}
->>>>>>> 8a16c053955ee69cda0326bf04ff7abbdf5021dc

@@ -195,6 +195,34 @@ CMakeFiles/dapdixaylai.dir/Class/Review/Review.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/dapdixaylai.dir/Class/Review/Review.cpp.s"
 	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/vonguyenkien/Workspaces/asm2/HOUSE-VACATION-RENT/Class/Review/Review.cpp -o CMakeFiles/dapdixaylai.dir/Class/Review/Review.cpp.s
 
+CMakeFiles/dapdixaylai.dir/Class/Tenant/Tenant.cpp.o: CMakeFiles/dapdixaylai.dir/flags.make
+CMakeFiles/dapdixaylai.dir/Class/Tenant/Tenant.cpp.o: ../Class/Tenant/Tenant.cpp
+CMakeFiles/dapdixaylai.dir/Class/Tenant/Tenant.cpp.o: CMakeFiles/dapdixaylai.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/vonguyenkien/Workspaces/asm2/HOUSE-VACATION-RENT/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/dapdixaylai.dir/Class/Tenant/Tenant.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/dapdixaylai.dir/Class/Tenant/Tenant.cpp.o -MF CMakeFiles/dapdixaylai.dir/Class/Tenant/Tenant.cpp.o.d -o CMakeFiles/dapdixaylai.dir/Class/Tenant/Tenant.cpp.o -c /Users/vonguyenkien/Workspaces/asm2/HOUSE-VACATION-RENT/Class/Tenant/Tenant.cpp
+
+CMakeFiles/dapdixaylai.dir/Class/Tenant/Tenant.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/dapdixaylai.dir/Class/Tenant/Tenant.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/vonguyenkien/Workspaces/asm2/HOUSE-VACATION-RENT/Class/Tenant/Tenant.cpp > CMakeFiles/dapdixaylai.dir/Class/Tenant/Tenant.cpp.i
+
+CMakeFiles/dapdixaylai.dir/Class/Tenant/Tenant.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/dapdixaylai.dir/Class/Tenant/Tenant.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/vonguyenkien/Workspaces/asm2/HOUSE-VACATION-RENT/Class/Tenant/Tenant.cpp -o CMakeFiles/dapdixaylai.dir/Class/Tenant/Tenant.cpp.s
+
+CMakeFiles/dapdixaylai.dir/Class/OccupyHouse/OccupyHouse.cpp.o: CMakeFiles/dapdixaylai.dir/flags.make
+CMakeFiles/dapdixaylai.dir/Class/OccupyHouse/OccupyHouse.cpp.o: ../Class/OccupyHouse/OccupyHouse.cpp
+CMakeFiles/dapdixaylai.dir/Class/OccupyHouse/OccupyHouse.cpp.o: CMakeFiles/dapdixaylai.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/vonguyenkien/Workspaces/asm2/HOUSE-VACATION-RENT/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/dapdixaylai.dir/Class/OccupyHouse/OccupyHouse.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/dapdixaylai.dir/Class/OccupyHouse/OccupyHouse.cpp.o -MF CMakeFiles/dapdixaylai.dir/Class/OccupyHouse/OccupyHouse.cpp.o.d -o CMakeFiles/dapdixaylai.dir/Class/OccupyHouse/OccupyHouse.cpp.o -c /Users/vonguyenkien/Workspaces/asm2/HOUSE-VACATION-RENT/Class/OccupyHouse/OccupyHouse.cpp
+
+CMakeFiles/dapdixaylai.dir/Class/OccupyHouse/OccupyHouse.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/dapdixaylai.dir/Class/OccupyHouse/OccupyHouse.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/vonguyenkien/Workspaces/asm2/HOUSE-VACATION-RENT/Class/OccupyHouse/OccupyHouse.cpp > CMakeFiles/dapdixaylai.dir/Class/OccupyHouse/OccupyHouse.cpp.i
+
+CMakeFiles/dapdixaylai.dir/Class/OccupyHouse/OccupyHouse.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/dapdixaylai.dir/Class/OccupyHouse/OccupyHouse.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/vonguyenkien/Workspaces/asm2/HOUSE-VACATION-RENT/Class/OccupyHouse/OccupyHouse.cpp -o CMakeFiles/dapdixaylai.dir/Class/OccupyHouse/OccupyHouse.cpp.s
+
 # Object files for target dapdixaylai
 dapdixaylai_OBJECTS = \
 "CMakeFiles/dapdixaylai.dir/main.cpp.o" \
@@ -205,7 +233,9 @@ dapdixaylai_OBJECTS = \
 "CMakeFiles/dapdixaylai.dir/Class/User/User.cpp.o" \
 "CMakeFiles/dapdixaylai.dir/Class/Admin/Admin.cpp.o" \
 "CMakeFiles/dapdixaylai.dir/Class/House/House.cpp.o" \
-"CMakeFiles/dapdixaylai.dir/Class/Review/Review.cpp.o"
+"CMakeFiles/dapdixaylai.dir/Class/Review/Review.cpp.o" \
+"CMakeFiles/dapdixaylai.dir/Class/Tenant/Tenant.cpp.o" \
+"CMakeFiles/dapdixaylai.dir/Class/OccupyHouse/OccupyHouse.cpp.o"
 
 # External object files for target dapdixaylai
 dapdixaylai_EXTERNAL_OBJECTS =
@@ -219,9 +249,11 @@ dapdixaylai: CMakeFiles/dapdixaylai.dir/Class/User/User.cpp.o
 dapdixaylai: CMakeFiles/dapdixaylai.dir/Class/Admin/Admin.cpp.o
 dapdixaylai: CMakeFiles/dapdixaylai.dir/Class/House/House.cpp.o
 dapdixaylai: CMakeFiles/dapdixaylai.dir/Class/Review/Review.cpp.o
+dapdixaylai: CMakeFiles/dapdixaylai.dir/Class/Tenant/Tenant.cpp.o
+dapdixaylai: CMakeFiles/dapdixaylai.dir/Class/OccupyHouse/OccupyHouse.cpp.o
 dapdixaylai: CMakeFiles/dapdixaylai.dir/build.make
 dapdixaylai: CMakeFiles/dapdixaylai.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/vonguyenkien/Workspaces/asm2/HOUSE-VACATION-RENT/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable dapdixaylai"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/vonguyenkien/Workspaces/asm2/HOUSE-VACATION-RENT/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Linking CXX executable dapdixaylai"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/dapdixaylai.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

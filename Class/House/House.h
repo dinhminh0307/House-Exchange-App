@@ -6,20 +6,22 @@
 #define DAPDIXAYLAI_HOUSE_H
 
 #include <iostream>
-#include "../Member/Member.h"
-#include "../Date/Date.h"
-#include "../Request/Request.h"
+#include <vector>
+
+class Member;
 
 class Review;
 
 class Date;
 
-class House {
+class Request;
 
+class House {
+private:
     std::string houseID;
     std::string location;
     std::string houseDescription;
-    string houseStatus;
+    std::string houseStatus;
     Member *owner;
 
     bool isAdded;

@@ -225,6 +225,30 @@ Class/Member/Member.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/dapdixaylai.dir/build.make CMakeFiles/dapdixaylai.dir/Class/Member/Member.cpp.s
 .PHONY : Class/Member/Member.cpp.s
 
+Class/OccupyHouse/OccupyHouse.o: Class/OccupyHouse/OccupyHouse.cpp.o
+.PHONY : Class/OccupyHouse/OccupyHouse.o
+
+# target to build an object file
+Class/OccupyHouse/OccupyHouse.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dapdixaylai.dir/build.make CMakeFiles/dapdixaylai.dir/Class/OccupyHouse/OccupyHouse.cpp.o
+.PHONY : Class/OccupyHouse/OccupyHouse.cpp.o
+
+Class/OccupyHouse/OccupyHouse.i: Class/OccupyHouse/OccupyHouse.cpp.i
+.PHONY : Class/OccupyHouse/OccupyHouse.i
+
+# target to preprocess a source file
+Class/OccupyHouse/OccupyHouse.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dapdixaylai.dir/build.make CMakeFiles/dapdixaylai.dir/Class/OccupyHouse/OccupyHouse.cpp.i
+.PHONY : Class/OccupyHouse/OccupyHouse.cpp.i
+
+Class/OccupyHouse/OccupyHouse.s: Class/OccupyHouse/OccupyHouse.cpp.s
+.PHONY : Class/OccupyHouse/OccupyHouse.s
+
+# target to generate assembly for a file
+Class/OccupyHouse/OccupyHouse.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dapdixaylai.dir/build.make CMakeFiles/dapdixaylai.dir/Class/OccupyHouse/OccupyHouse.cpp.s
+.PHONY : Class/OccupyHouse/OccupyHouse.cpp.s
+
 Class/Request/Request.o: Class/Request/Request.cpp.o
 .PHONY : Class/Request/Request.o
 
@@ -272,6 +296,30 @@ Class/Review/Review.s: Class/Review/Review.cpp.s
 Class/Review/Review.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/dapdixaylai.dir/build.make CMakeFiles/dapdixaylai.dir/Class/Review/Review.cpp.s
 .PHONY : Class/Review/Review.cpp.s
+
+Class/Tenant/Tenant.o: Class/Tenant/Tenant.cpp.o
+.PHONY : Class/Tenant/Tenant.o
+
+# target to build an object file
+Class/Tenant/Tenant.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dapdixaylai.dir/build.make CMakeFiles/dapdixaylai.dir/Class/Tenant/Tenant.cpp.o
+.PHONY : Class/Tenant/Tenant.cpp.o
+
+Class/Tenant/Tenant.i: Class/Tenant/Tenant.cpp.i
+.PHONY : Class/Tenant/Tenant.i
+
+# target to preprocess a source file
+Class/Tenant/Tenant.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dapdixaylai.dir/build.make CMakeFiles/dapdixaylai.dir/Class/Tenant/Tenant.cpp.i
+.PHONY : Class/Tenant/Tenant.cpp.i
+
+Class/Tenant/Tenant.s: Class/Tenant/Tenant.cpp.s
+.PHONY : Class/Tenant/Tenant.s
+
+# target to generate assembly for a file
+Class/Tenant/Tenant.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dapdixaylai.dir/build.make CMakeFiles/dapdixaylai.dir/Class/Tenant/Tenant.cpp.s
+.PHONY : Class/Tenant/Tenant.cpp.s
 
 Class/User/User.o: Class/User/User.cpp.o
 .PHONY : Class/User/User.o
@@ -366,12 +414,18 @@ help:
 	@echo "... Class/Member/Member.o"
 	@echo "... Class/Member/Member.i"
 	@echo "... Class/Member/Member.s"
+	@echo "... Class/OccupyHouse/OccupyHouse.o"
+	@echo "... Class/OccupyHouse/OccupyHouse.i"
+	@echo "... Class/OccupyHouse/OccupyHouse.s"
 	@echo "... Class/Request/Request.o"
 	@echo "... Class/Request/Request.i"
 	@echo "... Class/Request/Request.s"
 	@echo "... Class/Review/Review.o"
 	@echo "... Class/Review/Review.i"
 	@echo "... Class/Review/Review.s"
+	@echo "... Class/Tenant/Tenant.o"
+	@echo "... Class/Tenant/Tenant.i"
+	@echo "... Class/Tenant/Tenant.s"
 	@echo "... Class/User/User.o"
 	@echo "... Class/User/User.i"
 	@echo "... Class/User/User.s"
