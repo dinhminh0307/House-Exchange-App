@@ -4,8 +4,9 @@
 
 #ifndef DAPDIXAYLAI_MEMBER_H
 #define DAPDIXAYLAI_MEMBER_H
+
 #include "../User/User.h"
-#include "../System/System.h"
+#include "../../System/System.h"
 #include "../House/House.h"
 #include "../Review/Review.h"
 #include "../Request/Request.h"
@@ -15,42 +16,58 @@
 
 #include<iomanip>
 
-using std::string;
-using std::vector;
+
 class House;
+
 class Review;
+
 class Request;
-class User;
+
+
+
 class Member : public User {
 private:
-    string memberId;
-    string fullName;
-    string phoneNum;
+    std::string memberId;
+    std::string fullName;
+    std::string phoneNum;
     House *houseOwner;
     int credit;
     int score;
-    string location;
-    vector<Review *> tenantReviewList;
+    std::string location;
+    std::vector<Review *> tenantReviewList;
 
 
 public:
 
-    Member(string username, string password, string memberID, string fullName, string phoneNum,
-           double credit, int score, string location);
+    Member(std::string username, std::string password, std::string memberID, std::string fullName, std::string phoneNum,
+           double credit, int score, std::string location);
 
 
     bool acceptedRequest();
+
     bool addHouse(Date *startDate, Date *endDate, int consumingPointsPerDay);
+
     bool deleteHouse();
+
     bool viewAllRequest();
+
     friend class System;
+
     friend class House;
+
     void showAccountInfo();
+
     double getRatingScore();
+
     bool minusCredit(int creditPoint);
+
     bool addCredit(int creditPoint);
-    string showReview();
+
+    void showReview();
+
     bool createHouse(House *house);
+
+
 
 };
 

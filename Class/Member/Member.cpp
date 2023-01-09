@@ -5,8 +5,8 @@
 #include "Member.h"
 
 #include <utility>
-Member::Member(string username, string password, string memberID, string fullName, string phoneNum,
-               double credit, int score, string location) : User(std::move(username), std::move(password)) {
+Member::Member(std::string username, std::string password, std::string memberID, std::string fullName, std::string phoneNum,
+               double credit, int score, std::string location) : User(std::move(username), std::move(password)) {
     this->memberId = memberID;
     this->fullName = fullName;
     this->phoneNum = phoneNum;
@@ -32,17 +32,18 @@ double Member::getRatingScore() {
 }
 
 void Member::showAccountInfo() {
-    cout << "\nYour information: \n";
-    cout << "Your username: " << this->username << "\n";
-    cout << "Your name: " << this->fullName << "\n";
-    cout << "Your phone number: " << this->phoneNum << "\n";
-    cout << "Your credit: " << this->credit << "\n";
-    cout << "Your location: " << this->location << "\n";
-    cout << "Your score: " << this->getRatingScore() << "\n";
+    std::cout << "\nYour information: \n";
+    std::cout << "Your username: " << this->username << "\n";
+    std::cout << "Your name: " << this->fullName << "\n";
+    std::cout << "Your phone number: " << this->phoneNum << "\n";
+    std::cout << "Your credit: " << this->credit << "\n";
+    std::cout << "Your location: " << this->location << "\n";
+    std::cout << "Your score: " << this->getRatingScore() << "\n";
     if (houseOwner == nullptr) {
-        cout << "\nYou have not added a house\n";
-    } else {
-        houseOwner->showInfo();
+        std::cout << "\nYou have not added a house\n";
+    }
+    else {
+        houseOwner->viewHouseInfo();
     }
 }
 //add credit to member's credit
@@ -58,25 +59,25 @@ bool Member::minusCredit(int creditPoint) {
     this->credit -= creditPoint;
     return true;
 }
-string Member::showReview() {
-    std::stringstream ss;
+void  Member::showReview() {
+
     if (this->tenantReviewList.empty()) {
-        cout << "\nThere are no reviews for this member\n";
+        std::cout << "\nThere are no reviews for this member\n";
     } else {
-        cout << "\nAll review for this member: \n";
+        std::cout << "\nAll review for this member: \n";
         for (int i = 0; i < this->tenantReviewList.size(); i++) {
             Review *review = tenantReviewList[i];
-            string tempComment = review->comment;
+            std::string tempComment = review->comment;
             int tempScore = review->ratingScore;
             Member *member = review->memberReview;
-            ss << "\n-----------------------"
+            std::cout << "\n-----------------------"
                << "\n\nReview by member: " << member->fullName
                << "\n-----------------------"
                << "Score: " << tempScore << "\n"
                << "Comment: " << tempComment;
 
         }
-        return ss.str();
+
     }
 }
 
@@ -91,14 +92,6 @@ bool Member::createHouse(House *house) {
     }
 }
 
-
-
-
-
-
-
-
-
 bool Member::addHouse(Date *startDate, Date *endDate, int consumingPointsPerDay) {
     if(houseOwner->isAdded) {
         return false;
@@ -108,7 +101,7 @@ bool Member::addHouse(Date *startDate, Date *endDate, int consumingPointsPerDay)
     houseOwner->startingDate = startDate;
     houseOwner->endingDate = endDate;
     houseOwner->consumingPointsPerDay = consumingPointsPerDay;
-    houseOwner->houseStatus = "Available";
+    houseOwner->houseStatus = "AVAILABLE";
     return true;
 }
 
@@ -128,10 +121,10 @@ bool Member::deleteHouse() {
 
 bool Member::viewAllRequest() {
     if(houseOwner->listHouseRequest.empty()) {
-        cout << "\nYou dont have any request!\n";
+        std::cout << "\nYou dont have any request!\n";
         return false;
     }
-    cout << std::left
+    std::cout << std::left
             << std::setw(10)
             << "Request ID"
             << std::left
@@ -148,7 +141,7 @@ bool Member::viewAllRequest() {
             << "Status"
             << "\n";
     for(Request *i : houseOwner->listHouseRequest) {
-        cout
+        std::cout
                 << std::left
                 << std::setw(10)
                 << i->requestID
@@ -166,5 +159,6 @@ bool Member::viewAllRequest() {
                 << i->requestStatus
                 << "\n";
     }
+    return true;
 }
 

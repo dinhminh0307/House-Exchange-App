@@ -1,6 +1,8 @@
-#include "./CLass/Date/Date.h"
+//#include "./CLass/Date/Date.h"
+#include "Class/Member/Member.h"
+#include "Class/User/User.h"
+#include "./System/System.h"
 int main() {
-    Date minh(1,12,2022);
-    
-    std ::cout << minh.countDate();
+    Member member("kien", "kien", "1", "vo", "0901", 12, 13, "hue");
+    member.showAccountInfo();
 }

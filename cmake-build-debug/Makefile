@@ -225,6 +225,30 @@ Class/Member/Member.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/dapdixaylai.dir/build.make CMakeFiles/dapdixaylai.dir/Class/Member/Member.cpp.s
 .PHONY : Class/Member/Member.cpp.s
 
+Class/Request/Request.o: Class/Request/Request.cpp.o
+.PHONY : Class/Request/Request.o
+
+# target to build an object file
+Class/Request/Request.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dapdixaylai.dir/build.make CMakeFiles/dapdixaylai.dir/Class/Request/Request.cpp.o
+.PHONY : Class/Request/Request.cpp.o
+
+Class/Request/Request.i: Class/Request/Request.cpp.i
+.PHONY : Class/Request/Request.i
+
+# target to preprocess a source file
+Class/Request/Request.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dapdixaylai.dir/build.make CMakeFiles/dapdixaylai.dir/Class/Request/Request.cpp.i
+.PHONY : Class/Request/Request.cpp.i
+
+Class/Request/Request.s: Class/Request/Request.cpp.s
+.PHONY : Class/Request/Request.s
+
+# target to generate assembly for a file
+Class/Request/Request.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dapdixaylai.dir/build.make CMakeFiles/dapdixaylai.dir/Class/Request/Request.cpp.s
+.PHONY : Class/Request/Request.cpp.s
+
 Class/Review/Review.o: Class/Review/Review.cpp.o
 .PHONY : Class/Review/Review.o
 
@@ -297,6 +321,30 @@ System/System.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/dapdixaylai.dir/build.make CMakeFiles/dapdixaylai.dir/System/System.cpp.s
 .PHONY : System/System.cpp.s
 
+main.o: main.cpp.o
+.PHONY : main.o
+
+# target to build an object file
+main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dapdixaylai.dir/build.make CMakeFiles/dapdixaylai.dir/main.cpp.o
+.PHONY : main.cpp.o
+
+main.i: main.cpp.i
+.PHONY : main.i
+
+# target to preprocess a source file
+main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dapdixaylai.dir/build.make CMakeFiles/dapdixaylai.dir/main.cpp.i
+.PHONY : main.cpp.i
+
+main.s: main.cpp.s
+.PHONY : main.s
+
+# target to generate assembly for a file
+main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dapdixaylai.dir/build.make CMakeFiles/dapdixaylai.dir/main.cpp.s
+.PHONY : main.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -318,6 +366,9 @@ help:
 	@echo "... Class/Member/Member.o"
 	@echo "... Class/Member/Member.i"
 	@echo "... Class/Member/Member.s"
+	@echo "... Class/Request/Request.o"
+	@echo "... Class/Request/Request.i"
+	@echo "... Class/Request/Request.s"
 	@echo "... Class/Review/Review.o"
 	@echo "... Class/Review/Review.i"
 	@echo "... Class/Review/Review.s"
@@ -327,6 +378,9 @@ help:
 	@echo "... System/System.o"
 	@echo "... System/System.i"
 	@echo "... System/System.s"
+	@echo "... main.o"
+	@echo "... main.i"
+	@echo "... main.s"
 .PHONY : help
 
 

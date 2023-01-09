@@ -7,16 +7,16 @@
 #include <iostream>
 #include "../Member/Member.h"
 #include "../House/House.h"
-using std::string;
+
 class House;
 class Member;
 class Review {
 private:
     int ratingScore;
-    string comment;
+    std::string comment;
     Member *memberReview;
 public:
-    Review(int ratingScore, string comment, Member *memberReview);
+    Review(int ratingScore, std::string comment, Member *memberReview);
     friend class Member;
     friend class House;
 };

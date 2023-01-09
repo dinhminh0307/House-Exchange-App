@@ -40,7 +40,7 @@ int Date ::operator- (Date &date2) {
     return countDate() - date2.countDate();
 }
 
-string Date ::convertDatetoString() {
+std::string Date ::convertDatetoString() {
     std::stringstream ss;
     ss << date << "/" << month << "/" << year;
 }
