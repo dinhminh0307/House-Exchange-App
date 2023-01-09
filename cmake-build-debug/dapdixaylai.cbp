@@ -86,6 +86,12 @@
 		<Unit filename="/Users/vonguyenkien/Workspaces/asm2/HOUSE-VACATION-RENT/Class/Admin/Admin.h">
 			<Option target="dapdixaylai"/>
 		</Unit>
+		<Unit filename="/Users/vonguyenkien/Workspaces/asm2/HOUSE-VACATION-RENT/Class/Date/Date.cpp">
+			<Option target="dapdixaylai"/>
+		</Unit>
+		<Unit filename="/Users/vonguyenkien/Workspaces/asm2/HOUSE-VACATION-RENT/Class/Date/Date.h">
+			<Option target="dapdixaylai"/>
+		</Unit>
 		<Unit filename="/Users/vonguyenkien/Workspaces/asm2/HOUSE-VACATION-RENT/Class/House/House.cpp">
 			<Option target="dapdixaylai"/>
 		</Unit>
@@ -114,9 +120,6 @@
 			<Option target="dapdixaylai"/>
 		</Unit>
 		<Unit filename="/Users/vonguyenkien/Workspaces/asm2/HOUSE-VACATION-RENT/System/System.h">
-			<Option target="dapdixaylai"/>
-		</Unit>
-		<Unit filename="/Users/vonguyenkien/Workspaces/asm2/HOUSE-VACATION-RENT/main.cpp">
 			<Option target="dapdixaylai"/>
 		</Unit>
 		<Unit filename="/Users/vonguyenkien/Workspaces/asm2/HOUSE-VACATION-RENT/CMakeLists.txt">

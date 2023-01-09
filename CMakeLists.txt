@@ -6,6 +6,8 @@ set(CMAKE_CXX_STANDARD 14)
 include_directories(System)
 
 add_executable(dapdixaylai
+        Class/Date/Date.cpp
+        Class/Date/Date.h
         System/System.cpp
         System/System.h
         Class/Member/Member.cpp

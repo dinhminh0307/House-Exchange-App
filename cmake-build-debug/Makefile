@@ -153,6 +153,30 @@ Class/Admin/Admin.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/dapdixaylai.dir/build.make CMakeFiles/dapdixaylai.dir/Class/Admin/Admin.cpp.s
 .PHONY : Class/Admin/Admin.cpp.s
 
+Class/Date/Date.o: Class/Date/Date.cpp.o
+.PHONY : Class/Date/Date.o
+
+# target to build an object file
+Class/Date/Date.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dapdixaylai.dir/build.make CMakeFiles/dapdixaylai.dir/Class/Date/Date.cpp.o
+.PHONY : Class/Date/Date.cpp.o
+
+Class/Date/Date.i: Class/Date/Date.cpp.i
+.PHONY : Class/Date/Date.i
+
+# target to preprocess a source file
+Class/Date/Date.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dapdixaylai.dir/build.make CMakeFiles/dapdixaylai.dir/Class/Date/Date.cpp.i
+.PHONY : Class/Date/Date.cpp.i
+
+Class/Date/Date.s: Class/Date/Date.cpp.s
+.PHONY : Class/Date/Date.s
+
+# target to generate assembly for a file
+Class/Date/Date.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dapdixaylai.dir/build.make CMakeFiles/dapdixaylai.dir/Class/Date/Date.cpp.s
+.PHONY : Class/Date/Date.cpp.s
+
 Class/House/House.o: Class/House/House.cpp.o
 .PHONY : Class/House/House.o
 
@@ -273,30 +297,6 @@ System/System.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/dapdixaylai.dir/build.make CMakeFiles/dapdixaylai.dir/System/System.cpp.s
 .PHONY : System/System.cpp.s
 
-main.o: main.cpp.o
-.PHONY : main.o
-
-# target to build an object file
-main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/dapdixaylai.dir/build.make CMakeFiles/dapdixaylai.dir/main.cpp.o
-.PHONY : main.cpp.o
-
-main.i: main.cpp.i
-.PHONY : main.i
-
-# target to preprocess a source file
-main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/dapdixaylai.dir/build.make CMakeFiles/dapdixaylai.dir/main.cpp.i
-.PHONY : main.cpp.i
-
-main.s: main.cpp.s
-.PHONY : main.s
-
-# target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/dapdixaylai.dir/build.make CMakeFiles/dapdixaylai.dir/main.cpp.s
-.PHONY : main.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -309,6 +309,9 @@ help:
 	@echo "... Class/Admin/Admin.o"
 	@echo "... Class/Admin/Admin.i"
 	@echo "... Class/Admin/Admin.s"
+	@echo "... Class/Date/Date.o"
+	@echo "... Class/Date/Date.i"
+	@echo "... Class/Date/Date.s"
 	@echo "... Class/House/House.o"
 	@echo "... Class/House/House.i"
 	@echo "... Class/House/House.s"
@@ -324,9 +327,6 @@ help:
 	@echo "... System/System.o"
 	@echo "... System/System.i"
 	@echo "... System/System.s"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
 .PHONY : help
 
 
