@@ -54,6 +54,21 @@
 		{
 			"isCMake" : true,
 			"isExternal" : true,
+			"path" : "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeFindCodeBlocks.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeExtraGeneratorDetermineCompilerMacrosAndIncludeDirs.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/ProcessorCount.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
 			"path" : "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeCInformation.cmake"
 		},
 		{
@@ -150,8 +165,8 @@
 	"kind" : "cmakeFiles",
 	"paths" : 
 	{
-		"build" : "/Users/trungngo/Desktop/dapdixaylai/cmake-build-debug",
-		"source" : "/Users/trungngo/Desktop/dapdixaylai"
+		"build" : "/Users/vonguyenkien/Workspaces/asm2/HOUSE-VACATION-RENT/cmake-build-debug",
+		"source" : "/Users/vonguyenkien/Workspaces/asm2/HOUSE-VACATION-RENT"
 	},
 	"version" : 
 	{

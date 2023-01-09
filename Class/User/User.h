@@ -7,11 +7,15 @@
 
 
 #include "../System/System.h"
-
+#include <iostream>
+using std::string;
 
 class User {
+protected:
     string username;
-    string password
+    string password;
+public:
+    User(string username, string password);
 };
 
 
