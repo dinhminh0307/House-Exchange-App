@@ -19,6 +19,7 @@ private:
     int minScore;
 public:
     void showInfo();
+    friend class Member;
 
 
 };

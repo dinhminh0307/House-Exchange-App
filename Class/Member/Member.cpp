@@ -78,6 +78,18 @@ string Member::showReview() {
     }
 }
 
+bool Member::createHouse(House *house) {
+    if(this->ownedHouse != nullptr){
+        return false;
+    }
+    else {
+        this->ownedHouse = house;
+        house->owner = this;
+        return true;
+    }
+}
+
+
 
 
 

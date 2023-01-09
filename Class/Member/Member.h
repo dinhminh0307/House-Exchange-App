@@ -39,6 +39,7 @@ public:
     bool minusCredit(int creditPoint);
     bool addCredit(int creditPoint);
     string showReview();
+    bool createHouse(House *house);
 
 };
 
