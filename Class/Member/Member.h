@@ -10,6 +10,7 @@
 #include "../Review/Review.h"
 #include <iostream>
 #include <vector>
+#include <sstream>
 using std::string;
 using std::vector;
 class House;
@@ -28,12 +29,17 @@ private:
 
 
 public:
-    Member(string username, string password, std::string memberID, std::string fullName, std::string phoneNum,
-           int credit, int score, std::string location);
+    Member(string username, string password, string memberID, string fullName, string phoneNum,
+           double credit, int score, string location);
 
     friend class System;
     friend class House;
     void showAccountInfo();
+    double getRatingScore();
+    bool minusCredit(int creditPoint);
+    bool addCredit(int creditPoint);
+    string showReview();
+
 };
 
 

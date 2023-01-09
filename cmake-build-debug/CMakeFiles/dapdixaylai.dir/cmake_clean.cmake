@@ -11,6 +11,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/dapdixaylai.dir/Class/User/User.cpp.o.d"
   "CMakeFiles/dapdixaylai.dir/System/System.cpp.o"
   "CMakeFiles/dapdixaylai.dir/System/System.cpp.o.d"
+  "CMakeFiles/dapdixaylai.dir/main.cpp.o"
+  "CMakeFiles/dapdixaylai.dir/main.cpp.o.d"
   "dapdixaylai"
   "dapdixaylai.pdb"
 )
