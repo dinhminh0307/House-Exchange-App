@@ -26,7 +26,7 @@
 #include "../Class/Member/Member.h"
 #include "../Class/House/House.h"
 #include "../Class/Admin/Admin.h"
-
+// #include "../Class/User/User.h"
 #include "../Class/Date/Date.h"
 
 
@@ -36,7 +36,7 @@ const int INITIAL_CREDITS = 500;
 const int INITIAL_SCORES = 10;
 const int DAYS_IN_MONTHS[] = {31,28,31,30,31,30,31,31,30,31,30,31};
 const std::string STATUS = {"AVAILABLE", "UNAVAILABLE"};
-const std::string RE_STATUS = {"PENDING", "ACCEPTED", "DECLINED"};
+// const std::string RE_STATUS = {"PENDING", "ACCEPTED", "DECLINED"};
 
 class House;
 class Member;

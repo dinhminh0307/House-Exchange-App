@@ -7,13 +7,20 @@
 
 #include "../User/User.h"
 
-#include "../Date/Date.h"
-
-#include "../../System/System.h"
 #include "../House/House.h"
-#include "../Review/Review.h"
 #include "../Request/Request.h"
-#include "../Tenant/Tenant.h"
+
+
+
+#include "../OccupyHouse/OccupyHouse.h"
+#include "../../System/System.h"
+
+#include "../Review/Review.h"
+
+// #include "../../System/System.h"
+
+
+// #include "../Tenant/Tenant.h"
 #include <iostream>
 #include <vector>
 #include <sstream>
@@ -72,9 +79,9 @@ public:
 
     void showAllAvailableHouse();
 
-    bool acceptRequest(std::string requestID);
+    bool acceptRequest(int ID);
 
-    bool declineRequest(std::string requestID);
+    bool declineRequest(int ID);
 
 
     void reviewHouse(House *occupyHouse, int score, std::string comment);
