@@ -117,7 +117,7 @@ bool Member::addHouse(Date *startDate, Date *endDate, int consumingPointsPerDay,
 }
 
 bool Member::deleteHouse() {
-    if(!houseOwner->isAdded) {
+    if(!houseOwner->isAdded || !houseOwner->listHouseRequest.empty()) {
         return false;
     }
 
