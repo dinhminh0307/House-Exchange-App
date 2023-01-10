@@ -15,6 +15,8 @@
 #define RATING_TENANT_FILE "Data/ratingTenant.dat"
 #define OCCUPIERS_FILE "Data/occupiers.dat"
 #define MEMBERS_FILE "Data/members.dat"
+#define UNRATED_OCC_FILE "Data/unratedOcc.dat"
+
 
 
 
@@ -26,7 +28,6 @@
 #include "../Class/Member/Member.h"
 #include "../Class/House/House.h"
 #include "../Class/Admin/Admin.h"
-
 #include "../Class/Date/Date.h"
 
 
