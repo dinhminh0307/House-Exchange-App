@@ -87,6 +87,10 @@ public:
     void inputRatingTenantToSys();
     void inputRatingHouseToSys();
     void inputRequestToSys();
+    void inputOccupierToSys();
+    void inputUnratedToSys();
+    void outputOccupierToFile();
+    void outputUnratedToFile();
     void outputRequestToFile();
     void outputRatingTenantToFile();
     void outputRatingHouseToFile();

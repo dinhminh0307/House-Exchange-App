@@ -753,6 +753,38 @@ void System::inputRequestToSys() {
     readFile.close();
 }
 
+void System::inputOccupierToSys() {
+    std::string dataLine;
+    std::ifstream readFile{OCCUPIERS_FILE};
+    Member *targetMem;
+    House *targetHouse;
+
+    if (!readFile.is_open()) {
+        std::cerr << "Cannot open " << OCCUPIERS_FILE << "\n";
+    }
+
+    while(std::getline(readFile, dataLine)){
+        std::vector<std::string> dataLst = splitStr(dataLine,';');
+        for(auto &mem : memberVector){
+            if(mem->memberId == dataLst[0]){
+                targetMem = mem;
+            }
+        }
+        for(auto &house : houseVector){
+            if(house->houseID == dataLst[1]){
+                targetHouse = house;
+            }
+        }
+        Date *start = stringToDate(dataLst[2]);
+        Date *end = stringToDate(dataLst[3]);
+
+
+    }
+
+
+
+}
+
 void System::outputRequestToFile() {
     std::ofstream writeFile{REQUEST_FILE};
 
