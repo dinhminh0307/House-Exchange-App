@@ -180,16 +180,16 @@ void System::guestShowHouse() {
     for (auto *house: houseVector) {
         std::cout << std::left
                   << std::setw(10)
-                  << house->houseId
+                  << house->houseID
                   << std::left
                   << std::setw(10)
                   << house->location
                   << std::left
                   << std::setw(10)
-                  << house->description
+                  << house->houseDescription
                   << std::left
                   << std::setw(10)
-                  << house->minCredits
+                  << house->minRating
                   << std::left
                   << std::setw(10)
                   << house->minScores << "\n";

@@ -161,4 +161,8 @@ bool Member::viewAllRequest() {
     }
     return true;
 }
+void Member::reviewHouse(House *occupyHouse, int score, std::string comment) {
+    Review *review = new Review(score, comment, this);
+    occupyHouse->addReviewToHouseReviewList(review);
+}
 

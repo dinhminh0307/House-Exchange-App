@@ -58,7 +58,7 @@ void House::viewHouseReview() {
 void House::addRequestToHouseRequestList(Request *request) {
     listHouseRequest.push_back(request);
 }
-void House::addReviewToHouseReviewList(Review *houseReview) {
-    listHouseReview.push_back(houseReview);
+void House::addReviewToHouseReviewList(Review *review) {
+    listHouseReview.push_back(review);
 }
 

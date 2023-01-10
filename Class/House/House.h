@@ -4,7 +4,7 @@
 
 #ifndef DAPDIXAYLAI_HOUSE_H
 #define DAPDIXAYLAI_HOUSE_H
-
+#include "../Class/Review/Review.h"
 #include <iostream>
 #include <vector>
 
@@ -50,7 +50,7 @@ public:
     bool removeRequestFromHouseRequestList(Request *request);
 
 
-    void addReviewToHouseReviewList(Review *houseReview);
+    void addReviewToHouseReviewList(Review *eview);
 
 
     void viewHouseInfo();

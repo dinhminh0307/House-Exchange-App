@@ -18,6 +18,7 @@
 
 #include<iomanip>
 
+class System;
 
 class House;
 
@@ -54,10 +55,6 @@ public:
     bool viewAllRequest();
 
 
-    friend class System;
-
-    friend class House;
-
     void showAccountInfo();
 
     double getRatingScore();
@@ -70,8 +67,13 @@ public:
 
     bool createHouse(House *house);
 
+    void reviewHouse(House *occupyHouse, int score, std::string comment);
 
+    void reviewMember();
 
+    friend class House;
+
+    friend class System;
 };
 
 
