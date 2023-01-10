@@ -48,9 +48,9 @@ void Member::showAccountInfo() {
     std::cout << "Your location: " << this->location << "\n";
     std::cout << "Your score: " << this->getRatingScore() << "\n";
     if (houseOwner == nullptr) {
-        std::cout << "\nYou have not added a house\n";
+        std::cout << "\n";
     } else {
-        houseOwner->viewHouseInfo();
+        std::cout <<"HouseID: " << houseOwner->houseID << "Location: " << houseOwner->location << "\n";
     }
 }
 

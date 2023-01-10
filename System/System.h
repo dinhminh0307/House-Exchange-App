@@ -23,6 +23,7 @@
 #include <sstream>
 #include <regex>
 #include <fstream>
+#include <iomanip>
 #include "../Class/Member/Member.h"
 #include "../Class/House/House.h"
 #include "../Class/Admin/Admin.h"
@@ -40,7 +41,6 @@ const std::string RE_STATUS = {"PENDING", "ACCEPTED", "DECLINED"};
 
 class House;
 class Member;
-class Admin;
 class Date;
 class User;
 class System {
@@ -69,6 +69,10 @@ public:
     void guestShowHouse();
     void mainMenu();
     void guestMenu();
+    void adminMenu();
+    bool adminLoginMenu();
+    void adminViewMemberMenu();
+    void adminViewHouseMenu();
 
     void inputHouseToSys();
     void inputMemHouseToSys();

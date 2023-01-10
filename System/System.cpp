@@ -214,7 +214,7 @@ void System::mainMenu() {
             break;
     }
 }
-
+//guest menu
 void System::guestMenu() {
     int choice;
     std::cout << "\t---GUEST MENU---\n";
@@ -232,6 +232,141 @@ void System::guestMenu() {
             break;
     }
 
+}
+//admin menu - basic feature
+void System::adminMenu() {
+    int choice;
+    std::cout << "\t---ADMIN MENU---\n";
+    std::cout <<  "\t---1.View Member List---\n" << "\t--2.View House List" << "\t---3.Back to main menu---\n";
+    choice = menuChoice(1,3);
+    switch (choice) {
+        case 1:
+            adminViewMemberMenu();
+            break;
+        case 2:
+            adminViewHouseMenu();
+            break;
+        case 3:
+            mainMenu();
+            break;
+    }
+
+
+
+}
+void System::adminViewMemberMenu() {
+    int index = 1;
+    std::cout << "All the member of the system: " << "\n";
+    std::cout
+            << std::left
+            << std::setw(5)
+            << "Index"
+            << std::left
+            << std::setw(10)
+            << "MemberID"
+            << std::left
+            << std::setw(15)
+            << "Full Name"
+            << "\n";
+    for(auto mem : memberVector){
+        std::cout
+                << std::left
+                << std::setw(5)
+                << index
+                << std::left
+                << std::setw(10)
+                << mem->memberId
+                << std::left
+                << std::setw(15)
+                << mem->fullName
+                << "\n";
+        index++;
+    }
+    std::cout << "\t---1.View Member Detail---\n" << "\t---2.Back to admin menu---\n";
+    int choice = menuChoice(1,2);
+    switch (choice) {
+        case 1:
+           for(int j =0; j < memberVector.size();j++) {
+               std::cout << j+1 << '.';
+               memberVector[j]->showAccountInfo();
+           }
+            break;
+        case 2:
+            adminMenu();
+            break;
+    }
+}
+void System::adminViewHouseMenu() {
+    int index = 1;
+    std::cout << "All house of the system: " << "\n";
+    std::cout
+            << std::left
+            << std::setw(5)
+            << "Index"
+            << std::left
+            << std::setw(8)
+            << "HouseID"
+            << std::left
+            << std::setw(15)
+            << "OwnerID"
+            << std::left
+            << std::setw(15)
+            << "Location"
+            << std::left
+            << std::setw(35)
+            << "Description"
+            << "\n";
+    for(auto i : houseVector){
+        std::cout
+                << std::left
+                << std::setw(5)
+                << index
+                << std::left
+                << std::setw(8)
+                << i->houseID
+                << std::left
+                << std::setw(15)
+                << i->owner->memberId
+                << std::left
+                << std::setw(15)
+                << i->location
+                << std::left
+                << std::setw(35)
+                << i->houseDescription
+                << "\n";
+        index++;
+    }
+    std::cout << "\t---1.View House Detail---\n" << "\t---2.Back to admin menu---\n";
+    int choice = menuChoice(1,2);
+    switch (choice) {
+        case 1:
+            for(int j =0; j < houseVector.size();j++) {
+                std::cout << j+1 << '.';
+                houseVector[j]->viewHouseInfo();
+            }
+            break;
+        case 2:
+            adminMenu();
+            break;
+    }
+
+
+
+}
+bool System::adminLoginMenu() {
+    std::string username, password;
+    std::cout << "\t---ADMIN LOGIN---\n";
+    std::cout << "Enter your username: ";
+    std::getline(std::cin, username);
+    std::cout << "Enter your password: ";
+    std::getline(std::cin, password);
+    if(admin->username == username && admin->password == password){
+        currentUser = admin;
+        return true;
+    }
+    else {
+        return false;
+    }
 }
 
 void System::inputHouseToSys() {

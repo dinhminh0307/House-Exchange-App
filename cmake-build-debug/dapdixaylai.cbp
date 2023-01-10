@@ -80,6 +80,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/Users/vonguyenkien/Workspaces/asm2/HOUSE-VACATION-RENT/Class/Admin/Admin.cpp">
+			<Option target="dapdixaylai"/>
+		</Unit>
+		<Unit filename="/Users/vonguyenkien/Workspaces/asm2/HOUSE-VACATION-RENT/Class/Admin/Admin.h">
+			<Option target="dapdixaylai"/>
+		</Unit>
 		<Unit filename="/Users/vonguyenkien/Workspaces/asm2/HOUSE-VACATION-RENT/Class/Date/Date.cpp">
 			<Option target="dapdixaylai"/>
 		</Unit>
@@ -98,6 +104,12 @@
 		<Unit filename="/Users/vonguyenkien/Workspaces/asm2/HOUSE-VACATION-RENT/Class/Member/Member.h">
 			<Option target="dapdixaylai"/>
 		</Unit>
+		<Unit filename="/Users/vonguyenkien/Workspaces/asm2/HOUSE-VACATION-RENT/Class/OccupyHouse/OccupyHouse.cpp">
+			<Option target="dapdixaylai"/>
+		</Unit>
+		<Unit filename="/Users/vonguyenkien/Workspaces/asm2/HOUSE-VACATION-RENT/Class/OccupyHouse/OccupyHouse.h">
+			<Option target="dapdixaylai"/>
+		</Unit>
 		<Unit filename="/Users/vonguyenkien/Workspaces/asm2/HOUSE-VACATION-RENT/Class/Request/Request.cpp">
 			<Option target="dapdixaylai"/>
 		</Unit>
@@ -108,6 +120,15 @@
 			<Option target="dapdixaylai"/>
 		</Unit>
 		<Unit filename="/Users/vonguyenkien/Workspaces/asm2/HOUSE-VACATION-RENT/Class/Review/Review.h">
+			<Option target="dapdixaylai"/>
+		</Unit>
+		<Unit filename="/Users/vonguyenkien/Workspaces/asm2/HOUSE-VACATION-RENT/Class/Tenant/Tenant.cpp">
+			<Option target="dapdixaylai"/>
+		</Unit>
+		<Unit filename="/Users/vonguyenkien/Workspaces/asm2/HOUSE-VACATION-RENT/Class/Tenant/Tenant.h">
+			<Option target="dapdixaylai"/>
+		</Unit>
+		<Unit filename="/Users/vonguyenkien/Workspaces/asm2/HOUSE-VACATION-RENT/Class/User/User.cpp">
 			<Option target="dapdixaylai"/>
 		</Unit>
 		<Unit filename="/Users/vonguyenkien/Workspaces/asm2/HOUSE-VACATION-RENT/Class/User/User.h">
