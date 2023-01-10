@@ -177,12 +177,14 @@ bool Member::viewAllRequest() {
 }
 
 void Member::reviewHouse(House *occupyHouse, int score, std::string comment) {
+    //create object
     Review *review = new Review(score, comment, this);
+    //add to review list of house
     occupyHouse->addReviewToHouseReviewList(review);
 }
 
 bool Member::declineRequest(std::string requestID) {
-    int index = 0; //find req
+    int index = 0;
     int indice = 0;
     for (auto i: houseOwner->listHouseRequest) {
         if (i->requestID == requestID) {
@@ -239,15 +241,19 @@ bool Member::viewMemberOccupyList() {
 }
 
 bool Member::checkout(int leaveId) {
+    //if input greater than the size of list, return false
     if (leaveId > tenantList.size()) {
         return false;
     }
+    //delete from tenant list
     tenantList.erase(tenantList.begin() + (leaveId - 1));
     //when leave house call member review house and member review occupier afterwards in menu
 }
 
 void Member::reviewOwner(Member *owner, int score, std::string comment) {
+    //create object
     Review *review = new Review(score, comment, this);
+    //add review to owner review list
     owner->tenantReviewList.push_back(review);
 }
 
