@@ -78,7 +78,7 @@ public:
 
     bool createHouse(House *house);
 
-    int requestHouse();
+    void requestHouse(House *houstrequested); 
 
     void showAllAvailableHouse();
 
@@ -94,6 +94,11 @@ public:
 
     bool checkout(std::string houseId);
 
+    void tenantLeaveHouse();
+
+    void voidgetHouseIndex(int houseID);
+
+    void cancelRequest();
     friend class House;
 
     friend class System;

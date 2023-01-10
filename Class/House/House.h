@@ -71,6 +71,7 @@ public:
 
     std::string viewHouseInfoByGuest();
 
+
     ~House();
 
     friend class Member;

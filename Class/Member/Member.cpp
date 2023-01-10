@@ -9,7 +9,7 @@
 
 #include <utility>
 Member::Member(std::string username, std::string password, std::string memberID, std::string fullName, std::string phoneNum,
-               double credit, double score, std::string location) : User(std::move(username), std::move(password)) {
+               double credit, double score, std::string location) : User(username, password) {
     this->memberId = memberID;
     this->fullName = fullName;
     this->phoneNum = phoneNum;
@@ -174,28 +174,31 @@ void Member::reviewHouse(House *occupyHouse, int score, std::string comment) {
 
 bool Member:: declineRequest(int ID) {
         int indice = 0;
-        for(int i = 0; houseOwner->listHouseRequest.size(); i++) {
-            if(houseOwner->listHouseRequest[i] = houseOwner->listHouseRequest[ID] ) {
-                houseOwner->listHouseRequest.erase(houseOwner->listHouseRequest.begin() + i);
+        for(auto i : houseOwner->listHouseRequest) {
+            if(houseOwner->listHouseRequest[ID] == i) {
                 continue;
             }
-            if((houseOwner->listHouseRequest[i] ->startDate - houseOwner->listHouseRequest[ID]->endDate) < 0 || (houseOwner->listHouseRequest[ID]->startDate -houseOwner->listHouseRequest[i]->endDate) < 0) {
-                indice++;
-                houseOwner->listHouseRequest.erase(houseOwner->listHouseRequest.begin() + indice);//Delete overlap
+            if((*i->endDate - *houseOwner->listHouseRequest[ID]->startDate) < 0 || (*houseOwner->listHouseRequest[ID]->endDate - *i->startDate) < 0) {
                 continue;
             }
+            indice++;
         }
+        houseOwner->listHouseRequest.erase(houseOwner->listHouseRequest.begin() + indice);
         return true;
 }
 bool Member:: acceptRequest(int ID) {
-    for(int i = 0; i < houseOwner->listHouseRequest.size(); i++) {
-        if(houseOwner->listHouseRequest[i] == houseOwner->listHouseRequest[ID]) {
+    if(ID > houseOwner->listHouseRequest.size()) {
+            return false;
+        }
+    
+        
+       
             // cout << "\nThe request does not match\n";
             // return false;
             houseOwner->houseStatus = "UNAVAILABLE";
-            auto rentDate = houseOwner->listHouseRequest[i]->startDate;
-            auto endRentDate = houseOwner->listHouseRequest[i]->endDate;
-            auto tenant =houseOwner->listHouseRequest[i]->requestedByMember;
+            auto rentDate = houseOwner->listHouseRequest[ID]->startDate;
+            auto endRentDate = houseOwner->listHouseRequest[ID]->endDate;
+            auto tenant =houseOwner->listHouseRequest[ID]->requestedByMember;
             // int requiredCredit = (rentDate - endRentDate) *houseOwner->consumingPointsPerDay;
             declineRequest(ID);
             OccupyHouse *occupyHouse = new OccupyHouse(rentDate, endRentDate, tenant);
@@ -206,13 +209,12 @@ bool Member:: acceptRequest(int ID) {
             // add credit of owner and minus credit of tenant
             this->addCredit(houseOwner->consumingPointsPerDay * (endRentDate - rentDate));
             tenant->minusCredit(houseOwner->consumingPointsPerDay * (endRentDate - rentDate));
-
-
-
-        }
-    }
-    
+    return true;
 }
 
 
+
+void Member::requestHouse(House *HouseRequested) {
+    auto *newRequest = new Request(HouseRequested->startingDate, HouseRequested->endingDate, this, RE_STATUS[2]);
+}
 
