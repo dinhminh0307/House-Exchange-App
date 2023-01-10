@@ -5,20 +5,22 @@
 #include "../Date/Date.h"
 #include "../Member/Member.h"
 
-
 class Date;
 class Member;
 
 class Request {
-    std::string requestID;
     std::string houseID;
     std::string requestStatus;
-    Date* requestFromDate;
-    Date* requestToDate;
+    std::string requestID;
+    Date* startDate;
+    Date* endDate;
     Member* requestedByMember;
 
 public:
-    Request(std::string requestID, Date *requestFromDate, Date *requestToDate, Member *requestedByMember);
+
+    Request(Date *startDate, Date *endDate, Member *requestedByMember, std::string status);
+
+
 
     friend class System;
 

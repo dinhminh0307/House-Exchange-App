@@ -12,13 +12,14 @@ class House;
 class Member;
 class Review {
 private:
-    int ratingScore;
+    double ratingScore;
     std::string comment;
     Member *memberReview;
 public:
-    Review(int ratingScore, std::string comment, Member *memberReview);
+    Review(double ratingScore, std::string comment, Member *memberReview);
     friend class Member;
     friend class House;
+    friend class System;
 };
 
 

@@ -6,7 +6,9 @@
 #define DAPDIXAYLAI_MEMBER_H
 
 #include "../User/User.h"
+
 #include "../Date/Date.h"
+
 #include "../../System/System.h"
 #include "../House/House.h"
 #include "../Review/Review.h"
@@ -20,6 +22,7 @@
 
 class System;
 
+
 class House;
 
 class Review;
@@ -27,28 +30,28 @@ class Review;
 class Request;
 
 
-
 class Member : public User {
 private:
+
     std::string memberId;
     std::string fullName;
     std::string phoneNum;
     House *houseOwner;
-    int credit;
-    int score;
+    double credit;
+    double score;
     std::string location;
     std::vector<Review *> tenantReviewList;
+    std::vector<Request *> requestList;
 
 
 public:
 
     Member(std::string username, std::string password, std::string memberID, std::string fullName, std::string phoneNum,
-           double credit, int score, std::string location);
+           double credit, double score, std::string location);
 
 
-    bool acceptedRequest();
+    bool addHouse(Date *startDate, Date *endDate, int consumingPointsPerDay, double scores);
 
-    bool addHouse(Date *startDate, Date *endDate, int consumingPointsPerDay);
 
     bool deleteHouse();
 
@@ -63,13 +66,22 @@ public:
 
     bool addCredit(int creditPoint);
 
-    void showReview();
-
     bool createHouse(House *house);
+
+    int requestHouse();
+
+    void showAllAvailableHouse();
+
+    bool acceptRequest(std::string requestID);
+
+    bool declineRequest(std::string requestID);
+
 
     void reviewHouse(House *occupyHouse, int score, std::string comment);
 
-    void reviewMember();
+
+    void showReview();
+
 
     friend class House;
 

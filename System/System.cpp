@@ -108,14 +108,14 @@ bool System::isValidFullname(std::string &fullname) {
 }
 
 bool System::isValidCredit(Member *mem, House *house) {
-    if (mem->credit < house->minCredits) {
+    if (mem->credit < (house->consumingPointsPerDay * (house->endingDate - house->startingDate))) {
         return false;
     }
     return true;
 }
 
 bool System::isValidScore(Member *mem, House *house) {
-    if (mem->score < house->minScores) {
+    if (mem->score < house->minRating) {
         return false;
     }
     return true;
@@ -189,10 +189,10 @@ void System::guestShowHouse() {
                   << house->houseDescription
                   << std::left
                   << std::setw(10)
-                  << house->minRating
+                  << house->consumingPointsPerDay
                   << std::left
                   << std::setw(10)
-                  << house->minScores << "\n";
+                  << house->minRating << "\n";
     }
     guestMenu();
 }
@@ -236,6 +236,73 @@ void System::guestMenu() {
 
 void System::inputHouseToSys() {
     houseVector.clear();
+    std::string dataLine;
+    std::ifstream readFile{HOUSE_FILE};
+    if (!readFile.is_open()) {
+        std::cerr << "Cannot open " << HOUSE_FILE << "\n";
+
+    }
+    while (std::getline(readFile, dataLine)) {
+        std::vector<std::string> dataLst;
+        dataLst = splitStr(dataLine, ';');
+        auto *house = new House(dataLst[0], dataLst[2], dataLst[3]);
+        houseVector.push_back(house);
+    }
+    readFile.close();
+}
+
+void System::inputHouseLstToSys() {
+    std::string dataLine;
+    std::ifstream readFile{HOUSE_LIST_FILE};
+    if (!readFile.is_open()) {
+        std::cerr << "Cannot open " << HOUSE_LIST_FILE << "\n";
+    }
+    Member *owner;
+    while (std::getline(readFile, dataLine)) {
+        std::vector<std::string> dataLst;
+        dataLst = splitStr(dataLine, ';');
+        Date *startDate = stringToDate(dataLst[2]);
+        Date *endDate = stringToDate(dataLst[3]);
+        double credits = std::stod(dataLst[4]);
+        double scores = std::stod(dataLst[5]);
+        std::string status = dataLst[6];
+        std::string ownerId = dataLst[1];
+        for (Member *mem: memberVector) {
+            if (ownerId == mem->memberId) {
+                owner = mem;
+            }
+        }
+        owner->addHouse(startDate, endDate, credits, scores);
+    }
+    readFile.close();
+}
+
+void System::inputMemHouseToSys() {
+    std::string dataLine;
+    std::ifstream readFile{HOUSE_FILE};
+    Member *targetMem;
+    House *memHouse;
+
+    if (!readFile.is_open()) {
+        std::cerr << "Cannot open " << HOUSE_FILE << "\n";
+    }
+
+    while (std::getline(readFile, dataLine)) {
+        std::vector<std::string> dataLst;
+        dataLst = splitStr(dataLine, ';');
+        for (House *house: houseVector) {
+            if (dataLst[0] == house->houseID) {
+                memHouse = house;
+            }
+        }
+        for (Member *mem: memberVector) {
+            if (dataLst[1] == mem->memberId) {
+                targetMem = mem;
+            }
+        }
+        targetMem->createHouse(memHouse);
+    }
+    readFile.close();
 
 }
 
@@ -251,11 +318,192 @@ void System::inputMemberToSys() {
     while (std::getline(readFile, dataLine)) {
         std::vector<std::string> dataLst;
         dataLst = splitStr(dataLine, ';');
-        auto *member = new Member(dataLst[0], dataLst[1], dataLst[2], dataLst[3], dataLst[4], dataLst[5],
-                                  std::stod(dataLst[6]), std::stod(dataLst[7]));
+        auto *member = new Member(dataLst[3], dataLst[4], dataLst[0], dataLst[1], dataLst[2],
+                                  std::stod(dataLst[6]), std::stod(dataLst[7]), dataLst[5]);
         memberVector.push_back(member);
     }
     readFile.close();
+}
+
+void System::inputRatingTenantToSys() {
+    std::string dataLine;
+    std::ifstream readFile{RATING_TENANT_FILE};
+    Member *beCommentedMem;
+    Member *commentMem;
+
+
+    if (!readFile.is_open()) {
+        std::cerr << "Cannot open " << RATING_HOUSE_FILE << "\n";
+    }
+
+    while (std::getline(readFile, dataLine)) {
+        std::vector<std::string> dataLst;
+        dataLst = splitStr(dataLine, ';');
+        for (auto mem: memberVector) {
+            if (mem->memberId == dataLst[1]) {
+                beCommentedMem = mem;
+            }
+        }
+        for (auto mem2: memberVector) {
+            if (mem2->memberId == dataLst[0]) {
+                commentMem = mem2;
+            }
+        }
+
+
+        auto memRating = new Review(std::stod(dataLst[2]), dataLst[3], commentMem);
+        beCommentedMem->tenantReviewList.push_back(memRating);
+    }
+
+    readFile.close();
+
+}
+
+void System::outputRatingTenantToFile() {
+    std::ofstream writeFile{RATING_TENANT_FILE};
+
+    if (!writeFile.is_open()) {
+        std::cerr << "Cannot open " << RATING_TENANT_FILE << "\n";
+    }
+
+    for (auto &mem: memberVector) {
+        for (auto &memRating: mem->tenantReviewList) {
+            writeFile << memRating->memberReview->memberId << ";"
+                      << mem->memberId << ';'
+                      << memRating->ratingScore << ";"
+                      << memRating->comment << "\n";
+        }
+    }
+    writeFile.close();
+}
+
+void System::outputRatingHouseToFile() {
+    std::ofstream writeFile{RATING_HOUSE_FILE};
+
+    if (!writeFile.is_open()) {
+        std::cerr << "Cannot open " << RATING_HOUSE_FILE << "\n";
+    }
+
+    for (auto &house: houseVector) {
+        for (auto &memRating: house->listHouseReview) {
+            writeFile << memRating->memberReview->memberId << ";"
+                      << house->houseID << ';'
+                      << memRating->ratingScore << ";"
+                      << memRating->comment << "\n";
+        }
+    }
+    writeFile.close();
+}
+
+void System::inputRatingHouseToSys() {
+    std::string dataLine;
+    Member *targetMem;
+    House *memHouse;
+    std::ifstream readFile{RATING_HOUSE_FILE};
+    if (!readFile.is_open()) {
+        std::cerr << "Cannot open " << RATING_HOUSE_FILE << "\n";
+    }
+
+    while (std::getline(readFile, dataLine)) {
+        std::vector<std::string> dataLst = splitStr(dataLine, ';');
+        for (auto mem: memberVector) {
+            if (mem->memberId == dataLst[0]) {
+                targetMem = mem;
+            }
+        }
+
+        for (auto house: houseVector) {
+            if (house->houseID == dataLst[1]) {
+                memHouse = house;
+            }
+        }
+
+        double houseScore = std::stod(dataLst[2]);
+        std::string houseComment = dataLst[3];
+
+        auto houseReview = new Review(houseScore, houseComment, targetMem);
+        memHouse->addReviewToHouseReviewList(houseReview);
+    }
+    readFile.close();
+}
+
+
+void System::inputRequestToSys() {
+    std::string dataLine;
+    std::ifstream readFile{REQUEST_FILE};
+    Member *targetMem;
+    House *targetHouse;
+
+    if (!readFile.is_open()) {
+        std::cerr << "Cannot open " << REQUEST_FILE << "\n";
+    }
+
+    while (std::getline(readFile, dataLine)) {
+        std::vector<std::string> dataLst;
+        dataLst = splitStr(dataLine, ';');
+        for (House *house: houseVector) {
+            if (dataLst[0] == house->houseID) {
+                targetHouse = house;
+            }
+        }
+        for (Member *mem: memberVector) {
+            if (dataLst[1] == mem->memberId) {
+                targetMem = mem;
+            }
+        }
+        Date *startDate = stringToDate(dataLst[2]);
+        Date *endDate = stringToDate(dataLst[3]);
+        std::string status = dataLst[4];
+        Request *req = new Request(startDate, endDate, targetMem, status);
+        targetHouse->addRequestToHouseRequestList(req);
+        targetMem->requestList.push_back(req);
+    }
+    readFile.close();
+}
+
+void System::outputRequestToFile() {
+    std::ofstream writeFile{REQUEST_FILE};
+
+    if (!writeFile.is_open()) {
+        std::cerr << "Cannot open " << REQUEST_FILE << "\n";
+    }
+
+    for (auto &house: houseVector) {
+        for (auto &memRequest: house->listHouseRequest) {
+            writeFile << memRequest->requestedByMember->memberId << ";"
+                      << house->houseID << ';'
+                      << memRequest->startDate->convertDatetoString() << ";"
+                      << memRequest->endDate->convertDatetoString() << ";"
+                      << memRequest->requestStatus << "\n";
+        }
+    }
+    writeFile.close();
+}
+
+void System::outputHouseLstToFile() {
+    std::ofstream writeFile{HOUSE_LIST_FILE};
+    if (!writeFile.is_open()) {
+        std::cerr << "Cannot open " << HOUSE_LIST_FILE << "\n";
+        return;
+    }
+
+    for (auto mem: memberVector) {
+        if (mem->houseOwner == nullptr) {
+            continue;
+        }
+        if (!mem->houseOwner->isAdded) {
+            continue;
+        }
+
+        writeFile << mem->houseOwner->houseID << ";"
+                  << mem->memberId << ";"
+                  << mem->houseOwner->startingDate->convertDatetoString() << ";"
+                  << mem->houseOwner->endingDate->convertDatetoString() << ";"
+                  << mem->houseOwner->consumingPointsPerDay << ";"
+                  << mem->houseOwner->minRating << ";"
+                  << mem->houseOwner->houseStatus << "\n";
+    }
+    writeFile.close();
 }
 
 void System::outputMemberToFile() {
@@ -264,6 +512,7 @@ void System::outputMemberToFile() {
         std::cerr << "Cannot open " << MEMBERS_FILE << "\n";
         return;
     }
+
 
     for (auto &mem: memberVector) {
         writeFile << mem->memberId << ";"
@@ -277,6 +526,24 @@ void System::outputMemberToFile() {
     }
 
     writeFile.close();
+}
+
+void System::outputHouseToFile() {
+    std::ofstream writeFile{HOUSE_FILE};
+    if (!writeFile.is_open()) {
+        std::cerr << "Cannot open " << HOUSE_FILE << "\n";
+        return;
+    }
+    for (House *house: houseVector) {
+        writeFile << house->houseID << ";"
+                  << house->owner->memberId << ";"
+                  << house->location << ";"
+                  << house->houseDescription << ";"
+                  << house->houseScores << "\n";
+    }
+    writeFile.close();
+
+
 }
 
 
@@ -358,8 +625,15 @@ void System::registerMember() {
             getline(std::cin, location);
             break;
     }
-    Member *newMem = new Member("MEM" + std::to_string(memberVector.size() + 1), fullname, phoneNum, username, password,
-                                location, INITIAL_CREDITS, INITIAL_SCORES);
+    Member *newMem = new Member(username, password, "MEM" + std::to_string(memberVector.size() + 1), fullname, phoneNum,
+                                INITIAL_CREDITS, INITIAL_SCORES, location);
     memberVector.push_back(newMem);
     std::cout << "You have registered successfully!\n";
+}
+
+Date *System::stringToDate(std::string &date) {
+    std::vector<std::string> dataLst = splitStr(date, '/');
+    Date *convertedDate = new Date(std::stoi(dataLst[0]), std::stoi(dataLst[1]), std::stoi(dataLst[2]));
+    return convertedDate;
+
 }

@@ -11,7 +11,7 @@ int Date::countDate() {
     int totalDays = year * 365 + date;
 
     for(int i = 0; i < month - 1; i++) {
-        totalDays = totalDays + daysOfMonth[i];
+        totalDays = totalDays + DAYS_IN_MONTHS[i];
     }
 
     totalDays = totalDays + countLeapYear();
@@ -28,16 +28,15 @@ int Date:: countLeapYear() {
     return leapYear;
 }
 
-bool Date:: operator < (Date &date2) {
-    int currentDate = countDate();
-    int comparedDate = currentDate - date2.countDate();
-    if(comparedDate <= 0) {
+bool Date::operator < (Date &date2) {
+    if(countDate() - date2.countDate() <= 0) {
         return true;
     }
     else return false;
 }
 
-int Date ::operator- (Date &date2) {
+int Date::operator - (Date &date2) {
+    // Get the difference between two dates
     return countDate() - date2.countDate();
 }
 

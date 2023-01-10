@@ -4,18 +4,24 @@
 
 #include "Member.h"
 
+#include <algorithm>
+
+
+
 #include <utility>
 Member::Member(std::string username, std::string password, std::string memberID, std::string fullName, std::string phoneNum,
-               double credit, int score, std::string location) : User(std::move(username), std::move(password)) {
+               double credit, double score, std::string location) : User(std::move(username), std::move(password)) {
     this->memberId = memberID;
     this->fullName = fullName;
     this->phoneNum = phoneNum;
     this->credit = INITIAL_CREDITS;
-    this->score = INITIAL_SCORES;
-    this->location = location;
 
+    this->score = INITIAL_SCORES;
+
+    this->location = location;
     this->houseOwner = nullptr;
     tenantReviewList.clear();
+    requestList.clear();
 
 
 }
@@ -92,7 +98,11 @@ bool Member::createHouse(House *house) {
     }
 }
 
-bool Member::addHouse(Date *startDate, Date *endDate, int consumingPointsPerDay) {
+
+
+bool Member::addHouse(Date *startDate, Date *endDate, int consumingPointsPerDay, double scores) {
+
+
     if(houseOwner->isAdded) {
         return false;
     }
@@ -101,7 +111,9 @@ bool Member::addHouse(Date *startDate, Date *endDate, int consumingPointsPerDay)
     houseOwner->startingDate = startDate;
     houseOwner->endingDate = endDate;
     houseOwner->consumingPointsPerDay = consumingPointsPerDay;
-    houseOwner->houseStatus = "AVAILABLE";
+    houseOwner->houseStatus = STATUS[0];
+    houseOwner->houseScores = scores;
+
     return true;
 }
 
@@ -111,11 +123,11 @@ bool Member::deleteHouse() {
     }
 
     houseOwner->isAdded = false;
-    houseOwner->houseStatus = "Unavailable";
+    houseOwner->houseStatus = STATUS[1];
     houseOwner->startingDate = nullptr;
     houseOwner->endingDate = nullptr;
-    houseOwner->consumingPointsPerDay = NULL;
-
+    houseOwner->consumingPointsPerDay = 0;
+    houseOwner->houseDescription = "";
     return true;
 }
 
@@ -153,7 +165,7 @@ bool Member::viewAllRequest() {
                 << i->houseID
                 << std::left
                 << std::setw(10)
-                << i->requestFromDate
+                << i->startDate
                 << std::left
                 << std::setw(10)
                 << i->requestStatus
@@ -165,4 +177,40 @@ void Member::reviewHouse(House *occupyHouse, int score, std::string comment) {
     Review *review = new Review(score, comment, this);
     occupyHouse->addReviewToHouseReviewList(review);
 }
+
+bool Member:: declineRequest(std::string requestID) {
+    	int index = 0;
+        int indice = 0;
+        for(auto i : houseOwner->listHouseRequest) {
+            if(i->requestID == requestID) {
+                index++;
+                continue;
+            }
+            if((i->startDate - houseOwner->listHouseRequest[index]->endDate) < 0 || (houseOwner->listHouseRequest[index]->startDate -i->endDate) < 0) {
+                indice++;
+                houseOwner->listHouseRequest.erase(houseOwner->listHouseRequest.begin() + indice);//Delete overlap
+                continue;
+            }
+        }
+        houseOwner->listHouseRequest.erase(houseOwner->listHouseRequest.begin() + index); //Delete accepted request
+        return true;
+}
+bool Member:: acceptRequest(std::string requestID) {
+    for(int i = 0; i < houseOwner->listHouseRequest.size(); i++) {
+        if(houseOwner->listHouseRequest[i]->requestID == requestID) {
+            // cout << "\nThe request does not match\n";
+            // return false;
+            houseOwner->houseStatus = "Unavailable";
+            auto rentDate = houseOwner->listHouseRequest[i]->startDate;
+            auto endRentDate = houseOwner->listHouseRequest[i]->endDate;
+            auto tenant =houseOwner->listHouseRequest[i]->requestedByMember;
+            // int requiredCredit = (rentDate - endRentDate) *houseOwner->consumingPointsPerDay;
+            declineRequest(requestID);
+            OccupyHouse *occupyHouse = new OccupyHouse(rentDate, endRentDate, tenant);
+        }
+    }
+    
+}
+
+
 

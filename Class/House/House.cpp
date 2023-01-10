@@ -3,6 +3,8 @@
 //
 
 #include "House.h"
+
+
 House::House(std::string houseID, std::string location, std::string houseDescription) {
     this->houseID = houseID;
     this->location = location;
@@ -13,6 +15,7 @@ House::House(std::string houseID, std::string location, std::string houseDescrip
     this->owner = nullptr;
     this->minRating = 0;
     this->consumingPointsPerDay = 0;
+    this->houseScores = 0;
 }
 
 double House::getRatingScore() {
@@ -52,7 +55,9 @@ void House::viewHouseReview() {
                       << "\n-----------------------"
                       << "Score: " << tempScore << "\n"
                       << "Comment: " << tempComment;
+            this->houseScores += tempScore;
         }
+        this->houseScores = this->houseScores / listHouseReview.size();
     }
 }
 void House::addRequestToHouseRequestList(Request *request) {
@@ -61,4 +66,5 @@ void House::addRequestToHouseRequestList(Request *request) {
 void House::addReviewToHouseReviewList(Review *review) {
     listHouseReview.push_back(review);
 }
+
 
