@@ -84,6 +84,7 @@ public:
 
 
     void inputHouseToSys();
+    void inputAdminToSys();
     void inputMemHouseToSys();
     void inputHouseLstToSys();
     void inputMemberToSys();
@@ -93,6 +94,7 @@ public:
     void inputOccupierToSys();
     void inputUnratedToSys();
     void outputOccupierToFile();
+    void outputAdminToFile();
     void outputUnratedToFile();
     void outputRequestToFile();
     void outputRatingTenantToFile();

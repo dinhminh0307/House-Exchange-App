@@ -540,6 +540,22 @@ void System::inputHouseToSys() {
     readFile.close();
 }
 
+void System::inputAdminToSys() {
+    std::string dataLine;
+    std::ifstream readFile{ADMIN_FILE};
+    if (!readFile.is_open()) {
+        std::cerr << "Cannot open " << ADMIN_FILE << "\n";
+    }
+
+    std::getline(readFile, dataLine);
+    std::vector<std::string> dataLst = splitStr(dataLine,';');
+    std::string username = dataLst[0];
+    std::string pass = dataLst[1];
+
+    admin = new Admin(username, pass);
+
+}
+
 void System::inputHouseLstToSys() {
     std::string dataLine;
     std::ifstream readFile{HOUSE_LIST_FILE};
@@ -829,6 +845,17 @@ void System::outputOccupierToFile() {
         }
     }
     writeFile.close();
+}
+
+void System::outputAdminToFile() {
+    std::ofstream writeFile{ADMIN_FILE};
+
+    if (!writeFile.is_open()) {
+        std::cerr << "Cannot open " << ADMIN_FILE << "\n";
+    }
+
+    writeFile << admin->username << ";"
+    << admin->password<<"\n";
 }
 
 void System::outputUnratedToFile() {
