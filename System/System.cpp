@@ -46,6 +46,32 @@ bool System::isValidNum(std::string &inputStr) {
     return true;
 }
 
+bool System::isDouble(std::string &inputStr) {
+    int dotCount = 0;
+    for (int i = 0; i < inputStr.length(); i++) {
+        if (i == 0) {
+            if (inputStr[i] == '.') {
+                dotCount++;
+                continue;
+            }
+        }
+        if (inputStr[i] == '.') {
+            dotCount++;
+            continue;
+        }
+
+        if (!std::isdigit(inputStr[i])) {
+            std::cout << "Not a number!!! Try again: ";
+            return false;
+        }
+        if (dotCount > 1) {
+            std::cout << "Not a number!!! Try again: ";
+            return false;
+        }
+    }
+    return true;
+}
+
 bool System::isValidPhoneNum(std::string &phoneNum) {
     //false: phone number must have 10 numbers and start with 0
     //true: continue
@@ -133,6 +159,7 @@ bool System::isValidDate(std::string date) {
             return false;
         }
     }
+    return true;
 }
 
 int System::menuChoice(int start, int end) {
@@ -232,6 +259,149 @@ void System::guestMenu() {
             break;
     }
 
+}
+
+void System::memberMenu() {
+    std::cout << "\t---MEMBER MENU---\n";
+    if (!System::loginMember()) {
+        mainMenu();
+    } else {
+        int choice;
+        std::cout << "\t---1.View Account's Information---\n" << "\t---2.View Available Houses ---\n"
+                  << "\t---3.Handle Requests---\n" << "\t---4.List House For Rental---\n" << "\t---5.Logout---\n";
+        choice = menuChoice(1, 5);
+        switch (choice) {
+            case 1:
+                currentUser->showAccountInfo();
+                std::cout << "1. Back to menu";
+                menuChoice(1, 1);
+                memberMenu();
+                break;
+            case 2:
+                memberMenu();
+                break;
+            case 3:
+                memberMenu();
+                break;
+            case 4:
+                houseForRentMenu();
+                break;
+            case 5:
+                break;
+
+        }
+
+    }
+}
+
+void System::houseForRentMenu() {
+    std::cout << "\t---UP HOUSE FOR RENT MENU ---\n";
+    if (currentUser->houseOwner != nullptr) {
+        if (currentUser->houseOwner->isAdded) {
+            std::cout << "You are having a house for rent: \n";
+            currentUser->houseOwner->viewHouseInfo();
+            if (currentUser->houseOwner->listHouseRequest.empty()) {
+                std::cout << "\n\n---\t1. Omit the house of renting site ---\n" << "\t---2. Back to member menu ---\n";
+                switch (menuChoice(1, 2)) {
+                    case 1:
+                        deleteInRentHouse();
+                        std::cout << "\tCome back to UP HOUSE FOR RENT MENU \n";
+                        houseForRentMenu();
+                        break;
+                    case 2:
+                        memberMenu();
+                        break;
+                }
+            } else {
+                std::cout << "\tCome back to member menu \n";
+                memberMenu();
+            }
+        } else {
+            std::cout << "You are having a house but not allowing rental yet: \n" << "1. Add the house for rent\n"
+                      << "2. Back to member menu\n";
+            switch(menuChoice(1,2)){
+                case 1:
+                    getInfoListHouseMenu();
+                    std::cout << "\nSuccessfully added your house\n\n";
+                    houseForRentMenu();
+                    break;
+                case 2:
+                    memberMenu();
+                    break;
+            }
+        }
+    }else{
+        std::cout << "You do not have a house. Add one: \n";
+        enterHouseInfo();
+        houseForRentMenu();
+    }
+}
+
+bool System::getInfoListHouseMenu() {
+    std::string startDate, endDate, minScores, minCredits;
+    std::cout << "\tPlease enter of your rental info\n";
+    do {
+        do {
+            std::cout << "Enter the first renting date ";
+            std::getline(std::cin, startDate);
+        } while (!isValidDate(startDate));
+        do {
+            std::cout << "Enter the end renting date ";
+            std::getline(std::cin, endDate);
+        } while (!isValidDate(endDate));
+    } while (stringToDate(endDate) < stringToDate(startDate));
+
+
+    do {
+        std::cout << "Enter the required credits per day ";
+        std::getline(std::cin, minCredits);
+    } while (!isDouble(minCredits));
+
+    do {
+        std::cout << "Enter the required minimum scores of renant ";
+        std::getline(std::cin, minScores);
+    } while (!isDouble(minScores));
+
+    Date *start = stringToDate(startDate);
+    Date *end = stringToDate(endDate);
+    currentUser->addHouse(start, end, std::stod(minCredits), std::stod(minScores));
+    return true;
+}
+
+bool System::enterHouseInfo() {
+    std::string houseId, location, description;
+    int choice;
+    std::cout << "\tPlease enter your house's information\n";
+    std::cout << "\tChoose the supported app location: ";
+    std::cout << "\t1. HANOI \t2.HUE \t3.SAIGON\n";
+    choice = menuChoice(1, 3);
+    switch (choice) {
+        case 1:
+            location = LOCATIONS[0];
+            break;
+        case 2:
+            location = LOCATIONS[1];
+            break;
+        case 3:
+            location = LOCATIONS[2];
+            break;
+    }
+    std::cout << "\tEnter the description for your house: \n";
+    std::getline(std::cin, description);
+    auto *createdHouse = new House("HOU" + std::to_string(houseVector.size() + 1), location, description);
+    houseVector.push_back(createdHouse);
+    currentUser->createHouse(createdHouse);
+    return true;
+}
+
+bool System::deleteInRentHouse() {
+    if (currentUser->deleteHouse()) {
+        std::cout << "\nSuccessfully omit the house\n";
+        return true;
+    } else {
+        std::cout << "The house have requests hanging. Resolved all before omitting! \n";
+        return false;
+    }
 }
 
 void System::inputHouseToSys() {
@@ -569,6 +739,7 @@ bool System::loginMember() {
             return true;
         }
     }
+    std::cout << "Wrong username or password!!! \n\n";
     return false;
 }
 

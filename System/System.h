@@ -26,7 +26,6 @@
 #include "../Class/Member/Member.h"
 #include "../Class/House/House.h"
 #include "../Class/Admin/Admin.h"
-#include "../Class/HouseList/HouseList.h"
 #include "../Class/Date/Date.h"
 
 
@@ -35,7 +34,7 @@ const int INITIAL_CREDITS = 500;
 const int INITIAL_SCORES = 10;
 const int DAYS_IN_MONTHS = {31,28,31,30,31,30,31,31,30,31,30,31};
 const std::string STATUS = {"AVAILABLE", "UNAVAILABLE"};
-const std::String RE_STATUS = {"PENDING", "ACCEPTED", "DECLINED"};
+const std::string RE_STATUS = {"PENDING", "ACCEPTED", "DECLINED"};
 
 class House;
 class Member;
@@ -56,6 +55,7 @@ public:
     std::string trimString(std::string &str);
     std::vector<std::string> splitStr(std::string &str, char del);
     bool isValidNum(std::string &inputStr);
+    bool isDouble(std::string &inputStr);
     bool isValidPhoneNum(std::string &phoneNum);
     bool isValidPassword(std::string &password);
     bool isValidUserName(std::string &username);
@@ -68,6 +68,12 @@ public:
     void guestShowHouse();
     void mainMenu();
     void guestMenu();
+    void memberMenu();
+    void houseForRentMenu();
+    bool getInfoListHouseMenu();
+    bool enterHouseInfo();
+    bool deleteInRentHouse();
+
 
     void inputHouseToSys();
     void inputMemHouseToSys();
