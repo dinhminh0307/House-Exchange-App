@@ -20,7 +20,7 @@
 // #include "../../System/System.h"
 
 
-// #include "../Tenant/Tenant.h"
+#include "../Tenant/Tenant.h"
 #include <iostream>
 #include <vector>
 #include <sstream>
@@ -36,6 +36,7 @@ class Review;
 
 class Request;
 
+class Tenant;
 
 class Member : public User {
 private:
@@ -49,7 +50,7 @@ private:
     std::string location;
     std::vector<Review *> tenantReviewList;
     std::vector<Request *> requestList;
-
+    std::vector<Tenant *> tenantList; // list house ma minh da thue
 
 public:
 
