@@ -216,8 +216,43 @@ bool Member:: acceptRequest(int ID) {
 
 
 
-Request Member::requestHouse(House *HouseRequested) {
-    auto *newRequest = new Request(HouseRequested->startingDate, HouseRequested->endingDate, this, RE_STATUS[2]);
+Request Member::requestHouse(Date *start, Date *end) {
+    auto *newRequest = new Request(start, end, this, RE_STATUS[2]);
     return *newRequest;
+}
+
+void Member::viewTenant() {
+    std::cout 
+            << std::left
+            << std::setw(10)
+            << "Start Date"
+            << std::left
+            << std::setw(20)
+            << "End Date"
+            << std::left
+            << std::setw(15)
+            << "House ID"
+            << std::left
+            << std::setw(15)
+            << "Owner ID"
+            << "\n";
+    for(int i = 0; i < tenantList.size(); i++) {
+        auto tenantStartDate = tenantList[i]->startFromDate;
+        auto tenantEndDate = tenantList[i]->ToDate;
+        auto House = tenantList[i]->occupyHouse;
+        std:: cout << std::left
+            << std::setw(10)
+            << tenantStartDate
+            << std::left
+            << std::setw(20)
+            << tenantEndDate
+            << std::left
+            << std::setw(15)
+            << House->houseID
+            << std::left
+            << std::setw(15)
+            << memberId
+            << "\n";
+    }
 }
 

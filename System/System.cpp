@@ -394,6 +394,15 @@ bool System::enterHouseInfo() {
     return true;
 }
 
+void System::showRentedHouse() {
+    //Check if current member ocupying any house
+    if(currentUser->tenantList.empty()) {
+        std::cout << "\n\t\tThere are no house you are renting\n\n\t\tBack To Member Menu";
+        memberMenu();
+    }
+    std:: cout<< "\nThe list of house you occupied:\n";
+}
+
 void System::searchValidHouseMenu() {
     std::string startDate, endDate, location;
     int choice;
@@ -448,10 +457,11 @@ void System::validHouseMenu(Date *start, Date *end, std::string location) {
                   << "--> 3.\tBack to house list\n";
         switch (menuChoice(1,3)) {
             case 1:
-                Request *request = &currentUser->requestHouse(memberSuitableHouseList[choice-1]);
+                {Request *request = new Request(start, end, currentUser, RE_STATUS[2]);
                 memberSuitableHouseList[choice-1]->addRequestToHouseRequestList(request);
                 memberMenu();
                 break; //function send requests
+                }
             case 2:
                 std::cout << "\nYour review is: \n";
                 currentUser->showReview();
@@ -492,10 +502,11 @@ void System::viewRequestMenu() {
     choice = menuChoice(1,3);
     switch (choice) {
         case 1:
-            std::cout <<"Enter the request youn want to view: ";
+            {std::cout <<"Enter the request youn want to view: ";
             int newChoice = menuChoice(1, numberRequest);
             actionRequestMenu(newChoice);
             break;
+            }
         case 2:
             memberMenu();
             break;

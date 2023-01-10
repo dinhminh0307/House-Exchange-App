@@ -78,7 +78,7 @@ public:
 
     bool createHouse(House *house);
 
-    Request requestHouse(House *houstrequested); 
+    Request requestHouse(Date *start, Date *end); 
 
     void showAllAvailableHouse();
 
@@ -89,6 +89,7 @@ public:
 
     void reviewHouse(House *occupyHouse, int score, std::string comment);
 
+    void viewTenant();
 
     void showReview();
 

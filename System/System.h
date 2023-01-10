@@ -79,6 +79,8 @@ public:
     void searchValidHouseMenu();
     void viewRequestMenu();
     void actionRequestMenu(int requestID);
+    void showRentedHouse();
+
 
     bool isValidHouses(Date *start, Date *end, Member *mem, House *house, std::string location);
     bool getValidHouses(Date *start, Date *end, std::string location);
