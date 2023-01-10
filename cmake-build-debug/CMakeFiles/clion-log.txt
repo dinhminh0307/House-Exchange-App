@@ -1,9 +1,4 @@
-/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" -S /Users/vonguyenkien/Workspaces/asm2/HOUSE-VACATION-RENT -B /Users/vonguyenkien/Workspaces/asm2/HOUSE-VACATION-RENT/cmake-build-debug
-CMake Error at CMakeLists.txt:21:
-  Parse error.  Expected a command name, got unquoted argument with text
-  "=======".
-
-
--- Configuring incomplete, errors occurred!
-See also "/Users/vonguyenkien/Workspaces/asm2/HOUSE-VACATION-RENT/cmake-build-debug/CMakeFiles/CMakeOutput.log".
-See also "/Users/vonguyenkien/Workspaces/asm2/HOUSE-VACATION-RENT/cmake-build-debug/CMakeFiles/CMakeError.log".
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/Applications/CLion.app/Contents/bin/ninja/mac/ninja -G Ninja -S /Users/trungngo/Desktop/dapdixaylai -B /Users/trungngo/Desktop/dapdixaylai/cmake-build-debug
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /Users/trungngo/Desktop/dapdixaylai/cmake-build-debug

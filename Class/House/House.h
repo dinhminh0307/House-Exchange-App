@@ -25,8 +25,9 @@ class House {
     bool isAdded;
     Date *startingDate;
     Date *endingDate;
-    int consumingPointsPerDay;
+    double consumingPointsPerDay;
     double minRating;
+    double houseScores;
 
     std::vector<Review *> listHouseReview;
 
@@ -34,7 +35,6 @@ class House {
 
     // std::vector<HouseOccupy*> houseOccupyList;
 
-    // std::vector<HouseOccupy*> unratedOccupierList;
 
 public:
 

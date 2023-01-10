@@ -39,11 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "dapdixaylai::@6890427a1f51a3e7e1df",
-<<<<<<< HEAD:cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-e049eee8cdd4f07722da.json
-					"jsonFile" : "target-dapdixaylai-Debug-2fbb2015abefae1b28dc.json",
-=======
-					"jsonFile" : "target-dapdixaylai-Debug-86851553ec5d5017712b.json",
->>>>>>> 8a16c053955ee69cda0326bf04ff7abbdf5021dc:cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-b310ee3be295e5b4cba1.json
+					"jsonFile" : "target-dapdixaylai-Debug-55724e696f1f80e90029.json",
 					"name" : "dapdixaylai",
 					"projectIndex" : 0
 				}
@@ -53,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/Users/vonguyenkien/Workspaces/asm2/HOUSE-VACATION-RENT/cmake-build-debug",
-		"source" : "/Users/vonguyenkien/Workspaces/asm2/HOUSE-VACATION-RENT"
+		"build" : "/Users/trungngo/Desktop/dapdixaylai/cmake-build-debug",
+		"source" : "/Users/trungngo/Desktop/dapdixaylai"
 	},
 	"version" : 
 	{

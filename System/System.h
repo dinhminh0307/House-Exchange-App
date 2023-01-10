@@ -6,6 +6,7 @@
 #define DAPDIXAYLAI_SYSTEM_H
 
 
+
 #define ADMIN_FILE "Data/admin.dat"
 #define HOUSE_FILE "Data/house.dat"
 #define HOUSE_LIST_FILE "Data/houseList.dat"
@@ -26,6 +27,7 @@
 #include "../Class/House/House.h"
 #include "../Class/Admin/Admin.h"
 #include "../Class/HouseList/HouseList.h"
+#include "../Class/Date/Date.h"
 
 
 const std::string LOCATIONS[3] = {"HANOI", "HUE", "SAIGON"};
@@ -33,6 +35,7 @@ const int INITIAL_CREDITS = 500;
 const int INITIAL_SCORES = 10;
 const int DAYS_IN_MONTHS = {31,28,31,30,31,30,31,31,30,31,30,31};
 const std::string STATUS = {"AVAILABLE", "UNAVAILABLE"};
+const std::String RE_STATUS = {"PENDING", "ACCEPTED", "DECLINED"};
 
 class House;
 class Member;
@@ -63,18 +66,27 @@ public:
     int menuChoice(int start, int end);
 
     void guestShowHouse();
-
-
     void mainMenu();
     void guestMenu();
 
     void inputHouseToSys();
+    void inputMemHouseToSys();
+    void inputHouseLstToSys();
     void inputMemberToSys();
+    void inputRatingTenantToSys();
+    void inputRatingHouseToSys();
+    void inputRequestToSys();
+    void outputRequestToFile();
+    void outputRatingTenantToFile();
+    void outputRatingHouseToFile();
     void outputHouseToFile();
+    void outputHouseLstToFile();
     void outputMemberToFile();
+
 
     void registerMember();
     bool loginMember();
+    Date *stringToDate(string &date);
 
 
 

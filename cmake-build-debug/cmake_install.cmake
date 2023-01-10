@@ -1,4 +1,4 @@
-# Install script for directory: /Users/vonguyenkien/Workspaces/asm2/HOUSE-VACATION-RENT
+# Install script for directory: /Users/trungngo/Desktop/dapdixaylai
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/vonguyenkien/Workspaces/asm2/HOUSE-VACATION-RENT/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/trungngo/Desktop/dapdixaylai/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

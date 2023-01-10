@@ -32,26 +32,25 @@ private:
     std::string fullName;
     std::string phoneNum;
     House *houseOwner;
-    int credit;
-    int score;
+    double credit;
+    double score;
     std::string location;
     std::vector<Review *> tenantReviewList;
-
+    std::vector<Request*> requestList;
 
 public:
 
     Member(std::string username, std::string password, std::string memberID, std::string fullName, std::string phoneNum,
-           double credit, int score, std::string location);
+           double credit, double score, std::string location);
 
 
     bool acceptedRequest();
 
-    bool addHouse(Date *startDate, Date *endDate, int consumingPointsPerDay);
+    bool addHouse(Date *startDate, Date *endDate, double consumingPointsPerDay, double minRating);
 
     bool deleteHouse();
 
     bool viewAllRequest();
-
 
     friend class System;
 
@@ -68,6 +67,8 @@ public:
     void showReview();
 
     bool createHouse(House *house);
+
+    friend class System;
 
 
 

@@ -3,8 +3,9 @@
 //
 
 #include "Review.h"
-Review::Review(int ratingScore, std::string comment, Member *memberReview) {
+Review::Review(double ratingScore, std::string comment, Member *memberReview) {
     this->ratingScore = ratingScore;
     this->comment = comment;
     this->memberReview = memberReview;
+
 }

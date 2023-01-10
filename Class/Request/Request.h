@@ -10,7 +10,6 @@ class Date;
 class Member;
 
 class Request {
-    std::string requestID;
     std::string houseID;
     std::string requestStatus;
     Date* requestFromDate;
@@ -18,7 +17,7 @@ class Request {
     Member* requestedByMember;
 
 public:
-    Request(std::string requestID, Date *requestFromDate, Date *requestToDate, Member *requestedByMember);
+    Request(Date *requestFromDate, Date *requestToDate, Member *requestedByMember, std::string status);
 
     friend class System;
 
