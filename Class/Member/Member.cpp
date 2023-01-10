@@ -6,10 +6,11 @@
 #include <algorithm>
 
 
-
 #include <utility>
-Member::Member(std::string username, std::string password, std::string memberID, std::string fullName, std::string phoneNum,
-               double credit, double score, std::string location) : User(username, password) {
+
+Member::Member(std::string username, std::string password, std::string memberID, std::string fullName,
+               std::string phoneNum,
+               double credit, double score, std::string location) : User(std::move(username), std::move(password)) {
     this->memberId = memberID;
     this->fullName = fullName;
     this->phoneNum = phoneNum;
@@ -24,6 +25,7 @@ Member::Member(std::string username, std::string password, std::string memberID,
 
 
 }
+
 double Member::getRatingScore() {
     if (this->tenantReviewList.empty()) {
         return 0;
@@ -45,17 +47,18 @@ void Member::showAccountInfo() {
     std::cout << "Your location: " << this->location << "\n";
     std::cout << "Your score: " << this->getRatingScore() << "\n";
     if (houseOwner == nullptr) {
-        std::cout << "\nYou have not added a house\n";
-    }
-    else {
-        houseOwner->viewHouseInfo();
+        std::cout << "\n";
+    } else {
+        std::cout <<"HouseID: " << houseOwner->houseID << "Location: " << houseOwner->location << "\n";
     }
 }
+
 //add credit to member's credit
 bool Member::addCredit(double creditPoint) {
     this->credit += creditPoint;
     return true;
 }
+
 //minus credit of member
 bool Member::minusCredit(double creditPoint) {
     if (this->credit < creditPoint) {
@@ -64,7 +67,8 @@ bool Member::minusCredit(double creditPoint) {
     this->credit -= creditPoint;
     return true;
 }
-void  Member::showReview() {
+
+void Member::showReview() {
 
     if (this->tenantReviewList.empty()) {
         std::cout << "\nThere are no reviews for this member\n";
@@ -76,10 +80,10 @@ void  Member::showReview() {
             int tempScore = review->ratingScore;
             Member *member = review->memberReview;
             std::cout << "\n-----------------------"
-               << "\n\nReview by member: " << member->fullName
-               << "\n-----------------------"
-               << "Score: " << tempScore << "\n"
-               << "Comment: " << tempComment;
+                      << "\n\nReview by member: " << member->fullName
+                      << "\n-----------------------"
+                      << "Score: " << tempScore << "\n"
+                      << "Comment: " << tempComment;
 
         }
 
@@ -87,10 +91,9 @@ void  Member::showReview() {
 }
 
 bool Member::createHouse(House *house) {
-    if(this->houseOwner != nullptr){
+    if (this->houseOwner != nullptr) {
         return false;
-    }
-    else {
+    } else {
         this->houseOwner = house;
         house->owner = this;
         return true;
@@ -98,11 +101,10 @@ bool Member::createHouse(House *house) {
 }
 
 
-
 bool Member::addHouse(Date *startDate, Date *endDate, int consumingPointsPerDay, double scores) {
 
 
-    if(houseOwner->isAdded) {
+    if (houseOwner->isAdded) {
         return false;
     }
 
@@ -117,7 +119,9 @@ bool Member::addHouse(Date *startDate, Date *endDate, int consumingPointsPerDay,
 }
 
 bool Member::deleteHouse() {
+
     if(!houseOwner->isAdded || !houseOwner->listHouseRequest.empty()) {
+
         return false;
     }
 
@@ -129,6 +133,7 @@ bool Member::deleteHouse() {
     houseOwner->houseDescription = "";
     return true;
 }
+
 
 int Member::viewAllRequest() {
     int index = 0;
@@ -169,10 +174,14 @@ int Member::viewAllRequest() {
     }
     return index;
 }
+
 void Member::reviewHouse(House *occupyHouse, int score, std::string comment) {
+    //create object
     Review *review = new Review(score, comment, this);
+    //add to review list of house
     occupyHouse->addReviewToHouseReviewList(review);
 }
+
 
 bool Member:: declineRequest(int ID) {
         int indice = 0;
@@ -201,6 +210,7 @@ bool Member:: acceptRequest(int ID) {
             auto rentDate = houseOwner->listHouseRequest[ID]->startDate;
             auto endRentDate = houseOwner->listHouseRequest[ID]->endDate;
             auto tenant =houseOwner->listHouseRequest[ID]->requestedByMember;
+
             // int requiredCredit = (rentDate - endRentDate) *houseOwner->consumingPointsPerDay;
             declineRequest(ID);
             OccupyHouse *occupyHouse = new OccupyHouse(rentDate, endRentDate, tenant);
@@ -255,4 +265,69 @@ void Member::viewTenant() {
             << "\n";
     }
 }
+
+
+
+bool Member::viewMemberOccupyList() {
+    if (tenantList.empty()) {
+        std::cout << "\nThere are no houses you are occupying\n";
+        return false;
+    }
+    for (int i = 0; i < tenantList.size(); i++) {
+        std::cout << i + 1 << '.' << tenantList[i]->startFromDate->convertDatetoString() << "-->"
+                  << tenantList[i]->ToDate->convertDatetoString() << ":" << tenantList[i]->occupyHouse->houseID << "\n";
+    }
+}
+
+bool Member::checkout(int leaveId) {
+    //if input greater than the size of list, return false
+    if (leaveId > tenantList.size()) {
+        return false;
+    }
+    //get object
+    auto leaveTenant = tenantList[leaveId - 1];
+    auto leaveStartDate = leaveTenant->startFromDate;
+    auto leaveDate = leaveTenant->ToDate;
+    auto leaveHouse = leaveTenant->occupyHouse;
+    //create object
+    auto *unrated = new OccupyHouse(leaveStartDate, leaveDate, this);
+    //add object to unrated list
+    houseOwner->unratedTenant.push_back(unrated);
+    //delete from tenant list
+    tenantList.erase(tenantList.begin() + (leaveId - 1));
+    //when leave house call member review house and member review occupier afterwards in menu
+    return true;
+
+}
+
+bool Member::viewUnratedList() {
+    //if list is empty
+    if (houseOwner->unratedTenant.empty()) {
+        return false;
+    }
+    //display data
+    std::cout << "\nAll unrated tenant will be displayed: \n";
+    for (int i = 0; i < houseOwner->unratedTenant.size(); i++) {
+        std::cout << i + 1 << "." << houseOwner->unratedTenant[i]->startFromDate->convertDatetoString() << "-->"
+                  << houseOwner->unratedTenant[i]->toDate->convertDatetoString() << ':'
+                  << houseOwner->unratedTenant[i]->tenant->memberId << "\n";
+    }
+}
+
+bool Member::reviewTenant(int rateId, int score, std::string comment) {
+    if(rateId > houseOwner->unratedTenant.size()){
+        return false;
+    }
+    auto tenant = houseOwner->unratedTenant[rateId] ->tenant;
+    //create review object
+    auto review = new Review(score, comment, tenant);
+    //add review to review list
+    tenant->tenantReviewList.push_back(review);
+    //remove from unrated list
+    houseOwner->unratedTenant.erase(houseOwner->unratedTenant.begin()+(rateId-1));
+    return true;
+
+
+}
+
 

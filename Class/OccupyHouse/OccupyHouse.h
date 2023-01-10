@@ -21,5 +21,7 @@ public:
 
     friend class House;
 
+    friend class Member;
+
 };
 #endif //DAPDIXAYLAI_OCCUPYHOUSE_H

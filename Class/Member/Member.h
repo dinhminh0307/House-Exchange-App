@@ -27,6 +27,8 @@
 
 #include<iomanip>
 
+class OccupyHouse;
+
 class Tenant;
 
 class System;
@@ -52,6 +54,7 @@ private:
     std::vector<Review *> tenantReviewList;
     std::vector<Request *> requestList;
     std::vector<Tenant *> tenantList; // list house ma minh da thue
+
 
 
 public:
@@ -89,11 +92,20 @@ public:
 
     void reviewHouse(House *occupyHouse, int score, std::string comment);
 
+
     void viewTenant();
+
+    bool reviewTenant(int rateId, int score, std::string comment);
+
 
     void showReview();
 
-    bool checkout(std::string houseId);
+    bool checkout(int leaveId);
+
+    bool viewMemberOccupyList();
+
+    bool viewUnratedList();
+
 
     void tenantLeaveHouse();
 

@@ -23,6 +23,7 @@
 #include <sstream>
 #include <regex>
 #include <fstream>
+#include <iomanip>
 #include "../Class/Member/Member.h"
 #include "../Class/House/House.h"
 #include "../Class/Admin/Admin.h"
@@ -41,9 +42,9 @@ const std::string RE_STATUS[3] = {"PENDING", "ACCEPTED", "DECLINED"};
 
 class House;
 class Member;
-class Admin;
 class Date;
 class User;
+class Admin;
 class System {
 public:
     std::vector<Member *> memberVector;
@@ -86,6 +87,11 @@ public:
     bool getValidHouses(Date *start, Date *end, std::string location);
     bool deleteInRentHouse();
 
+
+    void adminMenu();
+    bool adminLoginMenu();
+    void adminViewMemberMenu();
+    void adminViewHouseMenu();
 
 
     void inputHouseToSys();

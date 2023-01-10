@@ -48,6 +48,8 @@ private:
 
     std::vector<OccupyHouse*> listOccupyHouse;
 
+    std::vector<OccupyHouse *> unratedTenant;
+
 
 public:
 
