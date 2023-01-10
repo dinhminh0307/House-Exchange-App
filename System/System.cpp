@@ -448,8 +448,14 @@ void System::validHouseMenu(Date *start, Date *end, std::string location) {
                   << "--> 3.\tBack to house list\n";
         switch (menuChoice(1,3)) {
             case 1:
+                Request *request = &currentUser->requestHouse(memberSuitableHouseList[choice-1]);
+                memberSuitableHouseList[choice-1]->addRequestToHouseRequestList(request);
+                memberMenu();
                 break; //function send requests
             case 2:
+                std::cout << "\nYour review is: \n";
+                currentUser->showReview();
+                memberMenu();
                 break; //function view reviews
             case 3:
                 validHouseMenu(start,end,location);
@@ -459,6 +465,41 @@ void System::validHouseMenu(Date *start, Date *end, std::string location) {
 
 
 
+}
+void System :: actionRequestMenu(int requestID) {
+    std::cout <<"\n\n1.Accept Request\n2.Decline Request\n";
+            switch (menuChoice(1,2)) {
+                case 1:
+                    currentUser->acceptRequest(requestID);
+                    std::cout << "\nRequest accepted\n";
+                    memberMenu();
+                    break;
+                case 2:
+                    currentUser->declineRequest(requestID);
+                    std::cout << "\nRequest accepted\n";
+                    memberMenu();
+                    break;
+            }
+}
+
+void System::viewRequestMenu() {
+    int choice;
+    std::cout << "\n\n\tYour request today:\n\n";
+    int numberRequest = currentUser->viewAllRequest();
+    std::cout << "\n\tChoose your option:\n\n";
+    std::cout << "\n\n--> 1.\tPoint the Request:\n\n"
+                  << "--> 2.\tBack to Menu\n";
+    choice = menuChoice(1,3);
+    switch (choice) {
+        case 1:
+            std::cout <<"Enter the request youn want to view: ";
+            int newChoice = menuChoice(1, numberRequest);
+            actionRequestMenu(newChoice);
+            break;
+        case 2:
+            memberMenu();
+            break;
+    }
 }
 
 bool System::isValidHouses(Date *start, Date *end, Member *mem, House *house, std::string location) {

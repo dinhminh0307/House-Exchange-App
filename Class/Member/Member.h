@@ -65,7 +65,7 @@ public:
 
     bool deleteHouse();
 
-    bool viewAllRequest();
+    int viewAllRequest();
 
 
     void showAccountInfo();
@@ -78,7 +78,7 @@ public:
 
     bool createHouse(House *house);
 
-    void requestHouse(House *houstrequested); 
+    Request requestHouse(House *houstrequested); 
 
     void showAllAvailableHouse();
 

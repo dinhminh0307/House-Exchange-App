@@ -130,10 +130,11 @@ bool Member::deleteHouse() {
     return true;
 }
 
-bool Member::viewAllRequest() {
+int Member::viewAllRequest() {
+    int index = 0;
     if(houseOwner->listHouseRequest.empty()) {
         std::cout << "\nYou dont have any request!\n";
-        return false;
+        return 0;
     }
     std::cout 
             << std::left
@@ -150,7 +151,8 @@ bool Member::viewAllRequest() {
             << "Status"
             << "\n";
     for(Request *i : houseOwner->listHouseRequest) {
-        std::cout
+        index++;
+        std::cout << std::to_string(index)
                 << std::left
                 << std::setw(10)
                 << i->requestedByMember->memberId
@@ -165,7 +167,7 @@ bool Member::viewAllRequest() {
                 << i->requestStatus
                 << "\n";
     }
-    return true;
+    return index;
 }
 void Member::reviewHouse(House *occupyHouse, int score, std::string comment) {
     Review *review = new Review(score, comment, this);
@@ -214,7 +216,8 @@ bool Member:: acceptRequest(int ID) {
 
 
 
-void Member::requestHouse(House *HouseRequested) {
+Request Member::requestHouse(House *HouseRequested) {
     auto *newRequest = new Request(HouseRequested->startingDate, HouseRequested->endingDate, this, RE_STATUS[2]);
+    return *newRequest;
 }
 
