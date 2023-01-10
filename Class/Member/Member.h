@@ -81,10 +81,13 @@ public:
 
     void reviewHouse(House *occupyHouse, int score, std::string comment);
 
+    void reviewOwner(Member *owner, int score, std::string comment);
 
     void showReview();
 
-    bool checkout(std::string houseId);
+    bool checkout(int leaveId);
+
+    bool viewMemberOccupyList();
 
     friend class House;
 
