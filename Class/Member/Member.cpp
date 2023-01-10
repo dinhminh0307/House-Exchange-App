@@ -245,16 +245,50 @@ bool Member::checkout(int leaveId) {
     if (leaveId > tenantList.size()) {
         return false;
     }
+    //get object
+    auto leaveTenant = tenantList[leaveId - 1];
+    auto leaveStartDate = leaveTenant->startFromDate;
+    auto leaveDate = leaveTenant->ToDate;
+    auto leaveHouse = leaveTenant->occupyHouse;
+    //create object
+    auto *unrated = new OccupyHouse(leaveStartDate, leaveDate, this);
+    //add object to unrated list
+    houseOwner->unratedTenant.push_back(unrated);
     //delete from tenant list
     tenantList.erase(tenantList.begin() + (leaveId - 1));
     //when leave house call member review house and member review occupier afterwards in menu
+    return true;
+
 }
 
-void Member::reviewTenant(Member *tenant, int score, std::string comment) {
-    //create object
-    Review *review = new Review(score, comment, this);
-    //add review to owner review list
+bool Member::viewUnratedList() {
+    //if list is empty
+    if (houseOwner->unratedTenant.empty()) {
+        return false;
+    }
+    //display data
+    std::cout << "\nAll unrated tenant will be displayed: \n";
+    for (int i = 0; i < houseOwner->unratedTenant.size(); i++) {
+        std::cout << i + 1 << "." << houseOwner->unratedTenant[i]->startFromDate->convertDatetoString() << "-->"
+                  << houseOwner->unratedTenant[i]->toDate->convertDatetoString() << ':'
+                  << houseOwner->unratedTenant[i]->tenant->memberId << "\n";
+    }
+}
+
+bool Member::reviewTenant(int rateId, int score, std::string comment) {
+    if(rateId > houseOwner->unratedTenant.size()){
+        return false;
+    }
+    auto tenant = houseOwner->unratedTenant[rateId] ->tenant;
+    //create review object
+    auto review = new Review(score, comment, tenant);
+    //add review to review list
     tenant->tenantReviewList.push_back(review);
+    //remove from unrated list
+    houseOwner->unratedTenant.erase(houseOwner->unratedTenant.begin()+(rateId-1));
+    return true;
+
+
 }
 
 
