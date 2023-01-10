@@ -69,7 +69,6 @@ public:
     void guestShowHouse();
     void mainMenu();
     void guestMenu();
-
     void inputHouseToSys();
     void inputMemHouseToSys();
     void inputHouseLstToSys();

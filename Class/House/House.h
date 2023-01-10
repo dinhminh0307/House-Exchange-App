@@ -70,7 +70,7 @@ public:
     void viewHouseReview();
 
     std::string viewHouseInfoByGuest();
-
+    
 
     ~House();
 
