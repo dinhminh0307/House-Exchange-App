@@ -250,11 +250,11 @@ bool Member::checkout(int leaveId) {
     //when leave house call member review house and member review occupier afterwards in menu
 }
 
-void Member::reviewOwner(Member *owner, int score, std::string comment) {
+void Member::reviewTenant(Member *tenant, int score, std::string comment) {
     //create object
     Review *review = new Review(score, comment, this);
     //add review to owner review list
-    owner->tenantReviewList.push_back(review);
+    tenant->tenantReviewList.push_back(review);
 }
 
 

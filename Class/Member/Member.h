@@ -81,7 +81,7 @@ public:
 
     void reviewHouse(House *occupyHouse, int score, std::string comment);
 
-    void reviewOwner(Member *owner, int score, std::string comment);
+    void reviewTenant(Member *tenant, int score, std::string comment);
 
     void showReview();
 
