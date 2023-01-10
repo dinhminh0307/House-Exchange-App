@@ -1,21 +1,27 @@
 //
 // Created by Trung Ngo on 09/01/2023.
 //
-#include "../../System/System.h"
+
 #include "Member.h"
+
 #include <algorithm>
+
+
+
 #include <utility>
 Member::Member(std::string username, std::string password, std::string memberID, std::string fullName, std::string phoneNum,
-               double credit, int score, std::string location) : User(std::move(username), std::move(password)) {
+               double credit, double score, std::string location) : User(std::move(username), std::move(password)) {
     this->memberId = memberID;
     this->fullName = fullName;
     this->phoneNum = phoneNum;
     this->credit = INITIAL_CREDITS;
-    this->score = INITIAL_SCORES;
-    this->location = location;
 
+    this->score = INITIAL_SCORES;
+
+    this->location = location;
     this->houseOwner = nullptr;
     tenantReviewList.clear();
+    requestList.clear();
 
 
 }
@@ -94,7 +100,8 @@ bool Member::createHouse(House *house) {
 
 
 
-bool Member::addHouse(Date *startDate, Date *endDate, int consumingPointsPerDay, std::string description) {
+bool Member::addHouse(Date *startDate, Date *endDate, int consumingPointsPerDay, std::string description, double scores) {
+
 
     if(houseOwner->isAdded) {
         return false;
@@ -106,6 +113,7 @@ bool Member::addHouse(Date *startDate, Date *endDate, int consumingPointsPerDay,
     houseOwner->consumingPointsPerDay = consumingPointsPerDay;
     houseOwner->houseDescription = description;
     houseOwner->houseStatus = "Available";
+    houseOwner->houseScores = scores;
 
     return true;
 }
@@ -116,7 +124,7 @@ bool Member::deleteHouse() {
     }
 
     houseOwner->isAdded = false;
-    houseOwner->houseStatus = "Unavailable";
+    houseOwner->houseStatus = STATUS[1];
     houseOwner->startingDate = nullptr;
     houseOwner->endingDate = nullptr;
     houseOwner->consumingPointsPerDay = 0;
@@ -200,5 +208,6 @@ bool Member:: acceptRequest(std::string requestID) {
     }
     
 }
+
 
 

@@ -9,7 +9,7 @@
 
 #include "../Date/Date.h"
 
-
+#include "../../System/System.h"
 #include "../House/House.h"
 #include "../Review/Review.h"
 #include "../Request/Request.h"
@@ -19,7 +19,7 @@
 #include <sstream>
 
 #include<iomanip>
-#include <iostream>
+
 
 
 
@@ -39,26 +39,26 @@ private:
     std::string fullName;
     std::string phoneNum;
     House *houseOwner;
-    int credit;
-    int score;
+    double credit;
+    double score;
     std::string location;
     std::vector<Review *> tenantReviewList;
-
+    std::vector<Request*> requestList;
 
 
 public:
 
     Member(std::string username, std::string password, std::string memberID, std::string fullName, std::string phoneNum,
-           double credit, int score, std::string location);
+           double credit, double score, std::string location);
 
 
     
     bool addHouse(Date *startDate, Date *endDate, int consumingPointsPerDay, std::string description);
 
+
     bool deleteHouse();
 
     bool viewAllRequest();
-
 
     friend class System;
 
@@ -77,6 +77,8 @@ public:
     void showAllAvailableHouse();
     bool acceptRequest(std::string requestID);
     bool declineRequest(std::string requestID);
+
+    friend class System;
 
 
     void showReview();

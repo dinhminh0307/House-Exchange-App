@@ -34,8 +34,9 @@ private:
     bool isAdded;
     Date *startingDate;
     Date *endingDate;
-    int consumingPointsPerDay;
+    double consumingPointsPerDay;
     double minRating;
+    double houseScores;
 
     std::vector<Review *> listHouseReview;
 
@@ -43,7 +44,6 @@ private:
 
     std::vector<OccupyHouse*> listOccupyHouse;
 
-    // std::vector<HouseOccupy*> unratedOccupierList;
 
 public:
 
