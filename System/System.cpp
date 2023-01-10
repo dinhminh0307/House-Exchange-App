@@ -319,7 +319,7 @@ void System::houseForRentMenu() {
         } else {
             std::cout << "You are having a house but not allowing rental yet: \n" << "1. Add the house for rent\n"
                       << "2. Back to member menu\n";
-            switch(menuChoice(1,2)){
+            switch (menuChoice(1, 2)) {
                 case 1:
                     getInfoListHouseMenu();
                     std::cout << "\nSuccessfully added your house\n\n";
@@ -330,7 +330,7 @@ void System::houseForRentMenu() {
                     break;
             }
         }
-    }else{
+    } else {
         std::cout << "You do not have a house. Add one: \n";
         enterHouseInfo();
         houseForRentMenu();
@@ -391,6 +391,128 @@ bool System::enterHouseInfo() {
     auto *createdHouse = new House("HOU" + std::to_string(houseVector.size() + 1), location, description);
     houseVector.push_back(createdHouse);
     currentUser->createHouse(createdHouse);
+    return true;
+}
+
+void System::searchValidHouseMenu() {
+    std::string startDate, endDate, location;
+    int choice;
+    std::cout << "\tSearch for suitable houses: \n\n";
+    do {
+        do {
+            std::cout << "Enter when you want to rent (dd/mm/yyyy): ";
+            std::getline(std::cin, startDate);
+        } while (!isValidDate(startDate));
+        do {
+            std::cout << "Enter when you want to end renting (dd/mm/yyyy): ";
+            std::getline(std::cin, endDate);
+        } while (!isValidDate(endDate));
+    } while (stringToDate(endDate) < stringToDate(startDate));
+
+    std::cout << "\tChoose the city you want to stay: \n\n";
+    std::cout << "\t1. HANOI \t2.HUE \t3.SAIGON\n";
+    choice = menuChoice(1, 3);
+    switch (choice) {
+        case 1:
+            location = LOCATIONS[0];
+            break;
+        case 2:
+            location = LOCATIONS[1];
+            break;
+        case 3:
+            location = LOCATIONS[2];
+            break;
+    }
+    Date *start = stringToDate(startDate);
+    Date *end = stringToDate(endDate);
+
+    validHouseMenu(start, end, location);
+
+}
+
+void System::validHouseMenu(Date *start, Date *end, std::string location) {
+    memberSuitableHouseList.clear();
+    int choice;
+    getValidHouses(start, end, location);
+    std::cout << memberSuitableHouseList.size() + 1 << ". Back to member menu\n";
+    if (memberSuitableHouseList.empty()) {
+        choice = menuChoice(1, 1);
+        if (choice == 1) {
+            memberMenu();
+        }
+    }else{
+        choice = menuChoice(1, memberSuitableHouseList.size());
+        memberSuitableHouseList[choice - 1]->viewHouseInfo();
+        std::cout << "\n\n--> 1.\tRequest to rent this house\n\n"
+                  << "--> 2.\tView house's reviews\n\n"
+                  << "--> 3.\tBack to house list\n";
+        switch (menuChoice(1,3)) {
+            case 1:
+                break; //function send requests
+            case 2:
+                break; //function view reviews
+            case 3:
+                validHouseMenu(start,end,location);
+                break;
+        }
+    }
+
+
+
+}
+
+bool System::isValidHouses(Date *start, Date *end, Member *mem, House *house, std::string location) {
+
+    if (!house->isAdded) {
+        return false;
+    }
+
+    if (house == mem->houseOwner) {
+        return false;
+    }
+
+    if (!isValidScore(mem, house)) {
+        return false;
+    }
+    if (!isValidCredit(mem, house)) {
+        return false;
+    }
+
+    if (location != house->location) {
+        return false;
+    }
+
+    for (auto &occupier: house->listOccupyHouse) {
+        if (end <= occupier->startFromDate || start >= occupier->toDate) {
+            continue;
+        }
+
+        return false;
+    }
+}
+
+bool System::getValidHouses(Date *start, Date *end, std::string location) {
+    memberSuitableHouseList.clear();
+    for (auto &house: houseVector) {
+        if (isValidHouses(start, end, currentUser, house, location)) {
+            memberSuitableHouseList.push_back(house);
+        }
+    }
+
+    if (memberSuitableHouseList.empty()) {
+        std::cout << "\nThere is no houses matched your search\n";
+        return false;
+    }
+
+    std::cout << "\nThe suitable house list:\n\n";
+    for (int i = 0; i < memberSuitableHouseList.size(); i++) {
+        std::cout << "--> " << i + 1 << ". ";
+        std::cout << "House Id: " << memberSuitableHouseList[i]->houseID << "Location: "
+                  << memberSuitableHouseList[i]->location << ", Rating: "
+                  << memberSuitableHouseList[i]->getRatingScore() << "\n";
+    }
+    std::cout << "\n\n";
+
     return true;
 }
 

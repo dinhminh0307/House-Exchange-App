@@ -72,6 +72,11 @@ public:
     void houseForRentMenu();
     bool getInfoListHouseMenu();
     bool enterHouseInfo();
+    void validHouseMenu(Date *start, Date *end, std::string location);
+    void searchValidHouseMenu();
+
+    bool isValidHouses(Date *start, Date *end, Member *mem, House *house, std::string location);
+    bool getValidHouses(Date *start, Date *end, std::string location);
     bool deleteInRentHouse();
 
 
