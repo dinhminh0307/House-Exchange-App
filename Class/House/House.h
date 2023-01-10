@@ -61,7 +61,7 @@ public:
     bool removeRequestFromHouseRequestList(Request *request);
 
 
-    void addReviewToHouseReviewList(Review *eview);
+    void addReviewToHouseReviewList(Review *review);
 
 
     void viewHouseInfo();

@@ -20,8 +20,9 @@
 
 #include<iomanip>
 
-class System;
+class Tenant;
 
+class System;
 
 class House;
 
@@ -42,6 +43,7 @@ private:
     std::string location;
     std::vector<Review *> tenantReviewList;
     std::vector<Request *> requestList;
+    std::vector<Tenant *> tenantList; //list house the member have occupied
 
 
 public:
@@ -62,9 +64,9 @@ public:
 
     double getRatingScore();
 
-    bool minusCredit(int creditPoint);
+    bool minusCredit(double creditPoint);
 
-    bool addCredit(int creditPoint);
+    bool addCredit(double creditPoint);
 
     bool createHouse(House *house);
 
@@ -82,10 +84,12 @@ public:
 
     void showReview();
 
+    bool checkout(std::string houseId);
 
     friend class House;
 
     friend class System;
+
 };
 
 
