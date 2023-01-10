@@ -456,8 +456,6 @@ void System::validHouseMenu(Date *start, Date *end, std::string location) {
                 break;
         }
     }
-
-
 }
 
 bool System::isValidHouses(Date *start, Date *end, Member *mem, House *house, std::string location) {

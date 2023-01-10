@@ -6,12 +6,7 @@
 #define DAPDIXAYLAI_MEMBER_H
 
 #include "../User/User.h"
-<<<<<<< HEAD
-=======
-
 #include "../Date/Date.h"
-
->>>>>>> origin/kien
 #include "../../System/System.h"
 #include "../House/House.h"
 #include "../Review/Review.h"
