@@ -135,7 +135,8 @@
 				14,
 				16,
 				17,
-				19
+				19,
+				21
 			]
 		}
 	],
@@ -256,6 +257,11 @@
 			"compileGroupIndex" : 0,
 			"path" : "Class/Tenant/Tenant.cpp",
 			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "define.h",
+			"sourceGroupIndex" : 1
 		}
 	],
 	"type" : "EXECUTABLE"

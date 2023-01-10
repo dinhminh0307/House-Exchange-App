@@ -1,28 +1,20 @@
 //
-// Created by Trung Ngo on 09/01/2023.
+// Created by Vo Nguyen Kien on 11/01/2023.
 //
 
-#ifndef DAPDIXAYLAI_MEMBER_H
-#define DAPDIXAYLAI_MEMBER_H
-#include "../User/User.h"
-#include "../../System/System.h"
-#include "../House/House.h"
-#include "../Review/Review.h"
-#include <iostream>
+#ifndef DAPDIXAYLAI_ADMIN_H
+#define DAPDIXAYLAI_ADMIN_H
 
-class User;
-class House;
-class Review;
-class System;
+#endif //DAPDIXAYLAI_ADMIN_H
+#include <iostream>
+#include "../User/User.h"
+
 
 class Admin : public User {
-
 public:
     Admin(std::string username, std::string password);
 
     friend class System;
+
     friend class House;
-
 };
-
-#endif //DAPDIXAYLAI_MEMBER_H

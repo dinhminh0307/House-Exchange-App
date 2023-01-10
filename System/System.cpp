@@ -4,6 +4,8 @@
 
 #include "System.h"
 
+
+
 System::System() {}
 
 std::string System::trimString(std::string &str) {
@@ -388,7 +390,6 @@ bool System::adminLoginMenu() {
     std::cout << "Enter your password: ";
     std::getline(std::cin, password);
     if(admin->username == username && admin->password == password){
-        currentUser = admin;
         return true;
     }
     else {
@@ -764,6 +765,8 @@ void System::inputMemberToSys() {
     }
     readFile.close();
 }
+
+
 
 void System::inputRatingTenantToSys() {
     std::string dataLine;

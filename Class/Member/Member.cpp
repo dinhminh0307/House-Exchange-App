@@ -3,7 +3,14 @@
 //
 
 #include "Member.h"
-
+//#include "../Date/Date.h"
+//#include "../../System/System.h"
+#include "../../define.h"
+#include "../House/House.h"
+#include "../Review/Review.h"
+#include "../Request/Request.h"
+#include "../OccupyHouse/OccupyHouse.h"
+#include "../Tenant/Tenant.h"
 #include <algorithm>
 
 
@@ -239,6 +246,7 @@ bool Member::viewMemberOccupyList() {
         std::cout << i + 1 << '.' << tenantList[i]->startFromDate->convertDatetoString() << "-->"
                   << tenantList[i]->ToDate->convertDatetoString() << ":" << tenantList[i]->occupyHouse->houseID << "\n";
     }
+    return true;
 }
 
 bool Member::checkout(int leaveId) {
@@ -274,6 +282,7 @@ bool Member::viewUnratedList() {
                   << houseOwner->unratedTenant[i]->toDate->convertDatetoString() << ':'
                   << houseOwner->unratedTenant[i]->tenant->memberId << "\n";
     }
+    return true;
 }
 
 bool Member::reviewTenant(int rateId, int score, std::string comment) {

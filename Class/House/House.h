@@ -4,11 +4,13 @@
 #ifndef DAPDIXAYLAI_HOUSE_H
 #define DAPDIXAYLAI_HOUSE_H
 
-#include "../Class/Review/Review.h"
+#include "../Review/Review.h"
 
 #include "../Member/Member.h"
 
 #include "../OccupyHouse/OccupyHouse.h"
+
+#include "../Date/Date.h"
 
 #include <iostream>
 

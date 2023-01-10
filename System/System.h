@@ -23,18 +23,17 @@
 #include <regex>
 #include <fstream>
 #include <iomanip>
-#include "../Class/Member/Member.h"
-#include "../Class/House/House.h"
+//#include "../Class/Member/Member.h"
 #include "../Class/Admin/Admin.h"
+#include "../Class/House/House.h"
 #include "../Class/Date/Date.h"
-
-
-const std::string LOCATIONS[3] = {"HANOI", "HUE", "SAIGON"};
-const int INITIAL_CREDITS = 500;
-const int INITIAL_SCORES = 10;
-const int DAYS_IN_MONTHS[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-const std::string STATUS = {"AVAILABLE", "UNAVAILABLE"};
-const std::string RE_STATUS = {"PENDING", "ACCEPTED", "DECLINED"};
+#include "../Class/OccupyHouse/OccupyHouse.h"
+#include "../Class/Tenant/Tenant.h"
+#include "../Class/Review/Review.h"
+#include "../Class/Request/Request.h"
+#include "../define.h"
+//#include "../Class/Admin/Admin.h"
+class Admin;
 
 class House;
 
@@ -44,9 +43,12 @@ class Date;
 
 class User;
 
+
 class System {
 public:
     std::vector<Member *> memberVector;
+
+
     Admin *admin;
     std::vector<House *> houseVector;
     Member *currentUser;
