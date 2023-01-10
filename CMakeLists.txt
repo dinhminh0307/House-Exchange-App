@@ -18,10 +18,10 @@ add_executable(dapdixaylai
         Class/Member/Member.cpp
         Class/Member/Member.h
         Class/User/User.h
-        Class/User/User.cpp
-        Class/House/House.cpp
         Class/House/House.h
-        )
+        Class/House/House.cpp
+)
+
 
 
 

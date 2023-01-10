@@ -1,26 +1,39 @@
-
 // Created by Vo Nguyen Kien on 09/01/2023.
 
 
 #ifndef DAPDIXAYLAI_HOUSE_H
 #define DAPDIXAYLAI_HOUSE_H
 
-#include <iostream>
+#include "../Class/Review/Review.h"
+
 #include "../Member/Member.h"
-#include "../Date/Date.h"
-#include "../Request/Request.h"
+
+#include "../OccupyHouse/OccupyHouse.h"
+
+#include <iostream>
+
+#include <vector>
+
+class Member;
 
 class Review;
 
 class Date;
 
+class Request;
+
+class OccupyHouse;
+
 class House {
+private:
 
     std::string houseID;
     std::string location;
     std::string houseDescription;
-    string houseStatus;
+    std::string houseStatus;
+
     Member *owner;
+
 
     bool isAdded;
     Date *startingDate;
@@ -33,7 +46,9 @@ class House {
 
     std::vector<Request *> listHouseRequest;
 
-    // std::vector<HouseOccupy*> houseOccupyList;
+    std::vector<OccupyHouse*> listOccupyHouse;
+
+    std::vector<OccupyHouse *> unratedTenant;
 
 
 public:
@@ -48,7 +63,7 @@ public:
     bool removeRequestFromHouseRequestList(Request *request);
 
 
-    void addReviewToHouseReviewList(Review *houseReview);
+    void addReviewToHouseReviewList(Review *review);
 
 
     void viewHouseInfo();

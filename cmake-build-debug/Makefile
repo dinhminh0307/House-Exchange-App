@@ -129,30 +129,6 @@ dapdixaylai/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/dapdixaylai.dir/build.make CMakeFiles/dapdixaylai.dir/build
 .PHONY : dapdixaylai/fast
 
-Class/Admin/Admin.o: Class/Admin/Admin.cpp.o
-.PHONY : Class/Admin/Admin.o
-
-# target to build an object file
-Class/Admin/Admin.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/dapdixaylai.dir/build.make CMakeFiles/dapdixaylai.dir/Class/Admin/Admin.cpp.o
-.PHONY : Class/Admin/Admin.cpp.o
-
-Class/Admin/Admin.i: Class/Admin/Admin.cpp.i
-.PHONY : Class/Admin/Admin.i
-
-# target to preprocess a source file
-Class/Admin/Admin.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/dapdixaylai.dir/build.make CMakeFiles/dapdixaylai.dir/Class/Admin/Admin.cpp.i
-.PHONY : Class/Admin/Admin.cpp.i
-
-Class/Admin/Admin.s: Class/Admin/Admin.cpp.s
-.PHONY : Class/Admin/Admin.s
-
-# target to generate assembly for a file
-Class/Admin/Admin.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/dapdixaylai.dir/build.make CMakeFiles/dapdixaylai.dir/Class/Admin/Admin.cpp.s
-.PHONY : Class/Admin/Admin.cpp.s
-
 Class/Date/Date.o: Class/Date/Date.cpp.o
 .PHONY : Class/Date/Date.o
 
@@ -273,30 +249,6 @@ Class/Review/Review.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/dapdixaylai.dir/build.make CMakeFiles/dapdixaylai.dir/Class/Review/Review.cpp.s
 .PHONY : Class/Review/Review.cpp.s
 
-Class/User/User.o: Class/User/User.cpp.o
-.PHONY : Class/User/User.o
-
-# target to build an object file
-Class/User/User.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/dapdixaylai.dir/build.make CMakeFiles/dapdixaylai.dir/Class/User/User.cpp.o
-.PHONY : Class/User/User.cpp.o
-
-Class/User/User.i: Class/User/User.cpp.i
-.PHONY : Class/User/User.i
-
-# target to preprocess a source file
-Class/User/User.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/dapdixaylai.dir/build.make CMakeFiles/dapdixaylai.dir/Class/User/User.cpp.i
-.PHONY : Class/User/User.cpp.i
-
-Class/User/User.s: Class/User/User.cpp.s
-.PHONY : Class/User/User.s
-
-# target to generate assembly for a file
-Class/User/User.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/dapdixaylai.dir/build.make CMakeFiles/dapdixaylai.dir/Class/User/User.cpp.s
-.PHONY : Class/User/User.cpp.s
-
 System/System.o: System/System.cpp.o
 .PHONY : System/System.o
 
@@ -354,9 +306,6 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... dapdixaylai"
-	@echo "... Class/Admin/Admin.o"
-	@echo "... Class/Admin/Admin.i"
-	@echo "... Class/Admin/Admin.s"
 	@echo "... Class/Date/Date.o"
 	@echo "... Class/Date/Date.i"
 	@echo "... Class/Date/Date.s"
@@ -372,9 +321,6 @@ help:
 	@echo "... Class/Review/Review.o"
 	@echo "... Class/Review/Review.i"
 	@echo "... Class/Review/Review.s"
-	@echo "... Class/User/User.o"
-	@echo "... Class/User/User.i"
-	@echo "... Class/User/User.s"
 	@echo "... System/System.o"
 	@echo "... System/System.i"
 	@echo "... System/System.s"

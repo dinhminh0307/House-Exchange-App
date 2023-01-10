@@ -796,8 +796,8 @@ void System::outputRequestToFile() {
         for (auto &memRequest: house->listHouseRequest) {
             writeFile << memRequest->requestedByMember->memberId << ";"
                       << house->houseID << ';'
-                      << memRequest->requestFromDate->convertDatetoString() << ";"
-                      << memRequest->requestToDate->convertDatetoString() << ";"
+                      << memRequest->startDate->convertDatetoString() << ";"
+                      << memRequest->endDate->convertDatetoString() << ";"
                       << memRequest->requestStatus << "\n";
         }
     }

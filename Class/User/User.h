@@ -9,8 +9,10 @@
 
 #include "../../System/System.h"
 
+
 #include <iostream>
 
+class System;
 
 class User {
 protected:
@@ -19,6 +21,8 @@ protected:
 
 public:
     User(std::string username, std::string password);
+
+    friend class System;
 
 };
 
