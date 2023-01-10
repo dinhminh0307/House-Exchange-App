@@ -2,7 +2,7 @@
 #include "Request.h"
 
 
-Request::Request(std::string requestID, Date *startDate, Date *endDate, Member *requestedByMember, std::string status) {
+Request::Request(Date *startDate, Date *endDate, Member *requestedByMember, std::string status) {
 
 
     //Note: need a function from system to get id of request

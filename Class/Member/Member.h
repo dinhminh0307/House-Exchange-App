@@ -53,7 +53,7 @@ public:
 
 
     
-    bool addHouse(Date *startDate, Date *endDate, int consumingPointsPerDay, std::string description);
+    bool addHouse(Date *startDate, Date *endDate, int consumingPointsPerDay, double scores);
 
 
     bool deleteHouse();

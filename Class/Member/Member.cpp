@@ -100,7 +100,7 @@ bool Member::createHouse(House *house) {
 
 
 
-bool Member::addHouse(Date *startDate, Date *endDate, int consumingPointsPerDay, std::string description, double scores) {
+bool Member::addHouse(Date *startDate, Date *endDate, int consumingPointsPerDay, double scores) {
 
 
     if(houseOwner->isAdded) {
@@ -111,8 +111,7 @@ bool Member::addHouse(Date *startDate, Date *endDate, int consumingPointsPerDay,
     houseOwner->startingDate = startDate;
     houseOwner->endingDate = endDate;
     houseOwner->consumingPointsPerDay = consumingPointsPerDay;
-    houseOwner->houseDescription = description;
-    houseOwner->houseStatus = "Available";
+    houseOwner->houseStatus = STATUS[0];
     houseOwner->houseScores = scores;
 
     return true;

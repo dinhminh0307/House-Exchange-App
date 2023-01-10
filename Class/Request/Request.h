@@ -18,7 +18,7 @@ class Request {
 
 public:
 
-    Request(std::string reuqestID, Date *startDate, Date *endDate, Member *requestedByMember, std::string status);
+    Request(Date *startDate, Date *endDate, Member *requestedByMember, std::string status);
 
 
 
