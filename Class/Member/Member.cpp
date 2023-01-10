@@ -1,7 +1,7 @@
 //
 // Created by Trung Ngo on 09/01/2023.
 //
-
+#include "../../System/System.h"
 #include "Member.h"
 #include <algorithm>
 #include <utility>
@@ -119,7 +119,7 @@ bool Member::deleteHouse() {
     houseOwner->houseStatus = "Unavailable";
     houseOwner->startingDate = nullptr;
     houseOwner->endingDate = nullptr;
-    houseOwner->consumingPointsPerDay = NULL;
+    houseOwner->consumingPointsPerDay = 0;
     houseOwner->houseDescription = "";
     return true;
 }
@@ -190,12 +190,12 @@ bool Member:: acceptRequest(std::string requestID) {
             // cout << "\nThe request does not match\n";
             // return false;
             houseOwner->houseStatus = "Unavailable";
-            Date rentDate = *houseOwner->listHouseRequest[i]->startDate;
-            Date endRentDate = *houseOwner->listHouseRequest[i]->endDate;
+            auto rentDate = houseOwner->listHouseRequest[i]->startDate;
+            auto endRentDate = houseOwner->listHouseRequest[i]->endDate;
             auto tenant =houseOwner->listHouseRequest[i]->requestedByMember;
-
             // int requiredCredit = (rentDate - endRentDate) *houseOwner->consumingPointsPerDay;
             declineRequest(requestID);
+            OccupyHouse *occupyHouse = new OccupyHouse(rentDate, endRentDate, tenant);
         }
     }
     

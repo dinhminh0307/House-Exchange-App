@@ -1,13 +1,10 @@
-#ifndef DATE_H
-#define DATE_H
+#ifndef DAPDIXAYLAI_DATE_H
+#define DAPDIXAYLAI_DATE_H
 #include <iostream>
 #include <sstream>
 #define SIZE 50
-<<<<<<< HEAD
 
-=======
->>>>>>> a4ac98ebc9bd402663195869800385c827969747
-const int daysOfMonth[SIZE] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+#include "../../System/System.h"
 class Date {
     private:
         int date;

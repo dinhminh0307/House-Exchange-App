@@ -9,7 +9,7 @@
 
 #include "../Date/Date.h"
 
-#include "../../System/System.h"
+
 #include "../House/House.h"
 #include "../Review/Review.h"
 #include "../Request/Request.h"
@@ -30,6 +30,7 @@ class House;
 class Review;
 
 class Request;
+
 
 class Member : public User {
 private:

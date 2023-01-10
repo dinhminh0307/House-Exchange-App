@@ -11,7 +11,7 @@ int Date::countDate() {
     int totalDays = year * 365 + date;
 
     for(int i = 0; i < month - 1; i++) {
-        totalDays = totalDays + daysOfMonth[i];
+        totalDays = totalDays + DAYS_IN_MONTHS[i];
     }
 
     totalDays = totalDays + countLeapYear();

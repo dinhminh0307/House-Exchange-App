@@ -3,7 +3,9 @@
 
 #ifndef DAPDIXAYLAI_HOUSE_H
 #define DAPDIXAYLAI_HOUSE_H
+#include "../Member/Member.h"
 
+#include "../OccupyHouse/OccupyHouse.h"
 #include <iostream>
 
 #include <vector>
@@ -15,6 +17,8 @@ class Review;
 class Date;
 
 class Request;
+
+class OccupyHouse;
 
 class House {
 private:
@@ -37,7 +41,7 @@ private:
 
     std::vector<Request *> listHouseRequest;
 
-    // std::vector<HouseOccupy*> houseOccupyList;
+    std::vector<OccupyHouse*> listOccupyHouse;
 
     // std::vector<HouseOccupy*> unratedOccupierList;
 
