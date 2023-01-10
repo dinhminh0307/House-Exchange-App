@@ -52,12 +52,12 @@ void Member::showAccountInfo() {
     }
 }
 //add credit to member's credit
-bool Member::addCredit(int creditPoint) {
+bool Member::addCredit(double creditPoint) {
     this->credit += creditPoint;
     return true;
 }
 //minus credit of member
-bool Member::minusCredit(int creditPoint) {
+bool Member::minusCredit(double creditPoint) {
     if (this->credit < creditPoint) {
         return false;
     }
@@ -192,13 +192,23 @@ bool Member:: acceptRequest(int ID) {
         if(houseOwner->listHouseRequest[i] == houseOwner->listHouseRequest[ID]) {
             // cout << "\nThe request does not match\n";
             // return false;
-            houseOwner->houseStatus = "Unavailable";
+            houseOwner->houseStatus = "UNAVAILABLE";
             auto rentDate = houseOwner->listHouseRequest[i]->startDate;
             auto endRentDate = houseOwner->listHouseRequest[i]->endDate;
             auto tenant =houseOwner->listHouseRequest[i]->requestedByMember;
             // int requiredCredit = (rentDate - endRentDate) *houseOwner->consumingPointsPerDay;
             declineRequest(ID);
             OccupyHouse *occupyHouse = new OccupyHouse(rentDate, endRentDate, tenant);
+            Tenant *occupyMember = new Tenant(rentDate, endRentDate, houseOwner);
+            // add object to occupy list
+            tenant->tenantList.push_back(occupyMember);
+            houseOwner->listOccupyHouse.push_back(occupyHouse);
+            // add credit of owner and minus credit of tenant
+            this->addCredit(houseOwner->consumingPointsPerDay * (endRentDate - rentDate));
+            tenant->minusCredit(houseOwner->consumingPointsPerDay * (endRentDate - rentDate));
+
+
+
         }
     }
     

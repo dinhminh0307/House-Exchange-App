@@ -27,8 +27,9 @@
 
 #include<iomanip>
 
-class System;
+class Tenant;
 
+class System;
 
 class House;
 
@@ -52,6 +53,7 @@ private:
     std::vector<Request *> requestList;
     std::vector<Tenant *> tenantList; // list house ma minh da thue
 
+
 public:
 
     Member(std::string username, std::string password, std::string memberID, std::string fullName, std::string phoneNum,
@@ -70,9 +72,9 @@ public:
 
     double getRatingScore();
 
-    bool minusCredit(int creditPoint);
+    bool minusCredit(double creditPoint);
 
-    bool addCredit(int creditPoint);
+    bool addCredit(double creditPoint);
 
     bool createHouse(House *house);
 
@@ -90,10 +92,12 @@ public:
 
     void showReview();
 
+    bool checkout(std::string houseId);
 
     friend class House;
 
     friend class System;
+
 };
 
 
