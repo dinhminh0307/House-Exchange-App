@@ -8,5 +8,4 @@ int main(){
         std::cout << "Logged in successfully!";
     }
     sys.outputMemberToFile();
-
 }

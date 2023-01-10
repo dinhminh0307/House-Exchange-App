@@ -6,9 +6,7 @@
 #define DAPDIXAYLAI_MEMBER_H
 
 #include "../User/User.h"
-
 #include "../Date/Date.h"
-
 #include "../../System/System.h"
 #include "../House/House.h"
 #include "../Review/Review.h"

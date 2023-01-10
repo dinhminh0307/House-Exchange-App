@@ -7,6 +7,8 @@ include_directories(System)
 
 add_executable(dapdixaylai
         main.cpp
+        Class/Admin/Admin.cpp
+        Class/Admin/Admin.cpp
         Class/Review/Review.cpp
         Class/Review/Review.h
         Class/Request/Request.h
