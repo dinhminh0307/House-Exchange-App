@@ -52,7 +52,7 @@ public:
 
     Admin *admin;
     std::vector<House *> houseVector;
-    Member *currentUser;
+    Member *currentUser = nullptr;
     House *currentUserHouse;
     std::vector<House *> memberSuitableHouseList;
 
@@ -96,7 +96,7 @@ public:
 
     void adminViewHouseMenu();
 
-
+    void loginMemMenu();
     void memberMenu();
 
     void houseForRentMenu();
@@ -165,7 +165,7 @@ public:
 
     void registerMember();
 
-    bool loginMember();
+    bool loginMember(std::string username, std::string password);
 
     Date *stringToDate(std::string &date);
 
