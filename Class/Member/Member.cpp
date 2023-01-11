@@ -48,6 +48,7 @@ double Member::getRatingScore() {
     return ratingScore;
 }
 
+
 void Member::showAccountInfo() {
     std::cout << "\nYour information: \n";
     std::cout << "Your username: " << this->username << "\n";
@@ -182,6 +183,20 @@ int Member::viewAllRequest() {
                 << "\n";
     }
     return index;
+}
+
+bool Member::cancelRequest(int ID) {
+    if(ID > requestList.size()){
+        return false;
+    }
+    auto request = requestList[ID-1];
+    if(request->requestStatus == RE_STATUS[1]){
+        return false;
+    }
+    else {
+        requestList.erase(requestList.begin()+(ID-1));
+        return true;
+    }
 }
 
 void Member::reviewHouse(House *occupyHouse, int score, std::string comment) {

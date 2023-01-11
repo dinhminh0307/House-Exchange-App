@@ -73,6 +73,8 @@ public:
 
     int viewAllRequest();
 
+    bool cancelRequest(int ID);
+
 
     void showAccountInfo();
 
