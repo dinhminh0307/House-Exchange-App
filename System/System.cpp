@@ -244,7 +244,7 @@ void System::mainMenu() {
             loginMemMenu();
             break;
         case 3:
-            adminMenu();
+            adminLoginMenu();
             break;
         case 4:
             outputMemberToFile();
@@ -333,11 +333,62 @@ void System::adminViewMemberMenu() {
     int choice = menuChoice(1, 2);
     switch (choice) {
         case 1:
-            for (int j = 0; j < memberVector.size(); j++) {
-                std::cout << j + 1 << '.';
-                memberVector[j]->showAccountInfo();
+            std::cout
+                    << std::left
+                    << std::setw(10)
+                    << "Index"
+                    << std::left
+                    << std::setw(15)
+                    << "MemberID"
+                    << std::left
+                    << std::setw(15)
+                    << "Full Name"
+                    << std::left
+                    << std::setw(15)
+                    << "PhoneNum"
+                    << std::left
+                    << std::setw(15)
+                    << "Username"
+                    << std::left
+                    << std::setw(8)
+                    << "Credit"
+                    << std::left
+                    << std::setw(15)
+                    << "Location"
+                    << std::left
+                    << std::setw(10)
+                    << "Rating Score"
+                    << "\n";
+            for(int i = 0; i<memberVector.size();i++){
+                std::cout
+                        << std::left
+                        << std::setw(10)
+                        << i+1
+                        << std::left
+                        << std::setw(15)
+                        << memberVector[i]->memberId
+                        << std::left
+                        << std::setw(15)
+                        << memberVector[i]->fullName
+                        << std::left
+                        << std::setw(15)
+                        << memberVector[i]->phoneNum
+                        << std::left
+                        << std::setw(15)
+                        << memberVector[i]->username
+                        << std::left
+                        << std::setw(8)
+                        << memberVector[i]->credit
+                        << std::left
+                        << std::setw(15)
+                        << memberVector[i]->location
+                        << std::left
+                        << std::setw(10)
+                        << memberVector[i]->getRatingScore()
+                        << "\n";
             }
-            break;
+            adminMenu();
+
         case 2:
             adminMenu();
             break;
@@ -349,7 +400,7 @@ void System::adminViewHouseMenu() {
     std::cout << "All house of the system: " << "\n";
     std::cout
             << std::left
-            << std::setw(5)
+            << std::setw(10)
             << "Index"
             << std::left
             << std::setw(8)
@@ -367,7 +418,7 @@ void System::adminViewHouseMenu() {
     for (auto i: houseVector) {
         std::cout
                 << std::left
-                << std::setw(5)
+                << std::setw(10)
                 << index
                 << std::left
                 << std::setw(8)
@@ -388,10 +439,67 @@ void System::adminViewHouseMenu() {
     int choice = menuChoice(1, 2);
     switch (choice) {
         case 1:
-            for (int j = 0; j < houseVector.size(); j++) {
-                std::cout << j + 1 << '.';
-                houseVector[j]->viewHouseInfo();
+            std::cout
+                    << std::left
+                    << std::setw(10)
+                    << "Index"
+                    << std::left
+                    << std::setw(10)
+                    << "HouseID"
+                    << std::left
+                    << std::setw(10)
+                    << "OwnerID"
+                    << std::left
+                    << std::setw(20)
+                    << "CurrentDate"
+                    << std::left
+                    << std::setw(20)
+                    << "FinalDate"
+                    << std::left
+                    << std::setw(10)
+                    << "CreditPerDay"
+                    << std::left
+                    << std::setw(15)
+                    << "minScore"
+                    << std::left
+                    << std::setw(20)
+                    << "Location"
+                    << std::left
+                    << std::setw(35)
+                    << "Description"
+                    << "\n";
+            for(int j = 0; j < houseVector.size();j++) {
+                std::cout
+                        << std::left
+                        << std::setw(10)
+                        << j+1
+                        << std::left
+                        << std::setw(10)
+                        << houseVector[j]->houseID
+                        << std::left
+                        << std::setw(10)
+                        << houseVector[j]->owner->memberId
+                        << std::left
+                        << std::setw(20)
+                        << houseVector[j]->startingDate->convertDatetoString()
+                        << std::left
+                        << std::setw(20)
+                        << houseVector[j]->endingDate->convertDatetoString()
+                        << std::left
+                        << std::setw(10)
+                        << houseVector[j]->consumingPointsPerDay
+                        << std::left
+                        << std::setw(15)
+                        << houseVector[j]->minRating
+                        << std::left
+                        << std::setw(20)
+                        << houseVector[j]->location
+                        << std::left
+                        << std::setw(35)
+                        << houseVector[j]->houseDescription
+                        << "\n";
             }
+            adminMenu();
             break;
         case 2:
             adminMenu();
@@ -424,17 +532,27 @@ void System::loginMemMenu() {
 
 }
 
-bool System::adminLoginMenu() {
+void System::adminLoginMenu() {
     std::string username, password;
+
     std::cout << "\t---ADMIN LOGIN---\n";
-    std::cout << "Enter your username: ";
-    std::getline(std::cin, username);
-    std::cout << "Enter your password: ";
-    std::getline(std::cin, password);
-    if (admin->username == username && admin->password == password) {
-        return true;
-    } else {
-        return false;
+    std::cout << "\t---1. Login ---\n" << "\t---2. Back to main menu ---\n";
+    switch (menuChoice(1,2)){
+        case 1:
+            std::cin.ignore();
+            std::cout << "Enter your username: ";
+            std::getline(std::cin, username);
+            std::cout << "Enter your password: ";
+            std::getline(std::cin, password);
+            if(admin->username == username && admin->password == password){
+                adminMenu();
+                break;
+            }
+        case 2:
+            mainMenu();
+            break;
+
+
     }
 }
 

@@ -90,7 +90,7 @@ public:
 
     void adminMenu();
 
-    bool adminLoginMenu();
+    void adminLoginMenu();
 
     void adminViewMemberMenu();
 
