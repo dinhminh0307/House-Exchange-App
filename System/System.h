@@ -25,6 +25,7 @@
 #include <iomanip>
 //#include "../Class/Member/Member.h"
 #include "../Class/Admin/Admin.h"
+
 #include "../Class/House/House.h"
 #include "../Class/Date/Date.h"
 #include "../Class/OccupyHouse/OccupyHouse.h"
@@ -35,6 +36,7 @@
 //#include "../Class/Admin/Admin.h"
 class Admin;
 
+
 class House;
 
 class Member;
@@ -42,7 +44,6 @@ class Member;
 class Date;
 
 class User;
-
 
 class System {
 public:
@@ -95,9 +96,14 @@ public:
 
     void adminViewHouseMenu();
 
+
     void memberMenu();
 
     void houseForRentMenu();
+
+    void rateTenantMenu(int leaveID);
+
+
 
     bool getInfoListHouseMenu();
 
@@ -106,6 +112,10 @@ public:
     void validHouseMenu(Date *start, Date *end, std::string location);
 
     void searchValidHouseMenu();
+    void viewRequestMenu();
+    void actionRequestMenu(int requestID);
+    void showRentedHouse();
+
 
     bool isValidHouses(Date *start, Date *end, Member *mem, House *house, std::string location);
 

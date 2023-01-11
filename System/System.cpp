@@ -198,10 +198,10 @@ void System::guestShowHouse() {
               << std::setw(10)
               << "Location"
               << std::left
-              << std::setw(10)
+              << std::setw(30)
               << "Description"
               << std::left
-              << std::setw(10)
+              << std::setw(20)
               << "Credits Required"
               << std::left
               << std::setw(10)
@@ -214,10 +214,10 @@ void System::guestShowHouse() {
                   << std::setw(10)
                   << house->location
                   << std::left
-                  << std::setw(10)
+                  << std::setw(30)
                   << house->houseDescription
                   << std::left
-                  << std::setw(10)
+                  << std::setw(20)
                   << house->consumingPointsPerDay
                   << std::left
                   << std::setw(10)
@@ -235,11 +235,20 @@ void System::mainMenu() {
               << "sXXXXXXX, Student Name\n"
               << "sXXXXXXX, Student Name\n"
               << "sXXXXXXX, Student Name\n"
-              << "Use the app as 1. Guest   2. Member   3. Admin\n";
+              << "Use the app as 1. Guest   2. Member   3. Admin   4.Exit\n";
     choice = menuChoice(1, 3);
     switch (choice) {
         case 1:
             guestMenu();
+            break;
+        case 2:
+            memberMenu();
+            break;
+        case 3:
+            adminMenu();
+            break;
+        case 4:
+            outputMemberToFile();
             break;
     }
 }
@@ -382,6 +391,7 @@ void System::adminViewHouseMenu() {
 
 
 }
+
 bool System::adminLoginMenu() {
     std::string username, password;
     std::cout << "\t---ADMIN LOGIN---\n";
@@ -396,6 +406,7 @@ bool System::adminLoginMenu() {
         return false;
     }
 }
+
 
 void System::memberMenu() {
     std::cout << "\t---MEMBER MENU---\n";
@@ -530,6 +541,64 @@ bool System::enterHouseInfo() {
     return true;
 }
 
+void System::showRentedHouse() {
+    //Check if current member ocupying any house
+    if(currentUser->tenantList.empty()) {
+        std::cout << "\n\t\tThere are no house you are renting\n\n\t\tBack To Member Menu";
+        memberMenu();
+    }
+    std:: cout<< "\nThe list of house you occupied:\n";
+    currentUser->viewTenant();
+    std:: cout << "\n---" << currentUser->tenantList.size() + 1 << ".Back to menu\n";
+    int choice = menuChoice(1, currentUser->tenantList.size() + 1);
+    if(choice == currentUser->tenantList.size() + 1) {
+        memberMenu();
+    }
+    auto tenantHouse = currentUser->tenantList[choice - 1]->occupyHouse;
+    tenantHouse->viewHouseInfo();
+    std::cout <<"\n"
+              << "\t\t1.Checkout\n"
+              << "\t\t2.Back to menu\n";
+    int newChoice = menuChoice(1, 2);
+    switch(newChoice) {
+        case 1:
+            currentUser->checkout(choice - 1);
+            std::cout << "\n\tLeft House\n";
+            rateTenantMenu(choice -1);
+            break;
+        case 2:
+            memberMenu();
+            break;
+    }
+
+}
+
+void System ::rateTenantMenu(int leaveID) {
+    std::cout << "\n\t\tDo you want to rate the house?\n"
+              << "\n\t\t1.Yes\n"
+              <<"\n\t\t2.No\n";
+
+    int choice = menuChoice(1,2);
+    switch (choice) {
+        case 1:
+            {std::string comment;
+            int score;
+            std:: cout << "\n\t\tPlease leave a comment: ";
+            std::cin.ignore();
+            std::getline(std::cin, comment);
+            std::cout << "\n\t\tPlease leave a score: ";
+            std::cin >> score;
+            currentUser->reviewTenant(leaveID, score, comment);
+            memberMenu();
+            break;
+            }
+        case 2:
+            memberMenu();
+            break;
+    }
+    
+}
+
 void System::searchValidHouseMenu() {
     std::string startDate, endDate, location;
     int choice;
@@ -584,13 +653,56 @@ void System::validHouseMenu(Date *start, Date *end, std::string location) {
                   << "--> 3.\tBack to house list\n";
         switch (menuChoice(1, 3)) {
             case 1:
+                {Request *request = new Request(start, end, currentUser, RE_STATUS[2]);
+                memberSuitableHouseList[choice-1]->addRequestToHouseRequestList(request);
+                memberMenu();
                 break; //function send requests
+                }
             case 2:
+                std::cout << "\nYour review is: \n";
+                currentUser->showReview();
+                memberMenu();
                 break; //function view reviews
             case 3:
                 validHouseMenu(start, end, location);
                 break;
         }
+    }
+}
+void System :: actionRequestMenu(int requestID) {
+    std::cout <<"\n\n1.Accept Request\n2.Decline Request\n";
+            switch (menuChoice(1,2)) {
+                case 1:
+                    currentUser->acceptRequest(requestID);
+                    std::cout << "\nRequest accepted\n";
+                    memberMenu();
+                    break;
+                case 2:
+                    currentUser->declineRequest(requestID);
+                    std::cout << "\nRequest accepted\n";
+                    memberMenu();
+                    break;
+            }
+}
+
+void System::viewRequestMenu() {
+    int choice;
+    std::cout << "\n\n\tYour request today:\n\n";
+    int numberRequest = currentUser->viewAllRequest();
+    std::cout << "\n\tChoose your option:\n\n";
+    std::cout << "\n\n--> 1.\tPoint the Request:\n\n"
+                  << "--> 2.\tBack to Menu\n";
+    choice = menuChoice(1,3);
+    switch (choice) {
+        case 1:
+            {std::cout <<"Enter the request youn want to view: ";
+            int newChoice = menuChoice(1, numberRequest);
+            actionRequestMenu(newChoice);
+            break;
+            }
+        case 2:
+            memberMenu();
+            break;
     }
 }
 
@@ -939,12 +1051,12 @@ void System::inputOccupierToSys() {
 
 void System::inputUnratedToSys() {
     std::string dataLine;
-    std::ifstream readFile{OCCUPIERS_FILE};
+    std::ifstream readFile{UNRATED_OCC_FILE};
     Member *targetMem;
     House *targetHouse;
 
     if (!readFile.is_open()) {
-        std::cerr << "Cannot open " << OCCUPIERS_FILE << "\n";
+        std::cerr << "Cannot open " << UNRATED_OCC_FILE << "\n";
     }
 
     while (std::getline(readFile, dataLine)) {
@@ -955,12 +1067,12 @@ void System::inputUnratedToSys() {
             }
         }
         for (auto &house: houseVector) {
-            if (house->houseID == dataLst[2]) {
+            if (house->houseID == dataLst[0]) {
                 targetHouse = house;
             }
         }
-        Date *start = stringToDate(dataLst[3]);
-        Date *end = stringToDate(dataLst[4]);
+        Date *start = stringToDate(dataLst[2]);
+        Date *end = stringToDate(dataLst[3]);
 
         auto *unratedOcc = new OccupyHouse(start, end, targetMem);
         targetHouse->unratedTenant.push_back(unratedOcc);
@@ -1103,6 +1215,7 @@ void System::outputHouseToFile() {
 bool System::loginMember() {
     std::string username, password;
     std::cout << "\t---MEMBER LOGIN---\n";
+    std::cin.ignore();
     std::cout << "Enter your username: ";
     std::getline(std::cin, username);
     std::cout << "Enter your password: ";
@@ -1131,7 +1244,7 @@ void System::registerMember() {
     int subChoice;
     std::string username, password, fullname, phoneNum, location;
     std::cout << "\t---MEMBER REGISTRATION---\n";
-
+    std::cin.ignore();
     do {
         std::cout << "Enter your username: ";
         getline(std::cin, username);
@@ -1184,6 +1297,7 @@ void System::registerMember() {
                                 INITIAL_CREDITS, INITIAL_SCORES, location);
     memberVector.push_back(newMem);
     std::cout << "You have registered successfully!\n";
+    mainMenu();
 }
 
 Date *System::stringToDate(std::string &date) {

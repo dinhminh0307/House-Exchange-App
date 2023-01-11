@@ -42,7 +42,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX12.1.sdk -mmacosx-version-min=11.6"
+					"fragment" : "-g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk"
 				},
 				{
 					"fragment" : "-std=gnu++14"
@@ -52,7 +52,7 @@
 			[
 				{
 					"backtrace" : 2,
-					"path" : "/Users/vonguyenkien/Workspaces/asm2/HOUSE-VACATION-RENT/System"
+					"path" : "/Users/trungngo/Desktop/dapdixaylai/System"
 				}
 			],
 			"language" : "CXX",

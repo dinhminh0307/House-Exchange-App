@@ -11,7 +11,6 @@ class Member;
 class Request {
     std::string houseID;
     std::string requestStatus;
-    std::string requestID;
     Date* startDate;
     Date* endDate;
     Member* requestedByMember;

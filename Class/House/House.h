@@ -7,7 +7,7 @@
 #include "../Review/Review.h"
 
 #include "../Member/Member.h"
-
+#include "../Request/Request.h"
 #include "../OccupyHouse/OccupyHouse.h"
 
 #include "../Date/Date.h"
@@ -74,6 +74,7 @@ public:
     void viewHouseReview();
 
     std::string viewHouseInfoByGuest();
+    
 
     ~House();
 
