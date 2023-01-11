@@ -939,12 +939,12 @@ void System::inputOccupierToSys() {
 
 void System::inputUnratedToSys() {
     std::string dataLine;
-    std::ifstream readFile{OCCUPIERS_FILE};
+    std::ifstream readFile{UNRATED_OCC_FILE};
     Member *targetMem;
     House *targetHouse;
 
     if (!readFile.is_open()) {
-        std::cerr << "Cannot open " << OCCUPIERS_FILE << "\n";
+        std::cerr << "Cannot open " << UNRATED_OCC_FILE << "\n";
     }
 
     while (std::getline(readFile, dataLine)) {

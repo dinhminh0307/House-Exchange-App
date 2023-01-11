@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "dapdixaylai::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-dapdixaylai-Debug-2b72f384c2997b99683f.json",
+					"jsonFile" : "target-dapdixaylai-Debug-48c02e1e787b46b24001.json",
 					"name" : "dapdixaylai",
 					"projectIndex" : 0
 				}
@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/Users/vonguyenkien/Workspaces/asm2/HOUSE-VACATION-RENT/cmake-build-debug",
-		"source" : "/Users/vonguyenkien/Workspaces/asm2/HOUSE-VACATION-RENT"
+		"build" : "/Users/trungngo/Desktop/dapdixaylai/cmake-build-debug",
+		"source" : "/Users/trungngo/Desktop/dapdixaylai"
 	},
 	"version" : 
 	{
