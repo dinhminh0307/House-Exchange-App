@@ -135,7 +135,7 @@ bool System::isValidFullname(std::string &fullname) {
 }
 
 bool System::isValidCredit(Member *mem, House *house) {
-    if (mem->credit < (house->consumingPointsPerDay * (house->endingDate - house->startingDate))) {
+    if (mem->credit < (house->consumingPointsPerDay * (house->endingDate->countDate() - house->startingDate->countDate()))) {
         return false;
     }
     return true;
@@ -162,6 +162,15 @@ bool System::isValidDate(std::string date) {
     }
     return true;
 }
+
+bool System::isRightDateOrder(Date *start, Date *end) {
+    if(end->countDate() - start->countDate() > 0){
+        return true;
+    }else{
+        return false;
+    }
+}
+
 
 int System::menuChoice(int start, int end) {
     int finalChoice;
@@ -528,8 +537,7 @@ bool System::getInfoListHouseMenu() {
             std::cout << "Enter the end renting date ";
             std::getline(std::cin, endDate);
         } while (!isValidDate(endDate));
-    } while (!(stringToDate(endDate) < stringToDate(startDate)));
-
+    } while (!isRightDateOrder(stringToDate(startDate), stringToDate(endDate)));
 
     do {
         std::cout << "Enter the required credits per day ";
@@ -727,7 +735,7 @@ void System::viewRequestMenu() {
     choice = menuChoice(1, 3);
     switch (choice) {
         case 1: {
-            std::cout << "Enter the request youn want to view: ";
+            std::cout << "Enter the request you want to proceed: \n";
             int newChoice = menuChoice(1, numberRequest);
             actionRequestMenu(newChoice);
             break;
@@ -1342,4 +1350,5 @@ Date *System::stringToDate(std::string &date) {
     std::vector<std::string> dataLst = splitStr(date, '/');
     Date *convertedDate = new Date(std::stoi(dataLst[0]), std::stoi(dataLst[1]), std::stoi(dataLst[2]));
     return convertedDate;
+
 }

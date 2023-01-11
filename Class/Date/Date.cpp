@@ -11,22 +11,23 @@ Date :: Date(int date, int month, int year) {
 
 
 int Date:: countLeapYear() {
-    int currentYear = year;
-    if(month < 2) {
+    int currentYear = this->year;
+    if(this->month <= 2) {
         currentYear--;
     }
 
     int leapYear = currentYear / 4 - currentYear / 100 + currentYear / 400;
     return leapYear;
 }
-int Date::countDate() {
-    int totalDays = year * 365 + date;
 
-    for(int i = 0; i < month - 1; i++) {
+int Date::countDate() {
+    int totalDays = this->year * 365 + this->date;
+
+    for(int i = 0; i < this->month - 1; i++) {
         totalDays = totalDays + DAYS_IN_MONTHS[i];
     }
 
-    totalDays = totalDays + countLeapYear();
+    totalDays = totalDays + this->countLeapYear();
     return totalDays;
 }
 
@@ -37,7 +38,10 @@ bool Date::operator < (Date &date2) {
 
 int Date::operator - (Date &date2) {
     // Get the difference between two dates
-    return countDate() - date2.countDate();
+    std::cout << this->countDate() << "\n";
+    std::cout << date2.countDate() << "\n";
+
+    return this->countDate() - date2.countDate();
 }
 
 std::string Date ::convertDatetoString() {
