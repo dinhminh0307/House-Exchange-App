@@ -198,13 +198,16 @@ bool Member::declineRequest(int ID) {
         if (houseOwner->listHouseRequest[ID] == i) {
             continue;
         }
-        if ((*i->endDate - *houseOwner->listHouseRequest[ID]->startDate) < 0 ||
-            (*houseOwner->listHouseRequest[ID]->endDate - *i->startDate) < 0) {
+        if ((i->endDate->countDate() - houseOwner->listHouseRequest[ID]->startDate->countDate()) < 0 ||
+            (houseOwner->listHouseRequest[ID]->endDate->countDate() - i->startDate->countDate()) < 0) {
             continue;
         }
         indice++;
+        houseOwner->listHouseRequest[indice]->requestStatus = RE_STATUS[2];
     }
-    houseOwner->listHouseRequest.erase(houseOwner->listHouseRequest.begin() + indice);
+
+
+
     return true;
 }
 
@@ -212,8 +215,6 @@ bool Member::acceptRequest(int ID) {
     if (ID > houseOwner->listHouseRequest.size()) {
         return false;
     }
-
-
 
     // cout << "\nThe request does not match\n";
     // return false;
@@ -230,8 +231,8 @@ bool Member::acceptRequest(int ID) {
     tenant->tenantList.push_back(occupyMember);
     houseOwner->listOccupyHouse.push_back(occupyHouse);
     // add credit of owner and minus credit of tenant
-    this->addCredit(houseOwner->consumingPointsPerDay * (endRentDate - rentDate));
-    tenant->minusCredit(houseOwner->consumingPointsPerDay * (endRentDate - rentDate));
+    this->addCredit(houseOwner->consumingPointsPerDay * (endRentDate->countDate() - rentDate->countDate()));
+    tenant->minusCredit(houseOwner->consumingPointsPerDay * (endRentDate->countDate() - rentDate->countDate()));
     return true;
 }
 

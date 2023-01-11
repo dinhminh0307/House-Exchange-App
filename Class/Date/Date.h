@@ -13,6 +13,7 @@ class Date {
     public:
         Date();
         Date(int date, int month, int year);
+        int getDay();
         int countLeapYear();
         int countDate();
         bool operator < (Date &date2);
