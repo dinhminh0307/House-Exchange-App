@@ -74,6 +74,7 @@ public:
     void guestMenu();
     void memberMenu();
     void houseForRentMenu();
+    void rateTenantMenu(int leaveID);
     bool getInfoListHouseMenu();
     bool enterHouseInfo();
     void validHouseMenu(Date *start, Date *end, std::string location);

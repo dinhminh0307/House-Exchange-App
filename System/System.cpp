@@ -380,21 +380,21 @@ void System::adminViewHouseMenu() {
 
 
 }
-bool System::adminLoginMenu() {
-    std::string username, password;
-    std::cout << "\t---ADMIN LOGIN---\n";
-    std::cout << "Enter your username: ";
-    std::getline(std::cin, username);
-    std::cout << "Enter your password: ";
-    std::getline(std::cin, password);
-    if(admin->username == username && admin->password == password){
-        currentUser = admin;
-        return true;
-    }
-    else {
-        return false;
-    }
-}
+// bool System::adminLoginMenu() {
+//     std::string username, password;
+//     std::cout << "\t---ADMIN LOGIN---\n";
+//     std::cout << "Enter your username: ";
+//     std::getline(std::cin, username);
+//     std::cout << "Enter your password: ";
+//     std::getline(std::cin, password);
+//     if(admin->username == username && admin->password == password){
+//         currentUser = admin;
+//         return true;
+//     }
+//     else {
+//         return false;
+//     }
+// }
 
 void System::memberMenu() {
     std::cout << "\t---MEMBER MENU---\n";
@@ -536,6 +536,55 @@ void System::showRentedHouse() {
         memberMenu();
     }
     std:: cout<< "\nThe list of house you occupied:\n";
+    currentUser->viewTenant();
+    std:: cout << "\n---" << currentUser->tenantList.size() + 1 << ".Back to menu\n";
+    int choice = menuChoice(1, currentUser->tenantList.size() + 1);
+    if(choice == currentUser->tenantList.size() + 1) {
+        memberMenu();
+    }
+    auto tenantHouse = currentUser->tenantList[choice - 1]->occupyHouse;
+    tenantHouse->viewHouseInfo();
+    std::cout <<"\n"
+              << "\t\t1.Checkout\n"
+              << "\t\t2.Back to menu\n";
+    int newChoice = menuChoice(1, 2);
+    switch(newChoice) {
+        case 1:
+            currentUser->checkout(choice - 1);
+            std::cout << "\n\tLeft House\n";
+            rateTenantMenu(choice -1);
+            break;
+        case 2:
+            memberMenu();
+            break;
+    }
+
+}
+
+void System ::rateTenantMenu(int leaveID) {
+    std::cout << "\n\t\tDo you want to rate the house?\n"
+              << "\n\t\t1.Yes\n"
+              <<"\n\t\t2.No\n";
+
+    int choice = menuChoice(1,2);
+    switch (choice) {
+        case 1:
+            {std::string comment;
+            int score;
+            std:: cout << "\n\t\tPlease leave a comment: ";
+            std::cin.ignore();
+            std::getline(std::cin, comment);
+            std::cout << "\n\t\tPlease leave a score: ";
+            std::cin >> score;
+            currentUser->reviewTenant(leaveID, score, comment);
+            memberMenu();
+            break;
+            }
+        case 2:
+            memberMenu();
+            break;
+    }
+    
 }
 
 void System::searchValidHouseMenu() {
