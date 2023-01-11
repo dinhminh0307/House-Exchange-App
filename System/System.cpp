@@ -396,6 +396,8 @@ void System::adminViewMemberMenu() {
                         << memberVector[i]->getRatingScore()
                         << "\n";
             }
+            std::cout << memberVector.size()+1 << ".Back to admin menu\n";
+            menuChoice(memberVector.size()+1, memberVector.size()+1);
             adminMenu();
 
         case 2:
@@ -508,6 +510,8 @@ void System::adminViewHouseMenu() {
                         << houseVector[j]->houseDescription
                         << "\n";
             }
+            std::cout << houseVector.size()+1 << ".Back to admin menu\n";
+            menuChoice(houseVector.size()+1,houseVector.size()+1);
             adminMenu();
             break;
         case 2:
@@ -554,8 +558,12 @@ void System::adminLoginMenu() {
             std::cout << "Enter your password: ";
             std::getline(std::cin, password);
             if(admin->username == username && admin->password == password){
+                std::cout << "Log in successfully!!! \n\n\n\n";
                 adminMenu();
                 break;
+            }
+            else {
+                std::cout << "Wrong username or password!!! \n\n";
             }
         case 2:
             mainMenu();
