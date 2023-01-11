@@ -20,7 +20,6 @@ House::House(std::string houseID, std::string location, std::string houseDescrip
 
 double House::getRatingScore() {
     if(this->listHouseReview.empty()){
-        std::cout << "\nThere are no reviews for this house\n";
         return 0;
     }
     double tempScore = 0;
@@ -35,8 +34,8 @@ void House::viewHouseInfo() {
     std::cout << "Location: " << location << "\n";
     std::cout << "Description: " << houseDescription << "\n";
     std::cout << "Rating score: " << this->getRatingScore() << "\n";
-    if(!isAdded){
-        std::cout << "Available from: " << this->startingDate << " to " << this->endingDate << "\n";
+    if(isAdded){
+        std::cout << "Available from: " << this->startingDate->convertDatetoString() << " to " << this->endingDate->convertDatetoString() << "\n";
         std::cout << "Credit per day: " << consumingPointsPerDay << "\n";
         std::cout << "Minimum rating score of tenant: " << minRating << "\n";
     }
@@ -61,6 +60,7 @@ void House::viewHouseReview() {
 void House::addRequestToHouseRequestList(Request *request) {
     listHouseRequest.push_back(request);
 }
+
 void House::addReviewToHouseReviewList(Review *review) {
     listHouseReview.push_back(review);
 }

@@ -248,6 +248,14 @@ void System::mainMenu() {
             break;
         case 4:
             outputMemberToFile();
+            outputHouseToFile();
+            outputHouseLstToFile();
+            outputAdminToFile();
+            outputRequestToFile();
+            outputRatingHouseToFile();
+            outputUnratedToFile();
+            outputRatingTenantToFile();
+            outputOccupierToFile();
             break;
     }
 }
@@ -445,15 +453,17 @@ void System::memberMenu() {
             memberMenu();
             break;
         case 2:
-            memberMenu();
+            searchValidHouseMenu();
             break;
         case 3:
-            memberMenu();
+            viewRequestMenu();
             break;
         case 4:
             houseForRentMenu();
             break;
         case 5:
+            currentUser = nullptr;
+            mainMenu();
             break;
 
     }
@@ -506,6 +516,8 @@ void System::houseForRentMenu() {
 
 bool System::getInfoListHouseMenu() {
     std::string startDate, endDate, minScores, minCredits;
+    std::cin.ignore();
+
     std::cout << "\tPlease enter of your rental info\n";
     do {
         do {
@@ -516,7 +528,7 @@ bool System::getInfoListHouseMenu() {
             std::cout << "Enter the end renting date ";
             std::getline(std::cin, endDate);
         } while (!isValidDate(endDate));
-    } while (stringToDate(endDate) < stringToDate(startDate));
+    } while (!(stringToDate(endDate) < stringToDate(startDate)));
 
 
     do {
@@ -531,7 +543,7 @@ bool System::getInfoListHouseMenu() {
 
     Date *start = stringToDate(startDate);
     Date *end = stringToDate(endDate);
-    currentUser->addHouse(start, end, std::stod(minCredits), std::stod(minScores));
+    currentUser->addHouse(start, end, std::stod(minCredits), std::stod(minScores), STATUS[0]);
     return true;
 }
 
@@ -623,6 +635,7 @@ void System::rateTenantMenu(int leaveID) {
 void System::searchValidHouseMenu() {
     std::string startDate, endDate, location;
     int choice;
+    std::cin.ignore();
     std::cout << "\tSearch for suitable houses: \n\n";
     do {
         do {
@@ -633,7 +646,7 @@ void System::searchValidHouseMenu() {
             std::cout << "Enter when you want to end renting (dd/mm/yyyy): ";
             std::getline(std::cin, endDate);
         } while (!isValidDate(endDate));
-    } while (stringToDate(endDate) < stringToDate(startDate));
+    } while (!(stringToDate(endDate) < stringToDate(startDate)));
 
     std::cout << "\tChoose the city you want to stay: \n\n";
     std::cout << "\t1. HANOI \t2.HUE \t3.SAIGON\n";
@@ -661,20 +674,17 @@ void System::validHouseMenu(Date *start, Date *end, std::string location) {
     int choice;
     getValidHouses(start, end, location);
     std::cout << memberSuitableHouseList.size() + 1 << ". Back to member menu\n";
-    if (memberSuitableHouseList.empty()) {
-        choice = menuChoice(1, 1);
-        if (choice == 1) {
-            memberMenu();
-        }
+    choice = menuChoice(1,memberSuitableHouseList.size() + 1);
+    if(choice == memberSuitableHouseList.size() + 1){
+        memberMenu();
     } else {
-        choice = menuChoice(1, memberSuitableHouseList.size());
         memberSuitableHouseList[choice - 1]->viewHouseInfo();
         std::cout << "\n\n--> 1.\tRequest to rent this house\n\n"
                   << "--> 2.\tView house's reviews\n\n"
                   << "--> 3.\tBack to house list\n";
         switch (menuChoice(1, 3)) {
             case 1: {
-                Request *request = new Request(start, end, currentUser, RE_STATUS[2]);
+                Request *request = new Request(start, end, currentUser, RE_STATUS[0]);
                 memberSuitableHouseList[choice - 1]->addRequestToHouseRequestList(request);
                 memberMenu();
                 break; //function send requests
@@ -727,10 +737,19 @@ void System::viewRequestMenu() {
             break;
     }
 }
+bool System::memRequestHouse(Date *startDate, Date *endDate, int houseId) {
+    if(houseId > memberSuitableHouseList.size()){
+        return false;
+    }
+
+}
 
 bool System::isValidHouses(Date *start, Date *end, Member *mem, House *house, std::string location) {
-
     if (!house->isAdded) {
+        return false;
+    }
+
+    if (house->houseStatus == STATUS[1]){
         return false;
     }
 
@@ -750,12 +769,13 @@ bool System::isValidHouses(Date *start, Date *end, Member *mem, House *house, st
     }
 
     for (auto &occupier: house->listOccupyHouse) {
-        if (end <= occupier->startFromDate || start >= occupier->toDate) {
+        if (end < occupier->startFromDate || start > occupier->toDate) {
             continue;
         }
-
         return false;
     }
+
+    return true;
 }
 
 bool System::getValidHouses(Date *start, Date *end, std::string location) {
@@ -774,8 +794,8 @@ bool System::getValidHouses(Date *start, Date *end, std::string location) {
     std::cout << "\nThe suitable house list:\n\n";
     for (int i = 0; i < memberSuitableHouseList.size(); i++) {
         std::cout << "--> " << i + 1 << ". ";
-        std::cout << "House Id: " << memberSuitableHouseList[i]->houseID << "Location: "
-                  << memberSuitableHouseList[i]->location << ", Rating: "
+        std::cout << "House Id: " << memberSuitableHouseList[i]->houseID << "\tLocation: "
+                  << memberSuitableHouseList[i]->location << "\tRating: "
                   << memberSuitableHouseList[i]->getRatingScore() << "\n";
     }
     std::cout << "\n\n";
@@ -847,7 +867,7 @@ void System::inputHouseLstToSys() {
                 owner = mem;
             }
         }
-        owner->addHouse(startDate, endDate, credits, scores);
+        owner->addHouse(startDate, endDate, credits, scores,status);
     }
     readFile.close();
 }
@@ -1018,12 +1038,12 @@ void System::inputRequestToSys() {
         std::vector<std::string> dataLst;
         dataLst = splitStr(dataLine, ';');
         for (House *house: houseVector) {
-            if (dataLst[0] == house->houseID) {
+            if (dataLst[1] == house->houseID) {
                 targetHouse = house;
             }
         }
         for (Member *mem: memberVector) {
-            if (dataLst[1] == mem->memberId) {
+            if (dataLst[0] == mem->memberId) {
                 targetMem = mem;
             }
         }
@@ -1111,8 +1131,8 @@ void System::outputOccupierToFile() {
         for (auto &memOccupy: mem->tenantList) {
             writeFile << mem->memberId << ";"
                       << memOccupy->occupyHouse->houseID << ';'
-                      << memOccupy->startFromDate << ";"
-                      << memOccupy->ToDate << "\n";
+                      << memOccupy->startFromDate->convertDatetoString() << ";"
+                      << memOccupy->ToDate->convertDatetoString() << "\n";
         }
     }
     writeFile.close();

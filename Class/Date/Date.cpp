@@ -8,6 +8,17 @@ Date :: Date(int date, int month, int year) {
     this->year = year;
 }
 
+
+
+int Date:: countLeapYear() {
+    int currentYear = year;
+    if(month < 2) {
+        currentYear--;
+    }
+
+    int leapYear = currentYear / 4 - currentYear / 100 + currentYear / 400;
+    return leapYear;
+}
 int Date::countDate() {
     int totalDays = year * 365 + date;
 
@@ -19,21 +30,9 @@ int Date::countDate() {
     return totalDays;
 }
 
-int Date:: countLeapYear() {
-    int currentYear = year;
-    if(month <= 1) {
-        currentYear--;
-    }
-
-    int leapYear = currentYear / 4 - currentYear / 100 + currentYear / 400;
-    return leapYear;
-}
-
 bool Date::operator < (Date &date2) {
-    if(countDate() - date2.countDate() <= 0) {
-        return true;
-    }
-    else return false;
+
+    return  countDate() - date2.countDate() >= 0;
 }
 
 int Date::operator - (Date &date2) {

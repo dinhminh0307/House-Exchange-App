@@ -103,8 +103,6 @@ public:
 
     void rateTenantMenu(int leaveID);
 
-
-
     bool getInfoListHouseMenu();
 
     bool enterHouseInfo();
@@ -112,6 +110,7 @@ public:
     void validHouseMenu(Date *start, Date *end, std::string location);
 
     void searchValidHouseMenu();
+    bool memRequestHouse(Date *startDate, Date *endDate, int houseId);
     void viewRequestMenu();
     void actionRequestMenu(int requestID);
     void showRentedHouse();
