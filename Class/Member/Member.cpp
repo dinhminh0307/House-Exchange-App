@@ -225,6 +225,7 @@ bool Member::acceptRequest(int ID) {
 
     // int requiredCredit = (rentDate - endRentDate) *houseOwner->consumingPointsPerDay;
     declineRequest(ID - 1);
+    houseOwner->listHouseRequest[ID - 1]->requestStatus = RE_STATUS[1];
     OccupyHouse *occupyHouse = new OccupyHouse(rentDate, endRentDate, tenant);
     Tenant *occupyMember = new Tenant(rentDate, endRentDate, houseOwner);
     // add object to occupy list
@@ -245,7 +246,7 @@ Request Member::requestHouse(Date *start, Date *end) {
 void Member::viewTenant() {
     std::cout
             << std::left
-            << std::setw(10)
+            << std::setw(15)
             << "Start Date"
             << std::left
             << std::setw(20)
@@ -258,11 +259,11 @@ void Member::viewTenant() {
             << "Owner ID"
             << "\n";
     for (int i = 0; i < tenantList.size(); i++) {
-        auto tenantStartDate = tenantList[i]->startFromDate;
-        auto tenantEndDate = tenantList[i]->ToDate;
+        auto tenantStartDate = tenantList[i]->startFromDate->convertDatetoString();
+        auto tenantEndDate = tenantList[i]->ToDate->convertDatetoString();
         auto House = tenantList[i]->occupyHouse;
         std::cout << std::left
-                  << std::setw(10)
+                  << std::setw(15)
                   << tenantStartDate
                   << std::left
                   << std::setw(20)
@@ -296,7 +297,7 @@ bool Member::checkout(int leaveId) {
         return false;
     }
     //get object
-    auto leaveTenant = tenantList[leaveId - 1];
+    auto leaveTenant = tenantList[leaveId];
     auto leaveStartDate = leaveTenant->startFromDate;
     auto leaveDate = leaveTenant->ToDate;
     auto leaveHouse = leaveTenant->occupyHouse;

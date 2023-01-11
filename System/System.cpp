@@ -570,8 +570,9 @@ void System::memberMenu() {
     std::cout << "\t---MEMBER MENU---\n";
     int choice;
     std::cout << "\t---1.View Account's Information---\n" << "\t---2.View Available Houses ---\n"
-              << "\t---3.Handle Requests---\n" << "\t---4.List House For Rental---\n" << "\t---5.Logout---\n";
-    choice = menuChoice(1, 5);
+              << "\t---3.Handle Requests---\n" << "\t---4.List House For Rental---\n" << "\t---5.Show rented menu---\n"
+              << "\t---6.View Unrated Tenant List---\n" << "\t---7.Logout---\n";
+    choice = menuChoice(1, 6);
     switch (choice) {
         case 1:
             currentUser->showAccountInfo();
@@ -589,10 +590,15 @@ void System::memberMenu() {
             houseForRentMenu();
             break;
         case 5:
+            showRentedHouse();
+            break;
+        case 6:
+            
+            break;
+        case 7:
             currentUser = nullptr;
             mainMenu();
             break;
-
     }
 
 
@@ -722,7 +728,7 @@ void System::showRentedHouse() {
     switch (newChoice) {
         case 1:
             currentUser->checkout(choice - 1);
-            std::cout << "\n\tLeft House\n";
+            std::cout << "\n\t\tLeft House\n";
             rateTenantMenu(choice - 1);
             break;
         case 2:
@@ -740,6 +746,7 @@ void System::rateTenantMenu(int leaveID) {
     int choice = menuChoice(1, 2);
     switch (choice) {
         case 1: {
+            auto leaveMember = currentUser->tenantList[leaveID];
             std::string comment;
             int score;
             std::cout << "\n\t\tPlease leave a comment: ";
@@ -747,7 +754,7 @@ void System::rateTenantMenu(int leaveID) {
             std::getline(std::cin, comment);
             std::cout << "\n\t\tPlease leave a score: ";
             std::cin >> score;
-            currentUser->reviewTenant(leaveID, score, comment);
+            currentUser->reviewHouse(leaveMember->occupyHouse, score, comment);
             memberMenu();
             break;
         }
