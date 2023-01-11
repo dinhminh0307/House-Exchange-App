@@ -80,6 +80,8 @@ public:
 
     bool isValidDate(std::string date);
 
+    bool isRightDateOrder(Date* start, Date *end);
+
     int menuChoice(int start, int end);
 
     void guestShowHouse();
@@ -90,7 +92,7 @@ public:
 
     void adminMenu();
 
-    bool adminLoginMenu();
+    void adminLoginMenu();
 
     void adminViewMemberMenu();
 
@@ -121,7 +123,6 @@ public:
     bool getValidHouses(Date *start, Date *end, std::string location);
 
     bool deleteInRentHouse();
-
 
     void inputHouseToSys();
 

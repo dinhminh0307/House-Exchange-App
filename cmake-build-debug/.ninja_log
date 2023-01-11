@@ -1,0 +1,13 @@
+# ninja log v5
+1	288	1673440616067674931	CMakeFiles/dapdixaylai.dir/Class/Review/Review.cpp.o	62bb6dc59141001
+1	290	1673440616067309928	CMakeFiles/dapdixaylai.dir/Class/Admin/Admin.cpp.o	45bcb1ecdb0a8e6
+2	291	1673440616071215170	CMakeFiles/dapdixaylai.dir/Class/User/User.cpp.o	6b4b8dd299e51a42
+1	292	1673440616070917251	CMakeFiles/dapdixaylai.dir/Class/Request/Request.cpp.o	d28904dbe157e9f1
+291	311	1673440616092504816	CMakeFiles/dapdixaylai.dir/Class/Tenant/Tenant.cpp.o	374ffbb38fdb6315
+290	311	1673440616092525733	CMakeFiles/dapdixaylai.dir/Class/OccupyHouse/OccupyHouse.cpp.o	142733094bc5c8d7
+1	313	1673440616092590692	CMakeFiles/dapdixaylai.dir/Class/Date/Date.cpp.o	7da1cff0042a224b
+0	369	1673440616148553351	CMakeFiles/dapdixaylai.dir/main.cpp.o	b6ab04c01ef524a5
+2	450	1673440616228640305	CMakeFiles/dapdixaylai.dir/Class/Member/Member.cpp.o	a45a7e9246f19d01
+289	622	1673440616401654244	CMakeFiles/dapdixaylai.dir/Class/House/House.cpp.o	aba19b1091eeec5e
+1	769	1673440616547303109	CMakeFiles/dapdixaylai.dir/System/System.cpp.o	4aa50129ced52a66
+769	807	1673440616589115226	dapdixaylai	86b80601c0f33c02
