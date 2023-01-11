@@ -18,7 +18,7 @@ int main(){
 //    sys.inputHouseToSys();
 //    sys.inputMemHouseToSys();
 //    sys.inputHouseLstToSys();
-//    sys.inputOccupierToSys();
+//   sys.inputOccupierToSys();
 //    sys.inputRatingHouseToSys();
 //    sys.inputRatingTenantToSys();
 //    sys.inputRequestToSys();
