@@ -25,6 +25,7 @@ int main(){
     sys.inputRequestToSys();
     sys.inputUnratedToSys();
 
-    sys.guestMenu();
+    sys.mainMenu();
+
 
 }

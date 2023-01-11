@@ -38,7 +38,7 @@ Member::Member(std::string username, std::string password, std::string memberID,
 
 double Member::getRatingScore() {
     if (this->tenantReviewList.empty()) {
-        return 0;
+        return 10;
     }
     double tempScore = 0;
     for (Review *rv: tenantReviewList) {

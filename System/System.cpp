@@ -198,10 +198,10 @@ void System::guestShowHouse() {
               << std::setw(10)
               << "Location"
               << std::left
-              << std::setw(10)
+              << std::setw(30)
               << "Description"
               << std::left
-              << std::setw(10)
+              << std::setw(20)
               << "Credits Required"
               << std::left
               << std::setw(10)
@@ -214,10 +214,10 @@ void System::guestShowHouse() {
                   << std::setw(10)
                   << house->location
                   << std::left
-                  << std::setw(10)
+                  << std::setw(30)
                   << house->houseDescription
                   << std::left
-                  << std::setw(10)
+                  << std::setw(20)
                   << house->consumingPointsPerDay
                   << std::left
                   << std::setw(10)
@@ -235,11 +235,20 @@ void System::mainMenu() {
               << "sXXXXXXX, Student Name\n"
               << "sXXXXXXX, Student Name\n"
               << "sXXXXXXX, Student Name\n"
-              << "Use the app as 1. Guest   2. Member   3. Admin\n";
+              << "Use the app as 1. Guest   2. Member   3. Admin   4.Exit\n";
     choice = menuChoice(1, 3);
     switch (choice) {
         case 1:
             guestMenu();
+            break;
+        case 2:
+            memberMenu();
+            break;
+        case 3:
+            adminMenu();
+            break;
+        case 4:
+            outputMemberToFile();
             break;
     }
 }
@@ -1058,12 +1067,12 @@ void System::inputUnratedToSys() {
             }
         }
         for (auto &house: houseVector) {
-            if (house->houseID == dataLst[2]) {
+            if (house->houseID == dataLst[0]) {
                 targetHouse = house;
             }
         }
-        Date *start = stringToDate(dataLst[3]);
-        Date *end = stringToDate(dataLst[4]);
+        Date *start = stringToDate(dataLst[2]);
+        Date *end = stringToDate(dataLst[3]);
 
         auto *unratedOcc = new OccupyHouse(start, end, targetMem);
         targetHouse->unratedTenant.push_back(unratedOcc);
@@ -1206,6 +1215,7 @@ void System::outputHouseToFile() {
 bool System::loginMember() {
     std::string username, password;
     std::cout << "\t---MEMBER LOGIN---\n";
+    std::cin.ignore();
     std::cout << "Enter your username: ";
     std::getline(std::cin, username);
     std::cout << "Enter your password: ";
@@ -1234,7 +1244,7 @@ void System::registerMember() {
     int subChoice;
     std::string username, password, fullname, phoneNum, location;
     std::cout << "\t---MEMBER REGISTRATION---\n";
-
+    std::cin.ignore();
     do {
         std::cout << "Enter your username: ";
         getline(std::cin, username);
@@ -1287,6 +1297,7 @@ void System::registerMember() {
                                 INITIAL_CREDITS, INITIAL_SCORES, location);
     memberVector.push_back(newMem);
     std::cout << "You have registered successfully!\n";
+    mainMenu();
 }
 
 Date *System::stringToDate(std::string &date) {
