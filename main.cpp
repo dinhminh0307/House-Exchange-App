@@ -13,6 +13,7 @@
 
 int main(){
     System sys;
+
     sys.inputAdminToSys();
     sys.inputMemberToSys();
     sys.inputHouseToSys();
@@ -22,7 +23,8 @@ int main(){
     sys.inputRatingHouseToSys();
     sys.inputRatingTenantToSys();
     sys.inputRequestToSys();
-//    sys.inputUnratedToSys();
+    sys.inputUnratedToSys();
 
     sys.guestMenu();
+
 }

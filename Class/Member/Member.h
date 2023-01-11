@@ -7,6 +7,22 @@
 
 #include "../User/User.h"
 
+
+#include "../House/House.h"
+#include "../Request/Request.h"
+
+
+
+#include "../OccupyHouse/OccupyHouse.h"
+#include "../../System/System.h"
+
+#include "../Review/Review.h"
+
+// #include "../../System/System.h"
+
+
+#include "../Tenant/Tenant.h"
+
 #include <iostream>
 #include <vector>
 #include <sstream>
@@ -28,7 +44,6 @@ class Request;
 class Date;
 
 
-
 class Member : public User {
 private:
 
@@ -41,7 +56,7 @@ private:
     std::string location;
     std::vector<Review *> tenantReviewList;
     std::vector<Request *> requestList;
-    std::vector<Tenant *> tenantList; //list house the member have occupied
+    std::vector<Tenant *> tenantList; // list house ma minh da thue
 
 
 
@@ -56,7 +71,7 @@ public:
 
     bool deleteHouse();
 
-    bool viewAllRequest();
+    int viewAllRequest();
 
 
     void showAccountInfo();
@@ -69,18 +84,22 @@ public:
 
     bool createHouse(House *house);
 
-    int requestHouse();
+    Request requestHouse(Date *start, Date *end); 
 
     void showAllAvailableHouse();
 
-    bool acceptRequest(std::string requestID);
+    bool acceptRequest(int ID);
 
-    bool declineRequest(std::string requestID);
+    bool declineRequest(int ID);
 
 
     void reviewHouse(House *occupyHouse, int score, std::string comment);
 
+
+    void viewTenant();
+
     bool reviewTenant(int rateId, int score, std::string comment);
+
 
     void showReview();
 
@@ -91,6 +110,11 @@ public:
     bool viewUnratedList();
 
 
+    void tenantLeaveHouse();
+
+    void voidgetHouseIndex(int houseID);
+
+    void cancelRequest();
     friend class House;
 
     friend class System;

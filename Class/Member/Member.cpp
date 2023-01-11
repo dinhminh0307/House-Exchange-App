@@ -3,6 +3,7 @@
 //
 
 #include "Member.h"
+
 //#include "../Date/Date.h"
 //#include "../../System/System.h"
 #include "../../define.h"
@@ -11,6 +12,7 @@
 #include "../Request/Request.h"
 #include "../OccupyHouse/OccupyHouse.h"
 #include "../Tenant/Tenant.h"
+
 #include <algorithm>
 
 
@@ -141,32 +143,30 @@ bool Member::deleteHouse() {
     return true;
 }
 
-bool Member::viewAllRequest() {
-    if (houseOwner->listHouseRequest.empty()) {
+
+int Member::viewAllRequest() {
+    int index = 0;
+    if(houseOwner->listHouseRequest.empty()) {
         std::cout << "\nYou dont have any request!\n";
-        return false;
+        return 0;
     }
-    std::cout << std::left
-              << std::setw(10)
-              << "Request ID"
-              << std::left
-              << std::setw(10)
-              << "Member ID"
-              << std::left
-              << std::setw(20)
-              << "House ID"
-              << std::left
-              << std::setw(15)
-              << "Request Date"
-              << std::left
-              << std::setw(15)
-              << "Status"
-              << "\n";
-    for (Request *i: houseOwner->listHouseRequest) {
-        std::cout
-                << std::left
-                << std::setw(10)
-                << i->requestID
+    std::cout 
+            << std::left
+            << std::setw(10)
+            << "Member ID"
+            << std::left
+            << std::setw(20)
+            << "House ID"
+            << std::left
+            << std::setw(15)
+            << "Request Date"
+            << std::left
+            << std::setw(15)
+            << "Status"
+            << "\n";
+    for(Request *i : houseOwner->listHouseRequest) {
+        index++;
+        std::cout << std::to_string(index)
                 << std::left
                 << std::setw(10)
                 << i->requestedByMember->memberId
@@ -181,7 +181,7 @@ bool Member::viewAllRequest() {
                 << i->requestStatus
                 << "\n";
     }
-    return true;
+    return index;
 }
 
 void Member::reviewHouse(House *occupyHouse, int score, std::string comment) {
@@ -191,37 +191,37 @@ void Member::reviewHouse(House *occupyHouse, int score, std::string comment) {
     occupyHouse->addReviewToHouseReviewList(review);
 }
 
-bool Member::declineRequest(std::string requestID) {
-    int index = 0;
-    int indice = 0;
-    for (auto i: houseOwner->listHouseRequest) {
-        if (i->requestID == requestID) {
-            index++;
-            continue;
-        }
-        if ((i->startDate - houseOwner->listHouseRequest[index]->endDate) < 0 ||
-            (houseOwner->listHouseRequest[index]->startDate - i->endDate) < 0) {
-            indice++;
-            houseOwner->listHouseRequest.erase(houseOwner->listHouseRequest.begin() + indice);//Delete overlap
-            continue;
-        }
-    }
-    houseOwner->listHouseRequest.erase(houseOwner->listHouseRequest.begin() + index); //Delete accepted request
-    return true;
-}
 
-bool Member::acceptRequest(std::string requestID) {
-    for (int i = 0; i < houseOwner->listHouseRequest.size(); i++) {
-        if (houseOwner->listHouseRequest[i]->requestID == requestID) {
+bool Member:: declineRequest(int ID) {
+        int indice = 0;
+        for(auto i : houseOwner->listHouseRequest) {
+            if(houseOwner->listHouseRequest[ID] == i) {
+                continue;
+            }
+            if((*i->endDate - *houseOwner->listHouseRequest[ID]->startDate) < 0 || (*houseOwner->listHouseRequest[ID]->endDate - *i->startDate) < 0) {
+                continue;
+            }
+            indice++;
+        }
+        houseOwner->listHouseRequest.erase(houseOwner->listHouseRequest.begin() + indice);
+        return true;
+}
+bool Member:: acceptRequest(int ID) {
+    if(ID > houseOwner->listHouseRequest.size()) {
+            return false;
+        }
+    
+        
+       
             // cout << "\nThe request does not match\n";
             // return false;
             houseOwner->houseStatus = "UNAVAILABLE";
-            auto rentDate = houseOwner->listHouseRequest[i]->startDate;
-            auto endRentDate = houseOwner->listHouseRequest[i]->endDate;
-            auto tenant = houseOwner->listHouseRequest[i]->requestedByMember;
+            auto rentDate = houseOwner->listHouseRequest[ID]->startDate;
+            auto endRentDate = houseOwner->listHouseRequest[ID]->endDate;
+            auto tenant =houseOwner->listHouseRequest[ID]->requestedByMember;
+
             // int requiredCredit = (rentDate - endRentDate) *houseOwner->consumingPointsPerDay;
-            declineRequest(requestID);
-            // create object
+            declineRequest(ID);
             OccupyHouse *occupyHouse = new OccupyHouse(rentDate, endRentDate, tenant);
             Tenant *occupyMember = new Tenant(rentDate, endRentDate, houseOwner);
             // add object to occupy list
@@ -230,12 +230,52 @@ bool Member::acceptRequest(std::string requestID) {
             // add credit of owner and minus credit of tenant
             this->addCredit(houseOwner->consumingPointsPerDay * (endRentDate - rentDate));
             tenant->minusCredit(houseOwner->consumingPointsPerDay * (endRentDate - rentDate));
-
-
-        }
-    }
-
+    return true;
 }
+
+
+
+Request Member::requestHouse(Date *start, Date *end) {
+    auto *newRequest = new Request(start, end, this, RE_STATUS[2]);
+    return *newRequest;
+}
+
+void Member::viewTenant() {
+    std::cout 
+            << std::left
+            << std::setw(10)
+            << "Start Date"
+            << std::left
+            << std::setw(20)
+            << "End Date"
+            << std::left
+            << std::setw(15)
+            << "House ID"
+            << std::left
+            << std::setw(15)
+            << "Owner ID"
+            << "\n";
+    for(int i = 0; i < tenantList.size(); i++) {
+        auto tenantStartDate = tenantList[i]->startFromDate;
+        auto tenantEndDate = tenantList[i]->ToDate;
+        auto House = tenantList[i]->occupyHouse;
+        std:: cout << std::left
+            << std::setw(10)
+            << tenantStartDate
+            << std::left
+            << std::setw(20)
+            << tenantEndDate
+            << std::left
+            << std::setw(15)
+            << House->houseID
+            << std::left
+            << std::setw(15)
+            << memberId
+            << "\n";
+    }
+}
+
+
 
 bool Member::viewMemberOccupyList() {
     if (tenantList.empty()) {
