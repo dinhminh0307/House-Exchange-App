@@ -24,7 +24,6 @@ int main(){
     sys.inputRatingTenantToSys();
     sys.inputRequestToSys();
     sys.inputUnratedToSys();
-
     sys.mainMenu();
 
 
