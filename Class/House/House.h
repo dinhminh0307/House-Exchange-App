@@ -5,10 +5,12 @@
 #define DAPDIXAYLAI_HOUSE_H
 
 #include "../Review/Review.h"
-#include "../Date/Date.h"
+
 #include "../Member/Member.h"
 #include "../Request/Request.h"
 #include "../OccupyHouse/OccupyHouse.h"
+
+#include "../Date/Date.h"
 
 #include <iostream>
 

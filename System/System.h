@@ -6,7 +6,6 @@
 #define DAPDIXAYLAI_SYSTEM_H
 
 
-
 #define ADMIN_FILE "Data/admin.dat"
 #define HOUSE_FILE "Data/house.dat"
 #define HOUSE_LIST_FILE "Data/houseList.dat"
@@ -15,7 +14,7 @@
 #define RATING_TENANT_FILE "Data/ratingTenant.dat"
 #define OCCUPIERS_FILE "Data/occupiers.dat"
 #define MEMBERS_FILE "Data/members.dat"
-
+#define UNRATED_OCC_FILE "Data/unratedOcc.dat"
 
 
 #include <iostream>
@@ -24,60 +23,94 @@
 #include <regex>
 #include <fstream>
 #include <iomanip>
-#include "../Class/Member/Member.h"
-#include "../Class/House/House.h"
+//#include "../Class/Member/Member.h"
 #include "../Class/Admin/Admin.h"
 
+#include "../Class/House/House.h"
 #include "../Class/Date/Date.h"
-
-
-
-const std::string LOCATIONS[3] = {"HANOI", "HUE", "SAIGON"};
-const int INITIAL_CREDITS = 500;
-const int INITIAL_SCORES = 10;
-const int DAYS_IN_MONTHS[] = {31,28,31,30,31,30,31,31,30,31,30,31};
-const std::string STATUS = {"AVAILABLE", "UNAVAILABLE"};
-const std::string RE_STATUS[3] = {"PENDING", "ACCEPTED", "DECLINED"};
+#include "../Class/OccupyHouse/OccupyHouse.h"
+#include "../Class/Tenant/Tenant.h"
+#include "../Class/Review/Review.h"
+#include "../Class/Request/Request.h"
+#include "../define.h"
+//#include "../Class/Admin/Admin.h"
+class Admin;
 
 
 class House;
+
 class Member;
+
 class Date;
+
 class User;
-class Admin;
+
 class System {
 public:
     std::vector<Member *> memberVector;
-    Admin* admin;
-    std::vector<House* >houseVector;
-    Member* currentUser;
-    House* currentUserHouse;
+
+
+    Admin *admin;
+    std::vector<House *> houseVector;
+    Member *currentUser;
+    House *currentUserHouse;
     std::vector<House *> memberSuitableHouseList;
 
     System();
 
     std::string trimString(std::string &str);
+
     std::vector<std::string> splitStr(std::string &str, char del);
+
     bool isValidNum(std::string &inputStr);
+
     bool isDouble(std::string &inputStr);
+
     bool isValidPhoneNum(std::string &phoneNum);
+
     bool isValidPassword(std::string &password);
+
     bool isValidUserName(std::string &username);
+
     bool isValidFullname(std::string &fullname);
-    bool isValidCredit(Member* mem, House* house);
+
+    bool isValidCredit(Member *mem, House *house);
+
     bool isValidScore(Member *mem, House *house);
+
     bool isValidDate(std::string date);
+
     int menuChoice(int start, int end);
 
     void guestShowHouse();
+
     void mainMenu();
+
     void guestMenu();
+
+    void adminMenu();
+
+    bool adminLoginMenu();
+
+    void adminViewMemberMenu();
+
+    void adminViewHouseMenu();
+
+
     void memberMenu();
+
     void houseForRentMenu();
+
     void rateTenantMenu(int leaveID);
+
+
+
     bool getInfoListHouseMenu();
+
     bool enterHouseInfo();
+
     void validHouseMenu(Date *start, Date *end, std::string location);
+
     void searchValidHouseMenu();
     void viewRequestMenu();
     void actionRequestMenu(int requestID);
@@ -85,38 +118,56 @@ public:
 
 
     bool isValidHouses(Date *start, Date *end, Member *mem, House *house, std::string location);
+
     bool getValidHouses(Date *start, Date *end, std::string location);
+
     bool deleteInRentHouse();
 
 
-    void adminMenu();
-    bool adminLoginMenu();
-    void adminViewMemberMenu();
-    void adminViewHouseMenu();
-
-
     void inputHouseToSys();
+
+    void inputAdminToSys();
+
     void inputMemHouseToSys();
+
     void inputHouseLstToSys();
+
     void inputMemberToSys();
+
     void inputRatingTenantToSys();
+
     void inputRatingHouseToSys();
+
     void inputRequestToSys();
+
+    void inputOccupierToSys();
+
+    void inputUnratedToSys();
+
+    void outputOccupierToFile();
+
+    void outputAdminToFile();
+
+    void outputUnratedToFile();
+
     void outputRequestToFile();
+
     void outputRatingTenantToFile();
+
     void outputRatingHouseToFile();
+
     void outputHouseToFile();
+
     void outputHouseLstToFile();
+
     void outputMemberToFile();
 
 
     void registerMember();
+
     bool loginMember();
+
     Date *stringToDate(std::string &date);
-
-
-
-
 
 
 };

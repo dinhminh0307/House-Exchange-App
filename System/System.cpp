@@ -4,6 +4,8 @@
 
 #include "System.h"
 
+
+
 System::System() {}
 
 std::string System::trimString(std::string &str) {
@@ -380,21 +382,22 @@ void System::adminViewHouseMenu() {
 
 
 }
-// bool System::adminLoginMenu() {
-//     std::string username, password;
-//     std::cout << "\t---ADMIN LOGIN---\n";
-//     std::cout << "Enter your username: ";
-//     std::getline(std::cin, username);
-//     std::cout << "Enter your password: ";
-//     std::getline(std::cin, password);
-//     if(admin->username == username && admin->password == password){
-//         currentUser = admin;
-//         return true;
-//     }
-//     else {
-//         return false;
-//     }
-// }
+
+bool System::adminLoginMenu() {
+    std::string username, password;
+    std::cout << "\t---ADMIN LOGIN---\n";
+    std::cout << "Enter your username: ";
+    std::getline(std::cin, username);
+    std::cout << "Enter your password: ";
+    std::getline(std::cin, password);
+    if(admin->username == username && admin->password == password){
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
 
 void System::memberMenu() {
     std::cout << "\t---MEMBER MENU---\n";
@@ -633,13 +636,13 @@ void System::validHouseMenu(Date *start, Date *end, std::string location) {
         if (choice == 1) {
             memberMenu();
         }
-    }else{
+    } else {
         choice = menuChoice(1, memberSuitableHouseList.size());
         memberSuitableHouseList[choice - 1]->viewHouseInfo();
         std::cout << "\n\n--> 1.\tRequest to rent this house\n\n"
                   << "--> 2.\tView house's reviews\n\n"
                   << "--> 3.\tBack to house list\n";
-        switch (menuChoice(1,3)) {
+        switch (menuChoice(1, 3)) {
             case 1:
                 {Request *request = new Request(start, end, currentUser, RE_STATUS[2]);
                 memberSuitableHouseList[choice-1]->addRequestToHouseRequestList(request);
@@ -652,13 +655,10 @@ void System::validHouseMenu(Date *start, Date *end, std::string location) {
                 memberMenu();
                 break; //function view reviews
             case 3:
-                validHouseMenu(start,end,location);
+                validHouseMenu(start, end, location);
                 break;
         }
     }
-
-
-
 }
 void System :: actionRequestMenu(int requestID) {
     std::cout <<"\n\n1.Accept Request\n2.Decline Request\n";
@@ -779,6 +779,22 @@ void System::inputHouseToSys() {
     readFile.close();
 }
 
+void System::inputAdminToSys() {
+    std::string dataLine;
+    std::ifstream readFile{ADMIN_FILE};
+    if (!readFile.is_open()) {
+        std::cerr << "Cannot open " << ADMIN_FILE << "\n";
+    }
+
+    std::getline(readFile, dataLine);
+    std::vector<std::string> dataLst = splitStr(dataLine,';');
+    std::string username = dataLst[0];
+    std::string pass = dataLst[1];
+
+    admin = new Admin(username, pass);
+
+}
+
 void System::inputHouseLstToSys() {
     std::string dataLine;
     std::ifstream readFile{HOUSE_LIST_FILE};
@@ -852,6 +868,8 @@ void System::inputMemberToSys() {
     }
     readFile.close();
 }
+
+
 
 void System::inputRatingTenantToSys() {
     std::string dataLine;
@@ -987,6 +1005,116 @@ void System::inputRequestToSys() {
         targetMem->requestList.push_back(req);
     }
     readFile.close();
+}
+
+void System::inputOccupierToSys() {
+    std::string dataLine;
+    std::ifstream readFile{OCCUPIERS_FILE};
+    Member *targetMem;
+    House *targetHouse;
+
+    if (!readFile.is_open()) {
+        std::cerr << "Cannot open " << OCCUPIERS_FILE << "\n";
+    }
+
+    while (std::getline(readFile, dataLine)) {
+        std::vector<std::string> dataLst = splitStr(dataLine, ';');
+        for (auto &mem: memberVector) {
+            if (mem->memberId == dataLst[0]) {
+                targetMem = mem;
+            }
+        }
+        for (auto &house: houseVector) {
+            if (house->houseID == dataLst[1]) {
+                targetHouse = house;
+            }
+        }
+        Date *start = stringToDate(dataLst[2]);
+        Date *end = stringToDate(dataLst[3]);
+
+        auto *occupyHouse = new OccupyHouse(start, end, targetMem);
+        auto *occupyMem = new Tenant(start, end, targetHouse);
+
+        targetMem->tenantList.push_back(occupyMem);
+        targetHouse->listOccupyHouse.push_back(occupyHouse);
+    }
+}
+
+void System::inputUnratedToSys() {
+    std::string dataLine;
+    std::ifstream readFile{OCCUPIERS_FILE};
+    Member *targetMem;
+    House *targetHouse;
+
+    if (!readFile.is_open()) {
+        std::cerr << "Cannot open " << OCCUPIERS_FILE << "\n";
+    }
+
+    while (std::getline(readFile, dataLine)) {
+        std::vector<std::string> dataLst = splitStr(dataLine, ';');
+        for (auto &mem: memberVector) {
+            if (mem->memberId == dataLst[1]) {
+                targetMem = mem;
+            }
+        }
+        for (auto &house: houseVector) {
+            if (house->houseID == dataLst[2]) {
+                targetHouse = house;
+            }
+        }
+        Date *start = stringToDate(dataLst[3]);
+        Date *end = stringToDate(dataLst[4]);
+
+        auto *unratedOcc = new OccupyHouse(start, end, targetMem);
+        targetHouse->unratedTenant.push_back(unratedOcc);
+    }
+}
+
+void System::outputOccupierToFile() {
+    std::ofstream writeFile{OCCUPIERS_FILE};
+
+    if (!writeFile.is_open()) {
+        std::cerr << "Cannot open " << OCCUPIERS_FILE << "\n";
+    }
+
+    for (auto &mem: memberVector) {
+        for (auto &memOccupy: mem->tenantList) {
+            writeFile << mem->memberId << ";"
+                      << memOccupy->occupyHouse->houseID << ';'
+                      << memOccupy->startFromDate << ";"
+                      << memOccupy->ToDate << "\n";
+        }
+    }
+    writeFile.close();
+}
+
+void System::outputAdminToFile() {
+    std::ofstream writeFile{ADMIN_FILE};
+
+    if (!writeFile.is_open()) {
+        std::cerr << "Cannot open " << ADMIN_FILE << "\n";
+    }
+
+    writeFile << admin->username << ";"
+    << admin->password<<"\n";
+}
+
+void System::outputUnratedToFile() {
+    std::ofstream writeFile{UNRATED_OCC_FILE};
+
+    if (!writeFile.is_open()) {
+        std::cerr << "Cannot open " << UNRATED_OCC_FILE<< "\n";
+    }
+
+    for (auto &house: houseVector) {
+        for (auto &unratedOcc: house->unratedTenant) {
+            writeFile << house->houseID << ";"
+                      << unratedOcc->tenant->memberId << ';'
+                      << unratedOcc->startFromDate->convertDatetoString() << ";"
+                      << unratedOcc->toDate->convertDatetoString() << "\n";
+        }
+    }
+    writeFile.close();
 }
 
 void System::outputRequestToFile() {
@@ -1154,7 +1282,8 @@ void System::registerMember() {
             getline(std::cin, location);
             break;
     }
-    Member *newMem = new Member(username, password, "MEM" + std::to_string(memberVector.size() + 1), fullname, phoneNum,
+    Member *newMem = new Member(username, password, "MEM" + std::to_string(memberVector.size() + 1), fullname,
+                                phoneNum,
                                 INITIAL_CREDITS, INITIAL_SCORES, location);
     memberVector.push_back(newMem);
     std::cout << "You have registered successfully!\n";
@@ -1164,5 +1293,4 @@ Date *System::stringToDate(std::string &date) {
     std::vector<std::string> dataLst = splitStr(date, '/');
     Date *convertedDate = new Date(std::stoi(dataLst[0]), std::stoi(dataLst[1]), std::stoi(dataLst[2]));
     return convertedDate;
-
 }

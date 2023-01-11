@@ -4,7 +4,7 @@
 #include <sstream>
 #define SIZE 50
 
-#include "../../System/System.h"
+
 class Date {
     private:
         int date;

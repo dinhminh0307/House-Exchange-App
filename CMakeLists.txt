@@ -7,6 +7,7 @@ include_directories(System)
 
 add_executable(dapdixaylai
         main.cpp
+        Class/Admin/Admin.cpp
         Class/Review/Review.cpp
         Class/Review/Review.h
         Class/Request/Request.h
@@ -22,12 +23,11 @@ add_executable(dapdixaylai
         Class/House/House.h
         Class/House/House.cpp
         Class/Admin/Admin.h
-        Class/Admin/Admin.cpp
         Class/OccupyHouse/OccupyHouse.h
         Class/OccupyHouse/OccupyHouse.cpp
         Class/Tenant/Tenant.h
         Class/Tenant/Tenant.cpp
-)
+        define.h Class/Admin/Admin.cpp Class/Admin/Admin.h)
 
 
 

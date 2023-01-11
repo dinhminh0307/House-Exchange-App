@@ -7,6 +7,7 @@
 
 #include "../User/User.h"
 
+
 #include "../House/House.h"
 #include "../Request/Request.h"
 
@@ -21,6 +22,7 @@
 
 
 #include "../Tenant/Tenant.h"
+
 #include <iostream>
 #include <vector>
 #include <sstream>
@@ -39,7 +41,8 @@ class Review;
 
 class Request;
 
-class Tenant;
+class Date;
+
 
 class Member : public User {
 private:

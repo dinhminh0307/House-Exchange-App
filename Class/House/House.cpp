@@ -55,9 +55,7 @@ void House::viewHouseReview() {
                       << "\n-----------------------"
                       << "Score: " << tempScore << "\n"
                       << "Comment: " << tempComment;
-            this->houseScores += tempScore;
         }
-        this->houseScores = this->houseScores / listHouseReview.size();
     }
 }
 void House::addRequestToHouseRequestList(Request *request) {

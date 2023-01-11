@@ -5,8 +5,8 @@
 #ifndef DAPDIXAYLAI_REVIEW_H
 #define DAPDIXAYLAI_REVIEW_H
 #include <iostream>
-#include "../Member/Member.h"
-#include "../House/House.h"
+//#include "../Member/Member.h"
+//#include "../House/House.h"
 
 class House;
 class Member;

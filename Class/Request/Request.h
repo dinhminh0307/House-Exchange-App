@@ -3,7 +3,7 @@
 #define REQUEST_H
 #include <iostream>
 #include "../Date/Date.h"
-#include "../Member/Member.h"
+//#include "../Member/Member.h"
 
 class Date;
 class Member;

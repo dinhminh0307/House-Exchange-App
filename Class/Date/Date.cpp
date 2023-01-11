@@ -1,6 +1,7 @@
 
 #include "Date.h"
-
+//#include "../../System/System.h"
+#include "../../define.h"
 Date :: Date(int date, int month, int year) {
     this->date = date;
     this->month = month;
@@ -43,5 +44,6 @@ int Date::operator - (Date &date2) {
 std::string Date ::convertDatetoString() {
     std::stringstream ss;
     ss << date << "/" << month << "/" << year;
+    return ss.str();
 }
 
