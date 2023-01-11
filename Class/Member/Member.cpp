@@ -333,10 +333,35 @@ bool Member::viewUnratedList() {
     }
     //display data
     std::cout << "\nAll unrated tenant will be displayed: \n";
+    std::cout
+            << std::left
+            << std::setw(10)
+            << "Index"
+            << std::left
+            << std::setw(20)
+            << "Start Date"
+            << std::left
+            << std::setw(20)
+            << "End Date"
+            << std::left
+            << std::setw(10)
+            << "MemberID"
+            << "\n";
     for (int i = 0; i < houseOwner->unratedTenant.size(); i++) {
-        std::cout << i + 1 << "." << houseOwner->unratedTenant[i]->startFromDate->convertDatetoString() << "-->"
-                  << houseOwner->unratedTenant[i]->toDate->convertDatetoString() << ':'
-                  << houseOwner->unratedTenant[i]->tenant->memberId << "\n";
+        std::cout
+                << std::left
+                << std::setw(10)
+                << i+1
+                << std::left
+                << std::setw(20)
+                << houseOwner->unratedTenant[i]->startFromDate->convertDatetoString()
+                << std::left
+                << std::setw(20)
+                << houseOwner->unratedTenant[i]->toDate->convertDatetoString()
+                << std::left
+                << std::setw(10)
+                << houseOwner->unratedTenant[i]->tenant->memberId
+                << "\n";
     }
     return true;
 }
