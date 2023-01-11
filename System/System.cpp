@@ -734,6 +734,7 @@ bool System::isValidHouses(Date *start, Date *end, Member *mem, House *house, st
 
         return false;
     }
+    return true;
 }
 
 bool System::getValidHouses(Date *start, Date *end, std::string location) {

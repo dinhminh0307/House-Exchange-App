@@ -14,19 +14,17 @@
 int main(){
     System sys;
 
+   sys.inputAdminToSys();
+   sys.inputMemberToSys();
+   sys.inputHouseToSys();
+   sys.inputMemHouseToSys();
+   sys.inputHouseLstToSys();
+   sys.inputOccupierToSys();
+   sys.inputRatingHouseToSys();
+   sys.inputRatingTenantToSys();
+   sys.inputRequestToSys();
+   sys.inputUnratedToSys();
 
-    sys.inputAdminToSys();
-    sys.inputMemberToSys();
-    sys.inputHouseToSys();
-    sys.inputMemHouseToSys();
-    sys.inputHouseLstToSys();
-    sys.inputOccupierToSys();
-    sys.inputRatingHouseToSys();
-    sys.inputRatingTenantToSys();
-    sys.inputRequestToSys();
-    sys.inputUnratedToSys();
-
-    sys.mainMenu();
-
+    sys.guestMenu();
 
 }
