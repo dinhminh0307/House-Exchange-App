@@ -321,7 +321,7 @@ bool Member::checkout(int leaveId) {
     //add object to unrated list
     houseOwner->unratedTenant.push_back(unrated);
     //delete from tenant list
-    tenantList.erase(tenantList.begin() + (leaveId - 1));
+    tenantList.erase(tenantList.begin() + (leaveId));
     //when leave house call member review house and member review occupier afterwards in menu
     return true;
 
