@@ -633,6 +633,9 @@ void System::memberMenu() {
             viewUnratedTenantList();
             break;
         case 7:
+            showRequestSent();
+            break;
+        case 8:
             currentUser = nullptr;
             mainMenu();
             break;
@@ -802,6 +805,37 @@ void System::rateTenantMenu(int leaveID) {
 
 }
 
+void System::showRequestSent() {
+    std::cout << "List of the request you have sent: \n";
+    currentUser->showRequestSent();
+    std::cout << currentUser->requestList.size() + 1 << ".Back to Member Menu\n";
+    std::cout << "\nEnter the index of request that you want to cancel:\n";
+    int choice = menuChoice(1, currentUser->requestList.size() + 1);
+    if(choice == currentUser->requestList.size() + 1) {
+        memberMenu();
+    }
+    else {
+        cancelRequestMenu(choice);
+    }
+
+}
+
+void System:: cancelRequestMenu(int ID) {
+    std::cout << "\nPress 1 to cancel the request\n";
+    std::cout << "\nPress 2 to back to show request sent menu\n";
+    int choice = menuChoice(1 , 2);
+    switch(choice) {
+        case 1:
+            currentUser->cancelRequest(ID);
+            std::cout << "\nRequest canceled\nBack to menu:\n";
+            showRequestSent();
+            break;
+        case 2:
+            showRequestSent();
+            break;
+    }
+}
+
 void System::searchValidHouseMenu() {
     std::string startDate;
     std::string endDate;
@@ -872,6 +906,7 @@ void System::validHouseMenu(Date *start, Date *end, std::string location) {
     std::cout << memberSuitableHouseList.size() + 1 << ". Back to member menu\n";
     choice = menuChoice(1, memberSuitableHouseList.size() + 1);
     if (choice == memberSuitableHouseList.size() + 1) {
+
         memberMenu();
     } else {
         memberSuitableHouseList[choice - 1]->viewHouseInfo();
@@ -892,10 +927,16 @@ void System::validHouseMenu(Date *start, Date *end, std::string location) {
                 break; //function send requests
             }
             case 2:
-                std::cout << "\nYour review is: \n";
-                currentUser->showReview();
-                memberMenu();
-                break; //function view reviews
+                std::cout << "\nReviews of the house you want: \n";
+                choice; 
+                memberSuitableHouseList[choice -1]->viewHouseReview();
+                std::cout << "\n4. Back to the request action menu: \n";
+                if(menuChoice(4, 4) == 4) {
+                    validHouseMenu(start, end, location);
+                    break; //function view reviews
+                }
+                
+                
             case 3:
                 validHouseMenu(start, end, location);
                 break;
@@ -904,18 +945,55 @@ void System::validHouseMenu(Date *start, Date *end, std::string location) {
 }
 
 void System::actionRequestMenu(int requestID) {
-    std::cout << "\n\n1.Accept Request\n2.Decline Request\n";
-    switch (menuChoice(1, 2)) {
+    std::cout << "\n\n1.Show Requester Review\n2.Accept Request\n3.Decline Request\n";
+    switch (menuChoice(1, 3)) {
         case 1:
-            currentUser->acceptRequest(requestID);
-            std::cout << "\nRequest accepted\n";
-            memberMenu();
+            {std::cout << "\nThe review of your requester is being shown below: \n";
+            auto requester =currentUser->houseOwner->listHouseRequest[requestID]->requestedByMember;
+            if(requester->tenantReviewList.empty()) {
+                std::cout << "\nThere are no reviews for this member\n";
+                std::cout << "4.Back to the Request Menu: \n";
+
+                if(menuChoice(4, 4) == 4) {
+                actionRequestMenu(requestID);
+            }
             break;
+            }
+            else {
+                requester->showReview();
+            }
+            
+            std::cout << "4.Back to the Request Menu: \n";
+            if(menuChoice(4, 4) == 4) {
+                actionRequestMenu(requestID);
+                break;
+            }
+    }
         case 2:
-            currentUser->declineRequest(requestID);
-            std::cout << "\nRequest accepted\n";
+            if(!currentUser->acceptRequest(requestID)) {
+                std::cout << "\n" << currentUser->houseOwner->listHouseRequest.size() +1 << ".Back to request menu\n";
+                menuChoice(currentUser->houseOwner->listHouseRequest.size() +1, currentUser->houseOwner->listHouseRequest.size() +1);
+                viewRequestMenu();
+            }
+            else {
+                std::cout << "\nRequest accepted\n";
             memberMenu();
             break;
+            }
+        case 3:
+            //Return owner to request menu once there is no valid accept yet
+            if(!currentUser->declineRequest(requestID)) {
+                std::cout << "You can not decline a request that has been accpeted and declinded";
+                std::cout << "\n" << currentUser->houseOwner->listHouseRequest.size() +1 << ".Back to request menu\n";
+                menuChoice(currentUser->houseOwner->listHouseRequest.size() +1, currentUser->houseOwner->listHouseRequest.size() +1);
+                viewRequestMenu();
+            }
+            else {
+                std::cout << "\nRequest Declined\n";
+            memberMenu();
+            break;
+            }
+            
     }
 }
 
@@ -940,7 +1018,7 @@ void System::viewUnratedTenantList() {
         std::getline(std::cin, comment);
         std::cout << "\nPlease score the Tenant: ";
         std::cin >> score;
-        currentUser->reviewTenant(choice, score, comment);
+        currentUser->reviewTenant(choice - 1, score, comment);
         memberMenu();
     }
 
@@ -958,7 +1036,7 @@ void System::viewRequestMenu() {
         case 1: {
             std::cout << "Enter the request you want to proceed: \n";
             int newChoice = menuChoice(1, numberRequest);
-            actionRequestMenu(newChoice);
+            actionRequestMenu(newChoice - 1);
             break;
         }
         case 2:

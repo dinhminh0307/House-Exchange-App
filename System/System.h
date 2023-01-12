@@ -94,6 +94,8 @@ public:
 
     void adminLoginMenu();
 
+    void showRequestSent();
+
     void adminViewMemberMenu();
 
     void adminViewHouseMenu();
@@ -116,6 +118,9 @@ public:
     void viewRequestMenu();
     void actionRequestMenu(int requestID);
     void showRentedHouse();
+
+    void cancelRequestMenu(int ID);
+    void showReview();
 
     void viewUnratedTenantList();
 
