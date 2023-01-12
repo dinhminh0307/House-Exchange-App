@@ -55,7 +55,7 @@ private:
     double score;
     std::string location;
     std::vector<Review *> tenantReviewList; //review cua owner
-    std::vector<Request *> requestList;
+    std::vector<Request *> requestList; // Request da sent
     std::vector<Tenant *> tenantList; // list house ma minh da thue
 
 
@@ -97,13 +97,14 @@ public:
 
     void reviewHouse(House *occupyHouse, int score, std::string comment);
 
+    bool showRequestSent();
 
     void viewTenant();
 
     bool reviewTenant(int rateId, int score, std::string comment);
 
 
-    void showReview();
+    bool showReview();
 
     bool checkout(int leaveId);
 

@@ -79,10 +79,10 @@ bool Member::minusCredit(double creditPoint) {
     return true;
 }
 
-void Member::showReview() {
+bool Member::showReview() {
 
     if (this->tenantReviewList.empty()) {
-        std::cout << "\nThere are no reviews for this member\n";
+        return false;
     } else {
         std::cout << "\nAll review for this member: \n";
         for (int i = 0; i < this->tenantReviewList.size(); i++) {
@@ -94,11 +94,11 @@ void Member::showReview() {
                       << "\n\nReview by member: " << member->fullName
                       << "\n-----------------------"
                       << "Score: " << tempScore << "\n"
-                      << "Comment: " << tempComment;
-
+                      << "Comment: " << tempComment << "\n";
         }
-
+        return true;
     }
+    
 }
 
 bool Member::createHouse(House *house) {
@@ -199,6 +199,45 @@ bool Member::cancelRequest(int ID) {
     }
 }
 
+bool Member:: showRequestSent() {
+    int index = 0;
+    if(requestList.empty()) {
+        std:: cout<< "\nThere are no request that you sent\n";
+        return false;
+    }
+    std::cout
+            << std::left
+            << std::setw(5)
+            << "ID"
+            << std::left
+            << std::setw(10)
+            << "House ID"
+            << std::left
+            << std::setw(15)
+            << "Request Date"
+            << std::left
+            << std::setw(15)
+            << "Status"
+            << "\n";
+    for(Request *i: requestList) {
+         index++;
+         std::cout
+                << std::left
+                << std::setw(5)
+                << index
+                << std::left
+                << std::setw(10)
+                << i->houseID
+                << std::left
+                << std::setw(15)
+                << i->startDate->convertDatetoString()
+                << std::left
+                << std::setw(15)
+                << i->requestStatus
+                << "\n";
+    }
+}
+
 void Member::reviewHouse(House *occupyHouse, int score, std::string comment) {
     //create object
     Review *review = new Review(score, comment, this);
@@ -213,9 +252,22 @@ bool Member::declineRequest(int ID) {
         if (houseOwner->listHouseRequest[ID] == i) {
             continue;
         }
+        else {
+            return false;
+        }
+        if(houseOwner->listHouseRequest[ID]->requestStatus == RE_STATUS[0]) {
+            continue;
+        }
+        else {
+            return false;
+        }
+
         if ((i->endDate->countDate() - houseOwner->listHouseRequest[ID]->startDate->countDate()) < 0 ||
             (houseOwner->listHouseRequest[ID]->endDate->countDate() - i->startDate->countDate()) < 0) {
             continue;
+        }
+        else {
+            return false;
         }
         indice++;
         houseOwner->listHouseRequest[indice]->requestStatus = RE_STATUS[2];
@@ -231,6 +283,10 @@ bool Member::acceptRequest(int ID) {
         return false;
     }
 
+    if(houseOwner->listHouseRequest[ID - 1]->requestStatus == RE_STATUS[1] || houseOwner->listHouseRequest[ID - 1]->requestStatus == RE_STATUS[2]) {
+        std::cout << "\nYou can not accept the request has been accepted or declined\n";
+        return false;
+    }
     // cout << "\nThe request does not match\n";
     // return false;
     houseOwner->houseStatus = "UNAVAILABLE";
@@ -289,7 +345,7 @@ void Member::viewTenant() {
                   << House->houseID
                   << std::left
                   << std::setw(15)
-                  << memberId
+                  << House->owner->memberId
                   << "\n";
     }
 }
@@ -320,7 +376,7 @@ bool Member::checkout(int leaveId) {
     //create object
     auto *unrated = new OccupyHouse(leaveStartDate, leaveDate, this);
     //add object to unrated list
-    houseOwner->unratedTenant.push_back(unrated);
+    leaveHouse->unratedTenant.push_back(unrated);
     //delete from tenant list
     tenantList.erase(tenantList.begin() + (leaveId));
     //when leave house call member review house and member review occupier afterwards in menu
@@ -378,7 +434,7 @@ bool Member::reviewTenant(int rateId, int score, std::string comment) {
     //add review to review list
     tenant->tenantReviewList.push_back(review);
     //remove from unrated list
-    houseOwner->unratedTenant.erase(houseOwner->unratedTenant.begin() + (rateId - 1));
+    houseOwner->unratedTenant.erase(houseOwner->unratedTenant.begin() + (rateId));
     return true;
 
 
