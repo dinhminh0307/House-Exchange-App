@@ -115,7 +115,7 @@ public:
 
     void tenantLeaveHouse();
 
-    void voidgetHouseIndex(int houseID);
+    void getHouseIndex(int houseID);
 
     void cancelRequest();
     friend class House;

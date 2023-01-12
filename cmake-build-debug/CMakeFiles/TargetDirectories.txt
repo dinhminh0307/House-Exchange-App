@@ -1,3 +1,3 @@
-/Users/vonguyenkien/Desktop/HOUSE-VACATION-RENT/cmake-build-debug/CMakeFiles/dapdixaylai.dir
-/Users/vonguyenkien/Desktop/HOUSE-VACATION-RENT/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/vonguyenkien/Desktop/HOUSE-VACATION-RENT/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/trungngo/Desktop/dapdixaylai/cmake-build-debug/CMakeFiles/dapdixaylai.dir
+/Users/trungngo/Desktop/dapdixaylai/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/trungngo/Desktop/dapdixaylai/cmake-build-debug/CMakeFiles/rebuild_cache.dir

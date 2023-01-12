@@ -124,9 +124,14 @@ public:
 
     void viewUnratedTenantList();
 
-    bool isValidHouses(Date *start, Date *end, Member *mem, House *house, std::string location);
+    bool isValidStartHouses(Date *start, Member *mem, House *house, std::string location);
 
-    bool getValidHouses(Date *start, Date *end, std::string location);
+    bool isValidEndHouses(Date *end, Member *mem, House *house, std::string location);
+
+
+    bool getValidStartHouses(Date *start, std::string location);
+    bool getValidEndHouses(Date *end, std::string location);
+
 
     bool deleteInRentHouse();
 
@@ -167,7 +172,6 @@ public:
     void outputHouseLstToFile();
 
     void outputMemberToFile();
-
 
     void registerMember();
 

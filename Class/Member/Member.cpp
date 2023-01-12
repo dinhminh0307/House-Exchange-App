@@ -185,6 +185,45 @@ int Member::viewAllRequest() {
     return index;
 }
 
+bool Member:: showRequestSent() {
+    int index = 0;
+    if(requestList.empty()) {
+        std:: cout<< "\nThere are no request that you sent\n";
+        return false;
+    }
+    std::cout
+            << std::left
+            << std::setw(5)
+            << "ID"
+            << std::left
+            << std::setw(10)
+            << "House ID"
+            << std::left
+            << std::setw(15)
+            << "Request Date"
+            << std::left
+            << std::setw(15)
+            << "Status"
+            << "\n";
+    for(Request *i: requestList) {
+         index++;
+         std::cout
+                << std::left
+                << std::setw(5)
+                << index
+                << std::left
+                << std::setw(10)
+                << i->houseID
+                << std::left
+                << std::setw(15)
+                << i->startDate->convertDatetoString()
+                << std::left
+                << std::setw(15)
+                << i->requestStatus
+                << "\n";
+    }
+}
+
 bool Member::cancelRequest(int ID) {
     if(ID > requestList.size()){
         return false;
@@ -231,16 +270,21 @@ bool Member::acceptRequest(int ID) {
         return false;
     }
 
+
+    if(houseOwner->listHouseRequest[ID]->requestStatus == RE_STATUS[1] || houseOwner->listHouseRequest[ID]->requestStatus == RE_STATUS[2]) {
+        std::cout << "\nYou can not accept the request has been accepted or declined\n";
+        return false;
+    }
     // cout << "\nThe request does not match\n";
     // return false;
     houseOwner->houseStatus = "UNAVAILABLE";
-    auto rentDate = houseOwner->listHouseRequest[ID - 1]->startDate;
-    auto endRentDate = houseOwner->listHouseRequest[ID - 1]->endDate;
-    auto tenant = houseOwner->listHouseRequest[ID - 1]->requestedByMember;
+    auto rentDate = houseOwner->listHouseRequest[ID ]->startDate;
+    auto endRentDate = houseOwner->listHouseRequest[ID]->endDate;
+    auto tenant = houseOwner->listHouseRequest[ID]->requestedByMember;
 
     // int requiredCredit = (rentDate - endRentDate) *houseOwner->consumingPointsPerDay;
-    declineRequest(ID - 1);
-    houseOwner->listHouseRequest[ID - 1]->requestStatus = RE_STATUS[1];
+    declineRequest(ID );
+    houseOwner->listHouseRequest[ID]->requestStatus = RE_STATUS[1];
     OccupyHouse *occupyHouse = new OccupyHouse(rentDate, endRentDate, tenant);
     Tenant *occupyMember = new Tenant(rentDate, endRentDate, houseOwner);
     // add object to occupy list
