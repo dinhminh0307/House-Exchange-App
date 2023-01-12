@@ -283,20 +283,20 @@ bool Member::acceptRequest(int ID) {
         return false;
     }
 
-    if(houseOwner->listHouseRequest[ID - 1]->requestStatus == RE_STATUS[1] || houseOwner->listHouseRequest[ID - 1]->requestStatus == RE_STATUS[2]) {
+    if(houseOwner->listHouseRequest[ID]->requestStatus == RE_STATUS[1] || houseOwner->listHouseRequest[ID]->requestStatus == RE_STATUS[2]) {
         std::cout << "\nYou can not accept the request has been accepted or declined\n";
         return false;
     }
     // cout << "\nThe request does not match\n";
     // return false;
     houseOwner->houseStatus = "UNAVAILABLE";
-    auto rentDate = houseOwner->listHouseRequest[ID - 1]->startDate;
-    auto endRentDate = houseOwner->listHouseRequest[ID - 1]->endDate;
-    auto tenant = houseOwner->listHouseRequest[ID - 1]->requestedByMember;
+    auto rentDate = houseOwner->listHouseRequest[ID ]->startDate;
+    auto endRentDate = houseOwner->listHouseRequest[ID]->endDate;
+    auto tenant = houseOwner->listHouseRequest[ID]->requestedByMember;
 
     // int requiredCredit = (rentDate - endRentDate) *houseOwner->consumingPointsPerDay;
-    declineRequest(ID - 1);
-    houseOwner->listHouseRequest[ID - 1]->requestStatus = RE_STATUS[1];
+    declineRequest(ID );
+    houseOwner->listHouseRequest[ID]->requestStatus = RE_STATUS[1];
     OccupyHouse *occupyHouse = new OccupyHouse(rentDate, endRentDate, tenant);
     Tenant *occupyMember = new Tenant(rentDate, endRentDate, houseOwner);
     // add object to occupy list

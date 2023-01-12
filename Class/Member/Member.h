@@ -54,13 +54,8 @@ private:
     double credit;
     double score;
     std::string location;
-<<<<<<< HEAD
-    std::vector<Review *> tenantReviewList;
-    std::vector<Request *> requestList;
-=======
     std::vector<Review *> tenantReviewList; //review cua owner
     std::vector<Request *> requestList; // Request da sent
->>>>>>> 55b10c40c398e86b1ff24971ee058205edff3607
     std::vector<Tenant *> tenantList; // list house ma minh da thue
 
 

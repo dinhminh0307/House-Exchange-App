@@ -607,9 +607,10 @@ void System::memberMenu() {
               << "|  4.List House For Rental             |\n"
               << "|  5.Show rented menu                  |\n"
               << "|  6.View Unrated Tenant List          |\n"
-              << "|  7.Logout                            |\n";
+              << "|  7.Show Request Sent                 |\n"
+              << "|  8.Logout                            |\n";
     std::cout << "----------------------------------------\n";
-    choice = menuChoice(1, 7);
+    choice = menuChoice(1, 8);
     switch (choice) {
         case 1:
             currentUser->showAccountInfo();
