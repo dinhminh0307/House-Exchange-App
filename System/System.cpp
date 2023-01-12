@@ -135,7 +135,8 @@ bool System::isValidFullname(std::string &fullname) {
 }
 
 bool System::isValidCredit(Member *mem, House *house) {
-    if (mem->credit < (house->consumingPointsPerDay * (house->endingDate->countDate() - house->startingDate->countDate()))) {
+    if (mem->credit <
+        (house->consumingPointsPerDay * (house->endingDate->countDate() - house->startingDate->countDate()))) {
         return false;
     }
     return true;
@@ -164,9 +165,9 @@ bool System::isValidDate(std::string date) {
 }
 
 bool System::isRightDateOrder(Date *start, Date *end) {
-    if(end->countDate() - start->countDate() > 0){
+    if (end->countDate() - start->countDate() > 0) {
         return true;
-    }else{
+    } else {
         return false;
     }
 }
@@ -236,14 +237,17 @@ void System::guestShowHouse() {
 
 void System::mainMenu() {
     int choice;
-    std::cout << "EEET2482/COSC2082 ASSIGNMENT\n"
-              << "VACATION HOUSE EXCHANGE APPLICATION\n"
-              << "Instructors: Mr. Linh Tran & Phong Ngo\n"
-              << "Group: Group Name\n"
-              << "sXXXXXXX, Student Name\n"
-              << "sXXXXXXX, Student Name\n"
-              << "sXXXXXXX, Student Name\n"
-              << "Use the app as 1. Guest   2. Member   3. Admin   4.Exit\n";
+    std::cout << "----------------------------------------------------------\n";
+    std::cout << "|              EEET2482/COSC2082 ASSIGNMENT              |\n"
+              << "|              VACATION HOUSE EXCHANGE APPLICATION       |\n"
+              << "|              Instructors: Mr. Linh Tran & Phong Ngo    |\n"
+              << "|              Group: Group Name                         |\n"
+              << "|              sXXXXXXX, Student Name                    |\n"
+              << "|              sXXXXXXX, Student Name                    |\n"
+              << "|              sXXXXXXX, Student Name                    |\n"
+              << "| Use the app as 1. Guest   2. Member   3. Admin   4.Exit|\n";
+    std::cout << "----------------------------------------------------------\n\n";
+
     choice = menuChoice(1, 4);
     switch (choice) {
         case 1:
@@ -253,7 +257,7 @@ void System::mainMenu() {
             loginMemMenu();
             break;
         case 3:
-            adminMenu();
+            adminLoginMenu();
             break;
         case 4:
             outputMemberToFile();
@@ -272,8 +276,13 @@ void System::mainMenu() {
 //guest menu
 void System::guestMenu() {
     int choice;
-    std::cout << "\t---GUEST MENU---\n";
-    std::cout << "\t---1.View houses---\n" << "\t---2.Register---\n" << "\t---3.Back to main menu---\n";
+    std::cout << "---------------------------------------\n";
+    std::cout << "|              GUEST MENU             |\n";
+    std::cout << "|     1.View houses                   |\n"
+              << "|     2.Register                      |\n"
+              << "|     3.Back to main menu             |\n";
+    std::cout << "---------------------------------------\n";
+
     choice = menuChoice(1, 3);
     switch (choice) {
         case 1:
@@ -292,8 +301,12 @@ void System::guestMenu() {
 //admin menu - basic feature
 void System::adminMenu() {
     int choice;
-    std::cout << "\t---ADMIN MENU---\n";
-    std::cout << "\t---1.View Member List---\n" << "\t--2.View House List" << "\t---3.Back to main menu---\n";
+    std::cout << "---------------------------------------\n";
+    std::cout << "|              ADMIN MENU             |\n";
+    std::cout << "|     1.View Member List              |\n"
+              << "|     2.View House List               |\n"
+              << "|     3.Back to main menu             |\n";
+    std::cout << "---------------------------------------\n";
     choice = menuChoice(1, 3);
     switch (choice) {
         case 1:
@@ -338,15 +351,70 @@ void System::adminViewMemberMenu() {
                 << "\n";
         index++;
     }
+    std::cout << "\n";
     std::cout << "\t---1.View Member Detail---\n" << "\t---2.Back to admin menu---\n";
     int choice = menuChoice(1, 2);
     switch (choice) {
         case 1:
-            for (int j = 0; j < memberVector.size(); j++) {
-                std::cout << j + 1 << '.';
-                memberVector[j]->showAccountInfo();
+            std::cout
+                    << std::left
+                    << std::setw(10)
+                    << "Index"
+                    << std::left
+                    << std::setw(15)
+                    << "MemberID"
+                    << std::left
+                    << std::setw(15)
+                    << "Full Name"
+                    << std::left
+                    << std::setw(15)
+                    << "PhoneNum"
+                    << std::left
+                    << std::setw(15)
+                    << "Username"
+                    << std::left
+                    << std::setw(8)
+                    << "Credit"
+                    << std::left
+                    << std::setw(15)
+                    << "Location"
+                    << std::left
+                    << std::setw(10)
+                    << "Rating Score"
+                    << "\n";
+            for (int i = 0; i < memberVector.size(); i++) {
+                std::cout
+                        << std::left
+                        << std::setw(10)
+                        << i + 1
+                        << std::left
+                        << std::setw(15)
+                        << memberVector[i]->memberId
+                        << std::left
+                        << std::setw(15)
+                        << memberVector[i]->fullName
+                        << std::left
+                        << std::setw(15)
+                        << memberVector[i]->phoneNum
+                        << std::left
+                        << std::setw(15)
+                        << memberVector[i]->username
+                        << std::left
+                        << std::setw(8)
+                        << memberVector[i]->credit
+                        << std::left
+                        << std::setw(15)
+                        << memberVector[i]->location
+                        << std::left
+                        << std::setw(10)
+                        << memberVector[i]->getRatingScore()
+                        << "\n";
             }
-            break;
+            std::cout << "\n";
+            std::cout << memberVector.size() + 1 << ".Back to admin menu\n";
+            menuChoice(memberVector.size() + 1, memberVector.size() + 1);
+            adminMenu();
+
         case 2:
             adminMenu();
             break;
@@ -358,7 +426,7 @@ void System::adminViewHouseMenu() {
     std::cout << "All house of the system: " << "\n";
     std::cout
             << std::left
-            << std::setw(5)
+            << std::setw(10)
             << "Index"
             << std::left
             << std::setw(8)
@@ -376,7 +444,7 @@ void System::adminViewHouseMenu() {
     for (auto i: houseVector) {
         std::cout
                 << std::left
-                << std::setw(5)
+                << std::setw(10)
                 << index
                 << std::left
                 << std::setw(8)
@@ -393,14 +461,75 @@ void System::adminViewHouseMenu() {
                 << "\n";
         index++;
     }
+    std::cout << "\n";
     std::cout << "\t---1.View House Detail---\n" << "\t---2.Back to admin menu---\n";
     int choice = menuChoice(1, 2);
     switch (choice) {
         case 1:
+            std::cout
+                    << std::left
+                    << std::setw(10)
+                    << "Index"
+                    << std::left
+                    << std::setw(10)
+                    << "HouseID"
+                    << std::left
+                    << std::setw(10)
+                    << "OwnerID"
+                    << std::left
+                    << std::setw(20)
+                    << "Start Date"
+                    << std::left
+                    << std::setw(20)
+                    << "End Date"
+                    << std::left
+                    << std::setw(25)
+                    << "CreditPerDay"
+                    << std::left
+                    << std::setw(15)
+                    << "minScore"
+                    << std::left
+                    << std::setw(20)
+                    << "Location"
+                    << std::left
+                    << std::setw(35)
+                    << "Description"
+                    << "\n";
             for (int j = 0; j < houseVector.size(); j++) {
-                std::cout << j + 1 << '.';
-                houseVector[j]->viewHouseInfo();
+                std::cout
+                        << std::left
+                        << std::setw(10)
+                        << j + 1
+                        << std::left
+                        << std::setw(10)
+                        << houseVector[j]->houseID
+                        << std::left
+                        << std::setw(10)
+                        << houseVector[j]->owner->memberId
+                        << std::left
+                        << std::setw(20)
+                        << houseVector[j]->startingDate->convertDatetoString()
+                        << std::left
+                        << std::setw(20)
+                        << houseVector[j]->endingDate->convertDatetoString()
+                        << std::left
+                        << std::setw(25)
+                        << houseVector[j]->consumingPointsPerDay
+                        << std::left
+                        << std::setw(15)
+                        << houseVector[j]->minRating
+                        << std::left
+                        << std::setw(20)
+                        << houseVector[j]->location
+                        << std::left
+                        << std::setw(35)
+                        << houseVector[j]->houseDescription
+                        << "\n";
             }
+            std::cout << "\n";
+            std::cout << houseVector.size() + 1 << ".Back to admin menu\n";
+            menuChoice(houseVector.size() + 1, houseVector.size() + 1);
+            adminMenu();
             break;
         case 2:
             adminMenu();
@@ -412,16 +541,20 @@ void System::adminViewHouseMenu() {
 
 void System::loginMemMenu() {
     std::string username, password;
-    std::cout << "\t---1. Login ---\n" << "\t---2. Back to main menu ---\n";
-    switch(menuChoice(1,2)){
+    std::cout << "--------------------------------------\n";
+    std::cout << "|            MEMBER LOGIN            |\n";
+    std::cout << "|        1. Login as member          |\n"
+              << "|        2. Back to main menu        |\n";
+    std::cout << "--------------------------------------\n";
+
+    switch (menuChoice(1, 2)) {
         case 1:
-            std::cout << "\t---MEMBER LOGIN---\n";
             std::cin.ignore();
             std::cout << "Enter your username: ";
             std::getline(std::cin, username);
             std::cout << "Enter your password: ";
             std::getline(std::cin, password);
-            if(loginMember(username,password)){
+            if (loginMember(username, password)) {
                 memberMenu();
                 break;
             }
@@ -433,27 +566,50 @@ void System::loginMemMenu() {
 
 }
 
-bool System::adminLoginMenu() {
+void System::adminLoginMenu() {
     std::string username, password;
-    std::cout << "\t---ADMIN LOGIN---\n";
-    std::cout << "Enter your username: ";
-    std::getline(std::cin, username);
-    std::cout << "Enter your password: ";
-    std::getline(std::cin, password);
-    if (admin->username == username && admin->password == password) {
-        return true;
-    } else {
-        return false;
+
+    std::cout << "---------------------------------------\n";
+    std::cout << "|              ADMIN MENU             |\n";
+    std::cout << "|     1.Login As Admin                |\n"
+              << "|     2.Back to main menu             |\n";
+    std::cout << "---------------------------------------\n";
+    switch (menuChoice(1, 2)) {
+        case 1:
+            std::cin.ignore();
+            std::cout << "Enter your username: ";
+            std::getline(std::cin, username);
+            std::cout << "Enter your password: ";
+            std::getline(std::cin, password);
+            if (admin->username == username && admin->password == password) {
+                std::cout << "Log in successfully!!! \n\n\n\n";
+                adminMenu();
+                break;
+            } else {
+                std::cout << "Wrong username or password!!! \n\n";
+            }
+        case 2:
+            mainMenu();
+            break;
+
+
     }
 }
 
 
 void System::memberMenu() {
-    std::cout << "\t---MEMBER MENU---\n";
     int choice;
-    std::cout << "\t---1.View Account's Information---\n" << "\t---2.View Available Houses ---\n"
-              << "\t---3.Handle Requests---\n" << "\t---4.List House For Rental---\n" << "\t---5.Logout---\n";
-    choice = menuChoice(1, 5);
+    std::cout << "----------------------------------------\n";
+    std::cout << "|          ---MEMBER MENU---           |\n";
+    std::cout << "|  1.View Account's Information        |\n"
+              << "|  2.View Available Houses             |\n"
+              << "|  3.Handle Requests                   |\n"
+              << "|  4.List House For Rental             |\n"
+              << "|  5.Show rented menu                  |\n"
+              << "|  6.View Unrated Tenant List          |\n"
+              << "|  7.Logout                            |\n";
+    std::cout << "----------------------------------------\n";
+    choice = menuChoice(1, 7);
     switch (choice) {
         case 1:
             currentUser->showAccountInfo();
@@ -471,10 +627,15 @@ void System::memberMenu() {
             houseForRentMenu();
             break;
         case 5:
+            showRentedHouse();
+            break;
+        case 6:
+            viewUnratedTenantList();
+            break;
+        case 7:
             currentUser = nullptr;
             mainMenu();
             break;
-
     }
 
 
@@ -604,7 +765,7 @@ void System::showRentedHouse() {
     switch (newChoice) {
         case 1:
             currentUser->checkout(choice - 1);
-            std::cout << "\n\tLeft House\n";
+            std::cout << "\n\t\tLeft House\n";
             rateTenantMenu(choice - 1);
             break;
         case 2:
@@ -622,6 +783,7 @@ void System::rateTenantMenu(int leaveID) {
     int choice = menuChoice(1, 2);
     switch (choice) {
         case 1: {
+            auto leaveMember = currentUser->tenantList[leaveID];
             std::string comment;
             int score;
             std::cout << "\n\t\tPlease leave a comment: ";
@@ -629,7 +791,7 @@ void System::rateTenantMenu(int leaveID) {
             std::getline(std::cin, comment);
             std::cout << "\n\t\tPlease leave a score: ";
             std::cin >> score;
-            currentUser->reviewTenant(leaveID, score, comment);
+            currentUser->reviewHouse(leaveMember->occupyHouse, score, comment);
             memberMenu();
             break;
         }
@@ -641,20 +803,31 @@ void System::rateTenantMenu(int leaveID) {
 }
 
 void System::searchValidHouseMenu() {
-    std::string startDate, endDate, location;
+    std::string startDate;
+    std::string endDate;
+    std::string location;
+    Date *end, *start;
     int choice;
-    std::cin.ignore();
-    std::cout << "\tSearch for suitable houses: \n\n";
-    do {
-        do {
-            std::cout << "Enter when you want to rent (dd/mm/yyyy): ";
-            std::getline(std::cin, startDate);
-        } while (!isValidDate(startDate));
-        do {
-            std::cout << "Enter when you want to end renting (dd/mm/yyyy): ";
-            std::getline(std::cin, endDate);
-        } while (!isValidDate(endDate));
-    } while (!(stringToDate(endDate) < stringToDate(startDate)));
+    std::cout << "\tSearch for suitable houses: \n";
+    std::cout << "\t---1. Search by your start day ---\n" << "\t---2. Search by your end day ---\n";
+    switch (menuChoice(1, 2)) {
+        case 1:
+            std::cin.ignore();
+            do {
+                std::cout << "Enter when you want to rent (dd/mm/yyyy): ";
+                std::getline(std::cin, startDate);
+            } while (!isValidDate(startDate));
+            std::cout << startDate << "\n";
+            break;
+
+        case 2:
+            std::cin.ignore();
+            do {
+                std::cout << "Enter when you want to end renting (dd/mm/yyyy): ";
+                std::getline(std::cin, endDate);
+            } while (!isValidDate(endDate));
+            break;
+    }
 
     std::cout << "\tChoose the city you want to stay: \n\n";
     std::cout << "\t1. HANOI \t2.HUE \t3.SAIGON\n";
@@ -670,8 +843,18 @@ void System::searchValidHouseMenu() {
             location = LOCATIONS[2];
             break;
     }
-    Date *start = stringToDate(startDate);
-    Date *end = stringToDate(endDate);
+
+    if (endDate.length() == 0) {
+        end = nullptr;
+    } else {
+        end = stringToDate(endDate);
+    }
+
+    if (startDate.length() == 0) {
+        start = nullptr;
+    } else {
+        start = stringToDate(startDate);
+    }
 
     validHouseMenu(start, end, location);
 
@@ -679,11 +862,16 @@ void System::searchValidHouseMenu() {
 
 void System::validHouseMenu(Date *start, Date *end, std::string location) {
     memberSuitableHouseList.clear();
+    Request *request;
     int choice;
-    getValidHouses(start, end, location);
+    if (end == nullptr) {
+        getValidStartHouses(start, location);
+    } else {
+        getValidEndHouses(end, location);
+    }
     std::cout << memberSuitableHouseList.size() + 1 << ". Back to member menu\n";
-    choice = menuChoice(1,memberSuitableHouseList.size() + 1);
-    if(choice == memberSuitableHouseList.size() + 1){
+    choice = menuChoice(1, memberSuitableHouseList.size() + 1);
+    if (choice == memberSuitableHouseList.size() + 1) {
         memberMenu();
     } else {
         memberSuitableHouseList[choice - 1]->viewHouseInfo();
@@ -692,7 +880,13 @@ void System::validHouseMenu(Date *start, Date *end, std::string location) {
                   << "--> 3.\tBack to house list\n";
         switch (menuChoice(1, 3)) {
             case 1: {
-                Request *request = new Request(start, end, currentUser, RE_STATUS[0]);
+                if (end == nullptr) {
+                    request = new Request(start, memberSuitableHouseList[choice - 1]->endingDate, currentUser,
+                                          RE_STATUS[0]);
+                } else {
+                    request = new Request(memberSuitableHouseList[choice - 1]->startingDate, end, currentUser,
+                                          RE_STATUS[0]);
+                }
                 memberSuitableHouseList[choice - 1]->addRequestToHouseRequestList(request);
                 memberMenu();
                 break; //function send requests
@@ -725,6 +919,33 @@ void System::actionRequestMenu(int requestID) {
     }
 }
 
+void System::viewUnratedTenantList() {
+    std::cout << "\n\t\tList of Unrated Occupiers: \n";
+    if (currentUser->houseOwner->unratedTenant.empty()) {
+        std::cout << "\nThere are no tenants in your list\n";
+        memberMenu();
+    }
+    currentUser->viewUnratedList();
+    std::cout << "\n" << currentUser->houseOwner->unratedTenant.size() + 1 << ".Back to member menu";
+    std::cout << "\nChoose the Tenant you would like to review: ";
+    int choice = menuChoice(1, currentUser->houseOwner->unratedTenant.size() + 1);
+
+    if (choice == currentUser->houseOwner->unratedTenant.size() + 1) {
+        memberMenu();
+    } else {
+        std::string comment;
+        int score;
+        std::cout << "\nPlease leave a comment to this tenant: ";
+        std::cin.ignore();
+        std::getline(std::cin, comment);
+        std::cout << "\nPlease score the Tenant: ";
+        std::cin >> score;
+        currentUser->reviewTenant(choice, score, comment);
+        memberMenu();
+    }
+
+}
+
 void System::viewRequestMenu() {
     int choice;
     std::cout << "\n\n\tYour request today:\n\n";
@@ -745,19 +966,22 @@ void System::viewRequestMenu() {
             break;
     }
 }
+
 bool System::memRequestHouse(Date *startDate, Date *endDate, int houseId) {
-    if(houseId > memberSuitableHouseList.size()){
+    if (houseId > memberSuitableHouseList.size()) {
         return false;
     }
 
 }
 
-bool System::isValidHouses(Date *start, Date *end, Member *mem, House *house, std::string location) {
+bool System::isValidStartHouses(Date *start, Member *mem, House *house, std::string location) {
+
+    int count = 0;
     if (!house->isAdded) {
         return false;
     }
 
-    if (house->houseStatus == STATUS[1]){
+    if (house->houseStatus == STATUS[1]) {
         return false;
     }
 
@@ -776,20 +1000,75 @@ bool System::isValidHouses(Date *start, Date *end, Member *mem, House *house, st
         return false;
     }
 
-    for (auto &occupier: house->listOccupyHouse) {
-        if (end < occupier->startFromDate || start > occupier->toDate) {
-            continue;
-        }
+    if (house->startingDate->convertDatetoString() == start->convertDatetoString()) {
+        return true;
+    }
+    return false;
+
+}
+
+bool System::isValidEndHouses(Date *end, Member *mem, House *house, std::string location) {
+    if (!house->isAdded) {
         return false;
     }
+
+    if (house->houseStatus == STATUS[1]) {
+        return false;
+    }
+
+    if (house == mem->houseOwner) {
+        return false;
+    }
+
+    if (!isValidScore(mem, house)) {
+        return false;
+    }
+    if (!isValidCredit(mem, house)) {
+        return false;
+    }
+
+    if (location != house->location) {
+        return false;
+    }
+
+
+    if (house->endingDate == end) {
+        return true;
+    }
+
+    return false;
+}
+
+bool System::getValidStartHouses(Date *start, std::string location) {
+    memberSuitableHouseList.clear();
+    for (auto &house: houseVector) {
+        if (isValidStartHouses(start, currentUser, house, location)) {
+            memberSuitableHouseList.push_back(house);
+        }
+    }
+
+    if (memberSuitableHouseList.empty()) {
+        std::cout << "\nThere is no houses matched your search\n";
+        return false;
+    }
+
+    std::cout << "\nThe suitable house list:\n\n";
+    for (int i = 0; i < memberSuitableHouseList.size(); i++) {
+        std::cout << "--> " << i + 1 << ". ";
+        std::cout << "House Id: " << memberSuitableHouseList[i]->houseID << "\tLocation: "
+                  << memberSuitableHouseList[i]->location << "\tRating: "
+                  << memberSuitableHouseList[i]->getRatingScore() << "\n";
+    }
+    std::cout << "\n\n";
 
     return true;
 }
 
-bool System::getValidHouses(Date *start, Date *end, std::string location) {
+bool System::getValidEndHouses(Date *end, std::string location) {
     memberSuitableHouseList.clear();
     for (auto &house: houseVector) {
-        if (isValidHouses(start, end, currentUser, house, location)) {
+        if (isValidEndHouses(end, currentUser, house, location)) {
+
             memberSuitableHouseList.push_back(house);
         }
     }
@@ -875,7 +1154,7 @@ void System::inputHouseLstToSys() {
                 owner = mem;
             }
         }
-        owner->addHouse(startDate, endDate, credits, scores,status);
+        owner->addHouse(startDate, endDate, credits, scores, status);
     }
     readFile.close();
 }
@@ -1277,7 +1556,7 @@ bool System::loginMember(std::string username, std::string password) {
                 mainMenu();
                 return false;
             }
-            std::cout << "Log in successfully!!! \n\n\n\n";
+            std::cout << "Log in successfully!!! \n\n";
             return true;
         }
     }

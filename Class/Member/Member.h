@@ -54,7 +54,7 @@ private:
     double credit;
     double score;
     std::string location;
-    std::vector<Review *> tenantReviewList;
+    std::vector<Review *> tenantReviewList; //review cua owner
     std::vector<Request *> requestList;
     std::vector<Tenant *> tenantList; // list house ma minh da thue
 
@@ -72,6 +72,8 @@ public:
     bool deleteHouse();
 
     int viewAllRequest();
+
+    bool cancelRequest(int ID);
 
 
     void showAccountInfo();

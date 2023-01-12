@@ -48,6 +48,7 @@ double Member::getRatingScore() {
     return ratingScore;
 }
 
+
 void Member::showAccountInfo() {
     std::cout << "\nYour information: \n";
     std::cout << "Your username: " << this->username << "\n";
@@ -184,6 +185,20 @@ int Member::viewAllRequest() {
     return index;
 }
 
+bool Member::cancelRequest(int ID) {
+    if(ID > requestList.size()){
+        return false;
+    }
+    auto request = requestList[ID-1];
+    if(request->requestStatus == RE_STATUS[1]){
+        return false;
+    }
+    else {
+        requestList.erase(requestList.begin()+(ID-1));
+        return true;
+    }
+}
+
 void Member::reviewHouse(House *occupyHouse, int score, std::string comment) {
     //create object
     Review *review = new Review(score, comment, this);
@@ -225,6 +240,7 @@ bool Member::acceptRequest(int ID) {
 
     // int requiredCredit = (rentDate - endRentDate) *houseOwner->consumingPointsPerDay;
     declineRequest(ID - 1);
+    houseOwner->listHouseRequest[ID - 1]->requestStatus = RE_STATUS[1];
     OccupyHouse *occupyHouse = new OccupyHouse(rentDate, endRentDate, tenant);
     Tenant *occupyMember = new Tenant(rentDate, endRentDate, houseOwner);
     // add object to occupy list
@@ -245,7 +261,7 @@ Request Member::requestHouse(Date *start, Date *end) {
 void Member::viewTenant() {
     std::cout
             << std::left
-            << std::setw(10)
+            << std::setw(15)
             << "Start Date"
             << std::left
             << std::setw(20)
@@ -258,11 +274,12 @@ void Member::viewTenant() {
             << "Owner ID"
             << "\n";
     for (int i = 0; i < tenantList.size(); i++) {
-        auto tenantStartDate = tenantList[i]->startFromDate;
-        auto tenantEndDate = tenantList[i]->ToDate;
+        auto tenantStartDate = tenantList[i]->startFromDate->convertDatetoString();
+        auto tenantEndDate = tenantList[i]->ToDate->convertDatetoString();
         auto House = tenantList[i]->occupyHouse;
-        std::cout << std::left
-                  << std::setw(10)
+        std::cout << i+1 << "."
+                  << std::left
+                  << std::setw(15)
                   << tenantStartDate
                   << std::left
                   << std::setw(20)
@@ -296,7 +313,7 @@ bool Member::checkout(int leaveId) {
         return false;
     }
     //get object
-    auto leaveTenant = tenantList[leaveId - 1];
+    auto leaveTenant = tenantList[leaveId];
     auto leaveStartDate = leaveTenant->startFromDate;
     auto leaveDate = leaveTenant->ToDate;
     auto leaveHouse = leaveTenant->occupyHouse;
@@ -305,7 +322,7 @@ bool Member::checkout(int leaveId) {
     //add object to unrated list
     houseOwner->unratedTenant.push_back(unrated);
     //delete from tenant list
-    tenantList.erase(tenantList.begin() + (leaveId - 1));
+    tenantList.erase(tenantList.begin() + (leaveId));
     //when leave house call member review house and member review occupier afterwards in menu
     return true;
 
@@ -318,10 +335,35 @@ bool Member::viewUnratedList() {
     }
     //display data
     std::cout << "\nAll unrated tenant will be displayed: \n";
+    std::cout
+            << std::left
+            << std::setw(10)
+            << "Index"
+            << std::left
+            << std::setw(20)
+            << "Start Date"
+            << std::left
+            << std::setw(20)
+            << "End Date"
+            << std::left
+            << std::setw(10)
+            << "MemberID"
+            << "\n";
     for (int i = 0; i < houseOwner->unratedTenant.size(); i++) {
-        std::cout << i + 1 << "." << houseOwner->unratedTenant[i]->startFromDate->convertDatetoString() << "-->"
-                  << houseOwner->unratedTenant[i]->toDate->convertDatetoString() << ':'
-                  << houseOwner->unratedTenant[i]->tenant->memberId << "\n";
+        std::cout
+                << std::left
+                << std::setw(10)
+                << i+1
+                << std::left
+                << std::setw(20)
+                << houseOwner->unratedTenant[i]->startFromDate->convertDatetoString()
+                << std::left
+                << std::setw(20)
+                << houseOwner->unratedTenant[i]->toDate->convertDatetoString()
+                << std::left
+                << std::setw(10)
+                << houseOwner->unratedTenant[i]->tenant->memberId
+                << "\n";
     }
     return true;
 }

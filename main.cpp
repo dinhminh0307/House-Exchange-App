@@ -13,8 +13,6 @@
 
 int main(){
     System sys;
-
-
     sys.inputAdminToSys();
     sys.inputMemberToSys();
     sys.inputHouseToSys();
