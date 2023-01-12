@@ -54,7 +54,7 @@ private:
     double credit;
     double score;
     std::string location;
-    std::vector<Review *> tenantReviewList; //review cua owner
+    std::vector<Review *> tenantReviewList;
     std::vector<Request *> requestList;
     std::vector<Tenant *> tenantList; // list house ma minh da thue
 
@@ -114,7 +114,7 @@ public:
 
     void tenantLeaveHouse();
 
-    void voidgetHouseIndex(int houseID);
+    void getHouseIndex(int houseID);
 
     void cancelRequest();
     friend class House;

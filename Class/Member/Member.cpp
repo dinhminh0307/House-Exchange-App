@@ -277,7 +277,8 @@ void Member::viewTenant() {
         auto tenantStartDate = tenantList[i]->startFromDate->convertDatetoString();
         auto tenantEndDate = tenantList[i]->ToDate->convertDatetoString();
         auto House = tenantList[i]->occupyHouse;
-        std::cout << std::left
+        std::cout << i+1 << "."
+                  << std::left
                   << std::setw(15)
                   << tenantStartDate
                   << std::left
@@ -321,7 +322,7 @@ bool Member::checkout(int leaveId) {
     //add object to unrated list
     houseOwner->unratedTenant.push_back(unrated);
     //delete from tenant list
-    tenantList.erase(tenantList.begin() + (leaveId-1));
+    tenantList.erase(tenantList.begin() + (leaveId));
     //when leave house call member review house and member review occupier afterwards in menu
     return true;
 

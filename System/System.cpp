@@ -580,7 +580,7 @@ void System::memberMenu() {
     std::cout << "\t---1.View Account's Information---\n" << "\t---2.View Available Houses ---\n"
               << "\t---3.Handle Requests---\n" << "\t---4.List House For Rental---\n" << "\t---5.Show rented menu---\n"
               << "\t---6.View Unrated Tenant List---\n" << "\t---7.Logout---\n";
-    choice = menuChoice(1, 6);
+    choice = menuChoice(1, 7);
     switch (choice) {
         case 1:
             currentUser->showAccountInfo();
@@ -601,7 +601,7 @@ void System::memberMenu() {
             showRentedHouse();
             break;
         case 6:
-            
+            viewUnratedTenantList();
             break;
         case 7:
             currentUser = nullptr;
@@ -856,6 +856,34 @@ void System::actionRequestMenu(int requestID) {
             memberMenu();
             break;
     }
+}
+
+void System::viewUnratedTenantList() {
+    std::cout << "\n\t\tList of Unrated Occupiers: \n";
+    if(currentUser->houseOwner->unratedTenant.empty()) {
+        std::cout << "\nThere are no tenants in your list\n";
+        memberMenu();
+    }
+    currentUser->viewUnratedList();
+    std::cout << "\n" << currentUser->houseOwner->unratedTenant.size() + 1 << ".Back to member menu";
+    std::cout << "\nChoose the Tenant you would like to review: ";
+    int choice = menuChoice(1, currentUser->houseOwner->unratedTenant.size() + 1);
+    
+    if(choice == currentUser->houseOwner->unratedTenant.size() + 1) {
+        memberMenu();
+    }
+    else {
+        std::string comment;
+        int score;
+        std::cout << "\nPlease leave a comment to this tenant: ";
+        std::cin.ignore();
+        std::getline(std::cin, comment);
+        std::cout << "\nPlease score the Tenant: ";
+        std::cin >> score;
+        currentUser->reviewTenant(choice, score, comment);
+        memberMenu();
+    }
+    
 }
 
 void System::viewRequestMenu() {
