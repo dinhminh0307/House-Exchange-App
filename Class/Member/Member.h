@@ -115,6 +115,8 @@ public:
 
     void getHouseIndex(int houseID);
 
+    ~Member();
+
     friend class House;
 
     friend class System;

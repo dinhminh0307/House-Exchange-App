@@ -66,5 +66,20 @@ void House::addReviewToHouseReviewList(Review *review) {
 }
 
 
+House :: ~House() {
+    for(auto &review: listHouseReview) {
+        delete review;
+    }
 
+    for(auto &request : listHouseRequest) {
+        delete request;
+    }
+
+    for(auto &rentedHouse : listOccupyHouse) {
+        delete rentedHouse;
+    }
+
+    delete startingDate;
+    delete endingDate;
+}
 

@@ -424,4 +424,15 @@ bool Member::reviewTenant(int rateId, int score, std::string comment) {
 
 }
 
+Member :: ~Member() {
+    for(auto &request: requestList) {
+        delete request;
+    }
 
+    for(auto &review : tenantReviewList) {
+        delete review;
+    }
+    for(auto &tenant : tenantList) {
+        delete tenant;
+    }
+}
