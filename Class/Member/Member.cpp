@@ -50,17 +50,17 @@ double Member::getRatingScore() {
 
 
 void Member::showAccountInfo() {
-    std::cout << "\nYour information: \n";
-    std::cout << "Your username: " << this->username << "\n";
-    std::cout << "Your name: " << this->fullName << "\n";
-    std::cout << "Your phone number: " << this->phoneNum << "\n";
-    std::cout << "Your credit: " << this->credit << "\n";
-    std::cout << "Your location: " << this->location << "\n";
-    std::cout << "Your score: " << this->getRatingScore() << "\n";
+    std::cout << CYAN << "\nYour information: \n" << RESET;
+    std::cout << CYAN << "Your username: " << this->username << "\n" << RESET;
+    std::cout << CYAN << "Your name: " << this->fullName << "\n" << RESET;
+    std::cout << CYAN << "Your phone number: " << this->phoneNum << "\n" << RESET;
+    std::cout << CYAN << "Your credit: " << this->credit << "\n" << RESET;
+    std::cout << CYAN << "Your location: " << this->location << "\n" << RESET;
+    std::cout << CYAN << "Your score: " << this->getRatingScore() << "\n" << RESET;
     if (houseOwner == nullptr) {
         std::cout << "\n";
     } else {
-        std::cout << "HouseID: " << houseOwner->houseID << "  Location: " << houseOwner->location << "\n";
+        std::cout << CYAN << "HouseID: " << houseOwner->houseID << "  Location: " << houseOwner->location << "\n" << RESET;
     }
 }
 
@@ -82,19 +82,19 @@ bool Member::minusCredit(double creditPoint) {
 bool Member::showReview() {
 
     if (this->tenantReviewList.empty()) {
-        std::cout << "\nThere are no reviews for this member\n";
+        std::cout << RED << "\nThere are no reviews for this member\n" <<RESET;
     } else {
-        std::cout << "\nAll review for this member: \n";
+        std::cout << CYAN << "\nAll review for this member: \n" << RESET;
         for (int i = 0; i < this->tenantReviewList.size(); i++) {
             Review *review = tenantReviewList[i];
             std::string tempComment = review->comment;
             int tempScore = review->ratingScore;
             Member *member = review->memberReview;
-            std::cout << "\n-----------------------"
+            std::cout << CYAN << "\n-----------------------"
                       << "\n\nReview by member: " << member->fullName
                       << "\n-----------------------"
                       << "Score: " << tempScore << "\n"
-                      << "Comment: " << tempComment;
+                      << "Comment: " << tempComment << RESET;
 
         }
 
@@ -148,11 +148,11 @@ bool Member::deleteHouse() {
 int Member::viewAllRequest() {
     int index = 0;
     if (houseOwner->listHouseRequest.empty()) {
-        std::cout << "\nNo request for you\n";
+        std::cout << RED << "\nNo request for you\n" << RESET;
         return 0;
     }
     std::cout
-            << std::left
+            << CYAN << std::left
             << std::setw(5)
             << "ID"
             << std::left
@@ -164,11 +164,11 @@ int Member::viewAllRequest() {
             << std::left
             << std::setw(15)
             << "Status"
-            << "\n";
+            << "\n" << RESET;
     for (Request *i: houseOwner->listHouseRequest) {
         index++;
         std::cout
-                << std::left
+                << CYAN << std::left
                 << std::setw(5)
                 << index
                 << std::left
@@ -180,7 +180,7 @@ int Member::viewAllRequest() {
                 << std::left
                 << std::setw(15)
                 << i->requestStatus
-                << "\n";
+                << "\n" << RESET;
     }
     return index;
 }
@@ -188,11 +188,11 @@ int Member::viewAllRequest() {
 bool Member:: showRequestSent() {
     int index = 0;
     if(requestList.empty()) {
-        std:: cout<< "\nThere are no request that you sent\n";
+        std:: cout<< RED << "\nThere are no request that you sent\n" << RESET;
         return false;
     }
     std::cout
-            << std::left
+            << CYAN << std::left
             << std::setw(5)
             << "ID"
             << std::left
@@ -204,11 +204,11 @@ bool Member:: showRequestSent() {
             << std::left
             << std::setw(15)
             << "Status"
-            << "\n";
+            << "\n" << RESET;
     for(Request *i: requestList) {
          index++;
          std::cout
-                << std::left
+                << CYAN <<std::left
                 << std::setw(5)
                 << index
                 << std::left
@@ -220,7 +220,7 @@ bool Member:: showRequestSent() {
                 << std::left
                 << std::setw(15)
                 << i->requestStatus
-                << "\n";
+                << "\n" << RESET;
     }
 }
 
@@ -273,7 +273,7 @@ bool Member::acceptRequest(int ID) {
 
 
     if(houseOwner->listHouseRequest[ID]->requestStatus == RE_STATUS[1] || houseOwner->listHouseRequest[ID]->requestStatus == RE_STATUS[2]) {
-        std::cout << "\nYou can not accept the request has been accepted or declined\n";
+        std::cout << RED <<"\nYou can not accept the request has been accepted or declined\n" << RESET;
         return false;
     }
     // cout << "\nThe request does not match\n";
@@ -300,7 +300,7 @@ bool Member::acceptRequest(int ID) {
 
 void Member::viewTenant() {
     std::cout
-            << std::left
+            << CYAN << std::left
             << std::setw(15)
             << "Start Date"
             << std::left
@@ -312,12 +312,12 @@ void Member::viewTenant() {
             << std::left
             << std::setw(15)
             << "Owner ID"
-            << "\n";
+            << "\n" << RESET;
     for (int i = 0; i < tenantList.size(); i++) {
         auto tenantStartDate = tenantList[i]->startFromDate->convertDatetoString();
         auto tenantEndDate = tenantList[i]->ToDate->convertDatetoString();
         auto House = tenantList[i]->occupyHouse;
-        std::cout << i+1 << "."
+        std::cout << CYAN << i+1 << "."
                   << std::left
                   << std::setw(15)
                   << tenantStartDate
@@ -330,19 +330,19 @@ void Member::viewTenant() {
                   << std::left
                   << std::setw(15)
                   << House->owner->memberId
-                  << "\n";
+                  << "\n" << RESET;
     }
 }
 
 
 bool Member::viewMemberOccupyList() {
     if (tenantList.empty()) {
-        std::cout << "\nThere are no houses you are occupying\n";
+        std::cout << RED << "\nThere are no houses you are occupying\n" << RESET;
         return false;
     }
     for (int i = 0; i < tenantList.size(); i++) {
-        std::cout << i + 1 << '.' << tenantList[i]->startFromDate->convertDatetoString() << "-->"
-                  << tenantList[i]->ToDate->convertDatetoString() << ":" << tenantList[i]->occupyHouse->houseID << "\n";
+        std::cout << CYAN << i + 1 << '.' << tenantList[i]->startFromDate->convertDatetoString() << "-->"
+                  << tenantList[i]->ToDate->convertDatetoString() << ":" << tenantList[i]->occupyHouse->houseID << "\n" << RESET;
     }
     return true;
 }
@@ -374,9 +374,9 @@ bool Member::viewUnratedList() {
         return false;
     }
     //display data
-    std::cout << "\nAll unrated tenant will be displayed: \n";
+    std::cout << GREEN << "\nAll unrated tenant will be displayed: \n" << RESET;
     std::cout
-            << std::left
+            << CYAN <<std::left
             << std::setw(10)
             << "Index"
             << std::left
@@ -388,10 +388,10 @@ bool Member::viewUnratedList() {
             << std::left
             << std::setw(10)
             << "MemberID"
-            << "\n";
+            << "\n" << RESET;
     for (int i = 0; i < houseOwner->unratedTenant.size(); i++) {
         std::cout
-                << std::left
+                << CYAN << std::left
                 << std::setw(10)
                 << i+1
                 << std::left
@@ -403,7 +403,7 @@ bool Member::viewUnratedList() {
                 << std::left
                 << std::setw(10)
                 << houseOwner->unratedTenant[i]->tenant->memberId
-                << "\n";
+                << "\n" << RESET;
     }
     return true;
 }

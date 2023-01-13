@@ -15,8 +15,6 @@
 #define OCCUPIERS_FILE "Data/occupiers.dat"
 #define MEMBERS_FILE "Data/members.dat"
 #define UNRATED_OCC_FILE "Data/unratedOcc.dat"
-
-
 #include <iostream>
 #include <vector>
 #include <sstream>
