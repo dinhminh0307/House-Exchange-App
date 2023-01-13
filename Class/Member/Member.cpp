@@ -361,6 +361,7 @@ bool Member::checkout(int leaveId) {
     auto *unrated = new OccupyHouse(leaveStartDate, leaveDate, this);
     //add object to unrated list
     leaveHouse->unratedTenant.push_back(unrated);
+    leaveHouse->houseStatus = STATUS[0];
     //delete from tenant list
     tenantList.erase(tenantList.begin() + (leaveId));
     //when leave house call member review house and member review occupier afterwards in menu
