@@ -17,7 +17,7 @@ class Request {
 
 public:
 
-    Request(Date *startDate, Date *endDate, Member *requestedByMember, std::string status);
+    Request(Date *startDate, Date *endDate, Member *requestedByMember, std::string houseId, std::string status);
 
 
     friend class System;

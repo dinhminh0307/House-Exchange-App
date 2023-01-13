@@ -86,8 +86,6 @@ public:
 
     bool createHouse(House *house);
 
-    Request requestHouse(Date *start, Date *end); 
-
     void showAllAvailableHouse();
 
     bool acceptRequest(int ID);

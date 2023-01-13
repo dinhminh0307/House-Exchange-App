@@ -298,11 +298,6 @@ bool Member::acceptRequest(int ID) {
 }
 
 
-Request Member::requestHouse(Date *start, Date *end) {
-    auto *newRequest = new Request(start, end, this, RE_STATUS[0]);
-    return *newRequest;
-}
-
 void Member::viewTenant() {
     std::cout
             << std::left

@@ -834,8 +834,7 @@ void System:: cancelRequestMenu(int ID) {
         case 1:
             for(auto i : houseVector) {
                 for(int j = 0; j < i->listHouseRequest.size(); j ++) {
-                    if(i->listHouseRequest[j]->startDate->countDate() == currentUser->requestList[ID-1]->startDate->countDate()
-                        && i->listHouseRequest[j]->endDate->countDate() == currentUser->requestList[ID-1]->endDate->countDate()){
+                    if(i->listHouseRequest[j]->houseID == currentUser->requestList[ID - 1]->houseID){
                             i->listHouseRequest.erase(i->listHouseRequest.begin() + j);
                         }
                 }
@@ -931,10 +930,10 @@ void System::validHouseMenu(Date *start, Date *end, std::string location) {
         switch (menuChoice(1, 3)) {
             case 1: {
                 if (end == nullptr) {
-                    request = new Request(start, memberSuitableHouseList[choice - 1]->endingDate, currentUser,
+                    request = new Request(start, memberSuitableHouseList[choice - 1]->endingDate, currentUser, memberSuitableHouseList[choice-1]->houseID,
                                           RE_STATUS[0]);
                 } else {
-                    request = new Request(memberSuitableHouseList[choice - 1]->startingDate, end, currentUser,
+                    request = new Request(memberSuitableHouseList[choice - 1]->startingDate, end, currentUser, memberSuitableHouseList[choice-1]->houseID,
                                           RE_STATUS[0]);
                 }
                 memberSuitableHouseList[choice - 1]->addRequestToHouseRequestList(request);
@@ -1436,7 +1435,7 @@ void System::inputRequestToSys() {
         Date *startDate = stringToDate(dataLst[2]);
         Date *endDate = stringToDate(dataLst[3]);
         std::string status = dataLst[4];
-        Request *req = new Request(startDate, endDate, targetMem, status);
+        Request *req = new Request(startDate, endDate, targetMem, targetHouse->houseID, status);
         targetHouse->addRequestToHouseRequestList(req);
         targetMem->requestList.push_back(req);
     }
