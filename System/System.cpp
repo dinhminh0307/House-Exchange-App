@@ -150,6 +150,10 @@ bool System::isValidScore(Member *mem, House *house) {
 }
 
 bool System::isValidDate(std::string date) {
+    std::string day = date.substr(0,2);
+    std::string month = date.substr(3,2);
+    std::string year = date.substr(6,4);
+
     for (int i = 0; i < date.length(); i++) {
         if (i == 2 || i == 5) {
             if (date[i] != '/') {
@@ -157,6 +161,12 @@ bool System::isValidDate(std::string date) {
                 return false;
             }
         } else if (!std::isdigit(date[i])) {
+            std::cout << "Your date is not valid. Try again \n";
+            return false;
+        } else if(std::stoi(month) > 13  || std::stoi(month) < 1){
+            std::cout << "Your date is not valid. Try again \n";
+            return false;
+        } else if(std::stoi(day) > DAYS_IN_MONTHS[std::stoi(month) - 1]){
             std::cout << "Your date is not valid. Try again \n";
             return false;
         }
@@ -750,7 +760,7 @@ bool System::enterHouseInfo() {
 void System::showRentedHouse() {
     //Check if current member ocupying any house
     if (currentUser->tenantList.empty()) {
-        std::cout << "\n\t\tThere are no house you are renting\n\n\t\tBack To Member Menu";
+        std::cout << "\n\t\tThere are no house you are renting\n\n\t\tBack To Member Menu\n";
         memberMenu();
     }
     std::cout << "\nThe list of house you occupied:\n";
@@ -780,14 +790,11 @@ void System::showRentedHouse() {
 }
 
 void System::rateTenantMenu(int leaveID) {
-    std::cout << "\n\t\tDo you want to rate the house?\n"
-              << "\n\t\t1.Yes\n"
-              << "\n\t\t2.No\n";
+    std::cout << "\n\t\t1.Press 1 to rate the house: ";
 
-    int choice = menuChoice(1, 2);
-    switch (choice) {
-        case 1: {
-            auto leaveMember = currentUser->tenantList[leaveID];
+    int choice = menuChoice(1, 1);
+    if(choice == 1) {
+        auto leaveMember = currentUser->tenantList[leaveID];
             std::string comment;
             int score;
             std::cout << "\n\t\tPlease leave a comment: ";
@@ -796,14 +803,12 @@ void System::rateTenantMenu(int leaveID) {
             std::cout << "\n\t\tPlease leave a score: ";
             std::cin >> score;
             currentUser->reviewHouse(leaveMember->occupyHouse, score, comment);
-            memberMenu();
-            break;
-        }
-        case 2:
-            memberMenu();
-            break;
+            std:: cout<< "\nPress 2 to back to the member Menu: ";
+            if(menuChoice(2,2) == 2) {
+                memberMenu();
+            }
+            
     }
-
 }
 
 void System::showRequestSent() {
@@ -827,6 +832,14 @@ void System:: cancelRequestMenu(int ID) {
     int choice = menuChoice(1 , 2);
     switch(choice) {
         case 1:
+            for(auto i : houseVector) {
+                for(int j = 0; j < i->listHouseRequest.size(); j ++) {
+                    if(i->listHouseRequest[j]->startDate->countDate() == currentUser->requestList[ID-1]->startDate->countDate()
+                        && i->listHouseRequest[j]->endDate->countDate() == currentUser->requestList[ID-1]->endDate->countDate()){
+                            i->listHouseRequest.erase(i->listHouseRequest.begin() + j);
+                        }
+                }
+            }
             currentUser->cancelRequest(ID);
             std::cout << "\nRequest canceled\nBack to menu:\n";
             showRequestSent();
@@ -1027,9 +1040,13 @@ void System::viewUnratedTenantList() {
 }
 
 void System::viewRequestMenu() {
-    int choice;
+   int choice;
     std::cout << "\n\n\tYour request today:\n\n";
-    int numberRequest = currentUser->viewAllRequest();
+    if(currentUser->houseOwner == nullptr ){
+        std::cout << "You do not have a house. So you do not have any request! \n";
+        memberMenu();
+    }else{
+           int numberRequest = currentUser->viewAllRequest();
     std::cout << "\n\tChoose your option:\n\n";
     std::cout << "\n\n--> 1.\tPoint the Request:\n\n"
               << "--> 2.\tBack to Menu\n";
@@ -1045,6 +1062,8 @@ void System::viewRequestMenu() {
             memberMenu();
             break;
     }
+    }
+ 
 }
 
 bool System::memRequestHouse(Date *startDate, Date *endDate, int houseId) {

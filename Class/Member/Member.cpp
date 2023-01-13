@@ -24,9 +24,9 @@ Member::Member(std::string username, std::string password, std::string memberID,
     this->memberId = memberID;
     this->fullName = fullName;
     this->phoneNum = phoneNum;
-    this->credit = INITIAL_CREDITS;
+    this->credit = credit;
 
-    this->score = INITIAL_SCORES;
+    this->score = score;
 
     this->location = location;
     this->houseOwner = nullptr;
@@ -148,7 +148,7 @@ bool Member::deleteHouse() {
 int Member::viewAllRequest() {
     int index = 0;
     if (houseOwner->listHouseRequest.empty()) {
-        std::cout << "\nYou dont have any request!\n";
+        std::cout << "\nNo request for you\n";
         return 0;
     }
     std::cout
@@ -334,7 +334,7 @@ void Member::viewTenant() {
                   << House->houseID
                   << std::left
                   << std::setw(15)
-                  << memberId
+                  << House->owner->memberId
                   << "\n";
     }
 }
@@ -365,7 +365,7 @@ bool Member::checkout(int leaveId) {
     //create object
     auto *unrated = new OccupyHouse(leaveStartDate, leaveDate, this);
     //add object to unrated list
-    houseOwner->unratedTenant.push_back(unrated);
+    leaveHouse->unratedTenant.push_back(unrated);
     //delete from tenant list
     tenantList.erase(tenantList.begin() + (leaveId));
     //when leave house call member review house and member review occupier afterwards in menu
