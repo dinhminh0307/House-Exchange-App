@@ -94,7 +94,9 @@ bool System::isValidPassword(std::string &password) {
         return true;
     } else {
         std::cout
-                << RED << "Minimum 8 and maximum 10 characters, at least one uppercase letter, one lowercase letter, one number and one special character. Try again \n" << RESET;
+                << RED
+                << "Minimum 8 and maximum 10 characters, at least one uppercase letter, one lowercase letter, one number and one special character. Try again \n"
+                << RESET;
         return false;
     }
 }
@@ -128,7 +130,7 @@ bool System::isValidFullname(std::string &fullname) {
     if (std::regex_match(fullname, reg)) {
         return true;
     } else {
-        std::cout << RED << "Name must contain 8 to 20 characters and no digits, no special characters \n" <<RESET;
+        std::cout << RED << "Name must contain 8 to 20 characters and no digits, no special characters \n" << RESET;
         return false;
     }
 }
@@ -149,9 +151,9 @@ bool System::isValidScore(Member *mem, House *house) {
 }
 
 bool System::isValidDate(std::string date) {
-    std::string day = date.substr(0,2);
-    std::string month = date.substr(3,2);
-    std::string year = date.substr(6,4);
+    std::string day = date.substr(0, 2);
+    std::string month = date.substr(3, 2);
+    std::string year = date.substr(6, 4);
 
     for (int i = 0; i < date.length(); i++) {
         if (i == 2 || i == 5) {
@@ -160,13 +162,13 @@ bool System::isValidDate(std::string date) {
                 return false;
             }
         } else if (!std::isdigit(date[i])) {
-            std::cout << RED << "Your date is not valid. Try again \n" <<RESET;
-            return false;
-        } else if(std::stoi(month) > 13  || std::stoi(month) < 1){
             std::cout << RED << "Your date is not valid. Try again \n" << RESET;
             return false;
-        } else if(std::stoi(day) > DAYS_IN_MONTHS[std::stoi(month) - 1]){
-            std::cout << RED << "Your date is not valid. Try again \n" <<RESET;
+        } else if (std::stoi(month) > 13 || std::stoi(month) < 1) {
+            std::cout << RED << "Your date is not valid. Try again \n" << RESET;
+            return false;
+        } else if (std::stoi(day) > DAYS_IN_MONTHS[std::stoi(month) - 1]) {
+            std::cout << RED << "Your date is not valid. Try again \n" << RESET;
             return false;
         }
     }
@@ -259,7 +261,7 @@ void System::mainMenu() {
               << "|              s3669698, Nguyen Huu Duc                   |\n"
               << "|                                                         |\n"
               << "| Use the app as 1. Guest   2. Member   3. Admin   4.Exit |\n" << RESET;
-    std::cout << GREEN  << "----------------------------------------------------------\n\n" << RESET;
+    std::cout << GREEN << "----------------------------------------------------------\n\n" << RESET;
 
     choice = menuChoice(1, 4);
     switch (choice) {
@@ -289,12 +291,12 @@ void System::mainMenu() {
 //guest menu
 void System::guestMenu() {
     int choice;
-    std::cout << GREEN <<"---------------------------------------\n" << RESET;
-    std::cout << GREEN <<"|              GUEST MENU             |\n" << RESET;
+    std::cout << GREEN << "---------------------------------------\n" << RESET;
+    std::cout << GREEN << "|              GUEST MENU             |\n" << RESET;
     std::cout << GREEN << "|     1.View houses                   |\n"
               << "|     2.Register                      |\n"
               << "|     3.Back to main menu             |\n" << RESET;
-    std::cout << GREEN <<"---------------------------------------\n" << RESET;
+    std::cout << GREEN << "---------------------------------------\n" << RESET;
 
     choice = menuChoice(1, 3);
     switch (choice) {
@@ -314,12 +316,12 @@ void System::guestMenu() {
 //admin menu - basic feature
 void System::adminMenu() {
     int choice;
-    std::cout << GREEN << "---------------------------------------\n"<< RESET;
-    std::cout << GREEN << "|              ADMIN MENU             |\n"<< RESET;
-    std::cout << GREEN <<"|     1.View Member List              |\n"
+    std::cout << GREEN << "---------------------------------------\n" << RESET;
+    std::cout << GREEN << "|              ADMIN MENU             |\n" << RESET;
+    std::cout << GREEN << "|     1.View Member List              |\n"
               << "|     2.View House List               |\n"
-              << "|     3.Back to main menu             |\n"<< RESET;
-    std::cout << GREEN <<"---------------------------------------\n"<< RESET;
+              << "|     3.Back to main menu             |\n" << RESET;
+    std::cout << GREEN << "---------------------------------------\n" << RESET;
     choice = menuChoice(1, 3);
     switch (choice) {
         case 1:
@@ -338,9 +340,9 @@ void System::adminMenu() {
 
 void System::adminViewMemberMenu() {
     int index = 1;
-    std::cout << GREEN << "All the member of the system: " << "\n"<< RESET;
+    std::cout << GREEN << "All the member of the system: " << "\n" << RESET;
     std::cout
-            << CYAN <<std::left
+            << CYAN << std::left
             << std::setw(5)
             << "Index"
             << std::left
@@ -349,7 +351,7 @@ void System::adminViewMemberMenu() {
             << std::left
             << std::setw(15)
             << "Full Name"
-            << "\n"<< RESET;
+            << "\n" << RESET;
     for (auto mem: memberVector) {
         std::cout
                 << CYAN << std::left
@@ -361,11 +363,11 @@ void System::adminViewMemberMenu() {
                 << std::left
                 << std::setw(15)
                 << mem->fullName
-                << "\n"<< RESET;
+                << "\n" << RESET;
         index++;
     }
     std::cout << "\n";
-    std::cout << GREEN << "\t---1.View Member Detail---\n" << "\t---2.Back to admin menu---\n"<< RESET;
+    std::cout << GREEN << "\t---1.View Member Detail---\n" << "\t---2.Back to admin menu---\n" << RESET;
     int choice = menuChoice(1, 2);
     switch (choice) {
         case 1:
@@ -394,10 +396,10 @@ void System::adminViewMemberMenu() {
                     << std::left
                     << std::setw(10)
                     << "Rating Score"
-                    << "\n"<< RESET;
+                    << "\n" << RESET;
             for (int i = 0; i < memberVector.size(); i++) {
                 std::cout
-                        <<CYAN << std::left
+                        << CYAN << std::left
                         << std::setw(10)
                         << i + 1
                         << std::left
@@ -421,10 +423,10 @@ void System::adminViewMemberMenu() {
                         << std::left
                         << std::setw(10)
                         << memberVector[i]->getRatingScore()
-                        << "\n"<< RESET;
+                        << "\n" << RESET;
             }
             std::cout << "\n";
-            std::cout << CYAN << memberVector.size() + 1 << ".Back to admin menu\n"<< RESET;
+            std::cout << CYAN << memberVector.size() + 1 << ".Back to admin menu\n" << RESET;
             menuChoice(memberVector.size() + 1, memberVector.size() + 1);
             adminMenu();
 
@@ -436,7 +438,7 @@ void System::adminViewMemberMenu() {
 
 void System::adminViewHouseMenu() {
     int index = 1;
-    std::cout << GREEN <<"All house of the system: " << "\n"<< RESET;
+    std::cout << GREEN << "All house of the system: " << "\n" << RESET;
     std::cout
             << CYAN << std::left
             << std::setw(10)
@@ -453,7 +455,7 @@ void System::adminViewHouseMenu() {
             << std::left
             << std::setw(35)
             << "Description"
-            << "\n"<< RESET;
+            << "\n" << RESET;
     for (auto i: houseVector) {
         std::cout
                 << CYAN << std::left
@@ -471,11 +473,11 @@ void System::adminViewHouseMenu() {
                 << std::left
                 << std::setw(35)
                 << i->houseDescription
-                << "\n"<< RESET;
+                << "\n" << RESET;
         index++;
     }
     std::cout << "\n";
-    std::cout << GREEN << "\t---1.View House Detail---\n" << "\t---2.Back to admin menu---\n"<< RESET;
+    std::cout << GREEN << "\t---1.View House Detail---\n" << "\t---2.Back to admin menu---\n" << RESET;
     int choice = menuChoice(1, 2);
     switch (choice) {
         case 1:
@@ -540,7 +542,7 @@ void System::adminViewHouseMenu() {
                         << "\n" << RESET;
             }
             std::cout << "\n";
-            std::cout << CYAN << houseVector.size() + 1 << ".Back to admin menu\n"<< RESET;
+            std::cout << CYAN << houseVector.size() + 1 << ".Back to admin menu\n" << RESET;
             menuChoice(houseVector.size() + 1, houseVector.size() + 1);
             adminMenu();
             break;
@@ -554,18 +556,18 @@ void System::adminViewHouseMenu() {
 
 void System::loginMemMenu() {
     std::string username, password;
-    std::cout << GREEN << "--------------------------------------\n"<< RESET;
-    std::cout << GREEN << "|            MEMBER LOGIN            |\n"<< RESET;
+    std::cout << GREEN << "--------------------------------------\n" << RESET;
+    std::cout << GREEN << "|            MEMBER LOGIN            |\n" << RESET;
     std::cout << GREEN << "|        1. Login as member          |\n"
-              << "|        2. Back to main menu        |\n"<< RESET;
-    std::cout << GREEN << "--------------------------------------\n"<< RESET;
+              << "|        2. Back to main menu        |\n" << RESET;
+    std::cout << GREEN << "--------------------------------------\n" << RESET;
 
     switch (menuChoice(1, 2)) {
         case 1:
             std::cin.ignore();
-            std::cout << CYAN << "Enter your username: "<< RESET;
+            std::cout << CYAN << "Enter your username: " << RESET;
             std::getline(std::cin, username);
-            std::cout << CYAN << "Enter your password: "<< RESET;
+            std::cout << CYAN << "Enter your password: " << RESET;
             std::getline(std::cin, password);
             if (loginMember(username, password)) {
                 memberMenu();
@@ -582,24 +584,24 @@ void System::loginMemMenu() {
 void System::adminLoginMenu() {
     std::string username, password;
 
-    std::cout << GREEN << "---------------------------------------\n"<< RESET;
-    std::cout << GREEN << "|              ADMIN MENU             |\n"<< RESET;
+    std::cout << GREEN << "---------------------------------------\n" << RESET;
+    std::cout << GREEN << "|              ADMIN MENU             |\n" << RESET;
     std::cout << GREEN << "|     1.Login As Admin                |\n"
-              << "|     2.Back to main menu             |\n"<< RESET;
-    std::cout << GREEN << "---------------------------------------\n"<< RESET;
+              << "|     2.Back to main menu             |\n" << RESET;
+    std::cout << GREEN << "---------------------------------------\n" << RESET;
     switch (menuChoice(1, 2)) {
         case 1:
             std::cin.ignore();
             std::cout << CYAN << "Enter your username: " << RESET;
             std::getline(std::cin, username);
-            std::cout << CYAN << "Enter your password: "<< RESET;
+            std::cout << CYAN << "Enter your password: " << RESET;
             std::getline(std::cin, password);
             if (admin->username == username && admin->password == password) {
-                std::cout <<GREEN << "Log in successfully!!! \n\n\n\n"<< RESET;
+                std::cout << GREEN << "Log in successfully!!! \n\n\n\n" << RESET;
                 adminMenu();
                 break;
             } else {
-                std::cout << RED <<"\n\nWrong username or password!!! \n"<< RESET;
+                std::cout << RED << "\n\nWrong username or password!!! \n" << RESET;
             }
         case 2:
             mainMenu();
@@ -612,9 +614,9 @@ void System::adminLoginMenu() {
 
 void System::memberMenu() {
     int choice;
-    std::cout <<GREEN << "----------------------------------------\n"<< RESET;
-    std::cout <<GREEN << "|          ---MEMBER MENU---           |\n"<< RESET;
-    std::cout <<GREEN << "|  1.View Account's Information        |\n"
+    std::cout << GREEN << "----------------------------------------\n" << RESET;
+    std::cout << GREEN << "|          ---MEMBER MENU---           |\n" << RESET;
+    std::cout << GREEN << "|  1.View Account's Information        |\n"
               << "|  2.View Available Houses             |\n"
               << "|  3.Handle Requests                   |\n"
               << "|  4.List House For Rental             |\n"
@@ -622,12 +624,12 @@ void System::memberMenu() {
               << "|  6.View Unrated Tenant List          |\n"
               << "|  7.Show Request Sent                 |\n"
               << "|  8.Logout                            |\n" << RESET;
-    std::cout << GREEN<< "----------------------------------------\n"<< RESET;
+    std::cout << GREEN << "----------------------------------------\n" << RESET;
     choice = menuChoice(1, 8);
     switch (choice) {
         case 1:
             currentUser->showAccountInfo();
-            std::cout << CYAN <<"1. Back to menu...\n"<< RESET;
+            std::cout << CYAN << "1. Back to menu...\n" << RESET;
             menuChoice(1, 1);
             memberMenu();
             break;
@@ -659,13 +661,14 @@ void System::memberMenu() {
 }
 
 void System::houseForRentMenu() {
-    std::cout << GREEN <<"\t---UP HOUSE FOR RENT MENU ---\n"<< RESET;
+    std::cout << GREEN << "\t---UP HOUSE FOR RENT MENU ---\n" << RESET;
     if (currentUser->houseOwner != nullptr) {
         if (currentUser->houseOwner->isAdded) {
-            std::cout << GREEN<< "You are having a house for rent: \n"<< RESET;
+            std::cout << GREEN << "You are having a house for rent: \n" << RESET;
             currentUser->houseOwner->viewHouseInfo();
             if (currentUser->houseOwner->listHouseRequest.empty()) {
-                std::cout << CYAN << "\n\n---\t1. Omit the house of renting site ---\n" << "\t---2. Back to member menu ---\n"<< RESET;
+                std::cout << CYAN << "\n\n---\t1. Omit the house of renting site ---\n"
+                          << "\t---2. Back to member menu ---\n" << RESET;
                 switch (menuChoice(1, 2)) {
                     case 1:
                         deleteInRentHouse();
@@ -677,16 +680,17 @@ void System::houseForRentMenu() {
                         break;
                 }
             } else {
-                std::cout << GREEN << "\tCome back to member menu \n"<< RESET;
+                std::cout << GREEN << "\tCome back to member menu \n" << RESET;
                 memberMenu();
             }
         } else {
-            std::cout << CYAN <<"You are having a house but not allowing rental yet: \n" << "1. Add the house for rent\n"
+            std::cout << CYAN << "You are having a house but not allowing rental yet: \n"
+                      << "1. Add the house for rent\n"
                       << "2. Back to member menu\n" << RESET;
             switch (menuChoice(1, 2)) {
                 case 1:
                     getInfoListHouseMenu();
-                    std::cout << GREEN <<"\nSuccessfully added your house\n\n" << RESET;
+                    std::cout << GREEN << "\nSuccessfully added your house\n\n" << RESET;
                     houseForRentMenu();
                     break;
                 case 2:
@@ -695,7 +699,7 @@ void System::houseForRentMenu() {
             }
         }
     } else {
-        std::cout << RED <<"You do not have a house. Add one: \n" << RESET;
+        std::cout << RED << "You do not have a house. Add one: \n" << RESET;
         enterHouseInfo();
         houseForRentMenu();
     }
@@ -705,25 +709,25 @@ bool System::getInfoListHouseMenu() {
     std::string startDate, endDate, minScores, minCredits;
     std::cin.ignore();
 
-    std::cout << GREEN <<"\tPlease enter of your rental info\n" << RESET;
+    std::cout << GREEN << "\tPlease enter of your rental info\n" << RESET;
     do {
         do {
-            std::cout << CYAN << "Enter the first renting date "<< RESET;
+            std::cout << CYAN << "Enter the first renting date " << RESET;
             std::getline(std::cin, startDate);
         } while (!isValidDate(startDate));
         do {
-            std::cout << CYAN << "Enter the end renting date "<< RESET;
+            std::cout << CYAN << "Enter the end renting date " << RESET;
             std::getline(std::cin, endDate);
         } while (!isValidDate(endDate));
     } while (!isRightDateOrder(stringToDate(startDate), stringToDate(endDate)));
 
     do {
-        std::cout << CYAN << "Enter the required credits per day "<< RESET;
+        std::cout << CYAN << "Enter the required credits per day " << RESET;
         std::getline(std::cin, minCredits);
     } while (!isDouble(minCredits));
 
     do {
-        std::cout << CYAN << "Enter the required minimum scores of renant "<< RESET;
+        std::cout << CYAN << "Enter the required minimum scores of renant " << RESET;
         std::getline(std::cin, minScores);
     } while (!isDouble(minScores));
 
@@ -736,9 +740,9 @@ bool System::getInfoListHouseMenu() {
 bool System::enterHouseInfo() {
     std::string houseId, location, description;
     int choice;
-    std::cout << GREEN << "\tPlease enter your house's information\n"<< RESET;
-    std::cout << GREEN <<"\tChoose the supported app location: "<< RESET;
-    std::cout << CYAN <<"\t1. HANOI \t2.HUE \t3.SAIGON\n"<< RESET;
+    std::cout << GREEN << "\tPlease enter your house's information\n" << RESET;
+    std::cout << GREEN << "\tChoose the supported app location: " << RESET;
+    std::cout << CYAN << "\t1. HANOI \t2.HUE \t3.SAIGON\n" << RESET;
     choice = menuChoice(1, 3);
     switch (choice) {
         case 1:
@@ -752,7 +756,7 @@ bool System::enterHouseInfo() {
             break;
     }
     std::cin.ignore();
-    std::cout << CYAN <<"\tEnter the description for your house: \n" << RESET;
+    std::cout << CYAN << "\tEnter the description for your house: \n" << RESET;
     std::getline(std::cin, description);
     auto *createdHouse = new House("HOU" + std::to_string(houseVector.size() + 1), location, description);
     houseVector.push_back(createdHouse);
@@ -775,7 +779,7 @@ void System::showRentedHouse() {
     }
     auto tenantHouse = currentUser->tenantList[choice - 1]->occupyHouse;
     tenantHouse->viewHouseInfo();
-    std::cout << CYAN <<"\n"
+    std::cout << CYAN << "\n"
               << "\t\t1.Checkout\n"
               << "\t\t2.Back to menu\n" << RESET;
     int newChoice = menuChoice(1, 2);
@@ -796,57 +800,69 @@ void System::rateTenantMenu(int leaveID) {
     std::cout << CYAN << "\n\t\t1.Press 1 to rate the house: " << RESET;
 
     int choice = menuChoice(1, 1);
-    if(choice == 1) {
+    if (choice == 1) {
         auto leaveMember = currentUser->tenantList[leaveID];
-            std::string comment;
-            int score;
-            std::cout << CYAN << "\n\t\tPlease leave a comment: " << RESET;
-            std::cin.ignore();
-            std::getline(std::cin, comment);
+        std::string comment;
+        std::string score;
+        std::cout << CYAN << "\n\t\tPlease leave a comment: " << RESET;
+        std::cin.ignore();
+        std::getline(std::cin, comment);
+
+        while (true) {
             std::cout << CYAN << "\n\t\tPlease leave a score: " << RESET;
             std::cin >> score;
-            currentUser->reviewHouse(leaveMember->occupyHouse, score, comment);
-            std:: cout<< CYAN << "\nPress 2 to back to the member Menu: " << RESET;
-            if(menuChoice(2,2) == 2) {
-                memberMenu();
+            if (!isValidNum(score)) {
+                continue;
             }
-            
+            if (std::stoi(score) < -10 || std::stoi(score) > 10) {
+                std::cout << RED << "The rating scores can only be from -10 to 10: " << RESET;
+                continue;
+            }else{
+                break;
+            }
+        }
+
+        currentUser->reviewHouse(leaveMember->occupyHouse, std::stoi(score), comment);
+        std::cout << CYAN << "\nPress 2 to back to the member Menu: " << RESET;
+        if (menuChoice(2, 2) == 2) {
+            memberMenu();
+        }
+
     }
 }
 
 void System::showRequestSent() {
-    std::cout << GREEN <<"\nEnter the index of request that you want to cancel:\n" << RESET;
-    std::cout << GREEN <<"List of the request you have sent: \n" << RESET;
+    std::cout << GREEN << "\nEnter the index of request that you want to cancel:\n" << RESET;
+    std::cout << GREEN << "List of the request you have sent: \n" << RESET;
     currentUser->showRequestSent();
     std::cout << CYAN << currentUser->requestList.size() + 1 << ".Back to Member Menu\n" << RESET;
     int choice = menuChoice(1, currentUser->requestList.size() + 1);
-    if(choice == currentUser->requestList.size() + 1) {
+    if (choice == currentUser->requestList.size() + 1) {
         memberMenu();
-    }
-    else {
+    } else {
         cancelRequestMenu(choice);
     }
 
 }
 
-void System:: cancelRequestMenu(int ID) {
+void System::cancelRequestMenu(int ID) {
     std::cout << CYAN << "\nPress 1 to cancel the request\n" << RESET;
     std::cout << CYAN << "\nPress 2 to back to show request sent menu\n" << RESET;
-    int choice = menuChoice(1 , 2);
-    switch(choice) {
+    int choice = menuChoice(1, 2);
+    switch (choice) {
         case 1:
-            for(auto i : houseVector) {
-                for(int j = 0; j < i->listHouseRequest.size(); j ++) {
-                    if(i->listHouseRequest[j]->houseID == currentUser->requestList[ID - 1]->houseID){
-                            i->listHouseRequest.erase(i->listHouseRequest.begin() + j);
-                        }
+            for (auto i: houseVector) {
+                for (int j = 0; j < i->listHouseRequest.size(); j++) {
+                    if (i->listHouseRequest[j]->houseID == currentUser->requestList[ID - 1]->houseID) {
+                        i->listHouseRequest.erase(i->listHouseRequest.begin() + j);
+                    }
                 }
             }
             currentUser->cancelRequest(ID);
             std::cout << GREEN << "\nRequest canceled\nBack to menu:\n" << RESET;
             showRequestSent();
             break;
-            
+
         case 2:
             showRequestSent();
             break;
@@ -865,7 +881,7 @@ void System::searchValidHouseMenu() {
         case 1:
             std::cin.ignore();
             do {
-                std::cout << CYAN << "Enter when you want to rent (dd/mm/yyyy): " <<RESET;
+                std::cout << CYAN << "Enter when you want to rent (dd/mm/yyyy): " << RESET;
                 std::getline(std::cin, startDate);
             } while (!isValidDate(startDate));
             std::cout << startDate << "\n";
@@ -874,13 +890,13 @@ void System::searchValidHouseMenu() {
         case 2:
             std::cin.ignore();
             do {
-                std::cout << CYAN << "Enter when you want to end renting (dd/mm/yyyy): " <<RESET;
+                std::cout << CYAN << "Enter when you want to end renting (dd/mm/yyyy): " << RESET;
                 std::getline(std::cin, endDate);
             } while (!isValidDate(endDate));
             break;
     }
 
-    std::cout << GREEN << "\tChoose the city you want to stay: \n\n" <<RESET;
+    std::cout << GREEN << "\tChoose the city you want to stay: \n\n" << RESET;
     std::cout << CYAN << "\t1. HANOI \t2.HUE \t3.SAIGON\n" << RESET;
     choice = menuChoice(1, 3);
     switch (choice) {
@@ -933,10 +949,12 @@ void System::validHouseMenu(Date *start, Date *end, std::string location) {
         switch (menuChoice(1, 3)) {
             case 1: {
                 if (end == nullptr) {
-                    request = new Request(start, memberSuitableHouseList[choice - 1]->endingDate, currentUser, memberSuitableHouseList[choice-1]->houseID,
+                    request = new Request(start, memberSuitableHouseList[choice - 1]->endingDate, currentUser,
+                                          memberSuitableHouseList[choice - 1]->houseID,
                                           RE_STATUS[0]);
                 } else {
-                    request = new Request(memberSuitableHouseList[choice - 1]->startingDate, end, currentUser, memberSuitableHouseList[choice-1]->houseID,
+                    request = new Request(memberSuitableHouseList[choice - 1]->startingDate, end, currentUser,
+                                          memberSuitableHouseList[choice - 1]->houseID,
                                           RE_STATUS[0]);
                 }
                 memberSuitableHouseList[choice - 1]->addRequestToHouseRequestList(request);
@@ -945,15 +963,14 @@ void System::validHouseMenu(Date *start, Date *end, std::string location) {
             }
             case 2:
                 std::cout << CYAN << "\nReviews of the house you want: \n" << RESET;
-                choice; 
-                memberSuitableHouseList[choice -1]->viewHouseReview();
+                memberSuitableHouseList[choice - 1]->viewHouseReview();
                 std::cout << CYAN << "\n4. Back to the request action menu: \n" << RESET;
-                if(menuChoice(4, 4) == 4) {
+                if (menuChoice(4, 4) == 4) {
                     validHouseMenu(start, end, location);
                     break; //function view reviews
                 }
-                
-                
+
+
             case 3:
                 validHouseMenu(start, end, location);
                 break;
@@ -962,55 +979,56 @@ void System::validHouseMenu(Date *start, Date *end, std::string location) {
 }
 
 void System::actionRequestMenu(int requestID) {
-    std::cout << CYAN <<"\n\n1.Show Requester Review\n2.Accept Request\n3.Decline Request\n" << RESET;
+    std::cout << CYAN << "\n\n1.Show Requester Review\n2.Accept Request\n3.Decline Request\n" << RESET;
     switch (menuChoice(1, 3)) {
-        case 1:
-            {std::cout << GREEN << "\nThe review of your requester is being shown below: \n" << RESET;
-            auto requester =currentUser->houseOwner->listHouseRequest[requestID]->requestedByMember;
-            if(requester->tenantReviewList.empty()) {
-                std::cout << RED <<"\nThere are no reviews for this member\n" << RESET;
+        case 1: {
+            std::cout << GREEN << "\nThe review of your requester is being shown below: \n" << RESET;
+            auto requester = currentUser->houseOwner->listHouseRequest[requestID]->requestedByMember;
+            if (requester->tenantReviewList.empty()) {
+                std::cout << RED << "\nThere are no reviews for this member\n" << RESET;
                 std::cout << CYAN << "4.Back to the Request Menu: \n" << RESET;
 
-                if(menuChoice(4, 4) == 4) {
-                actionRequestMenu(requestID);
-            }
-            break;
-            }
-            else {
+                if (menuChoice(4, 4) == 4) {
+                    actionRequestMenu(requestID);
+                }
+                break;
+            } else {
                 requester->showReview();
             }
-            
-            std::cout << CYAN << "4.Back to the Request Menu: \n" <<RESET;
-            if(menuChoice(4, 4) == 4) {
+
+            std::cout << CYAN << "4.Back to the Request Menu: \n" << RESET;
+            if (menuChoice(4, 4) == 4) {
                 actionRequestMenu(requestID);
                 break;
             }
-    }
+        }
         case 2:
-            if(!currentUser->acceptRequest(requestID)) {
-                std::cout << CYAN << "\n" << currentUser->houseOwner->listHouseRequest.size() +1 << ".Back to request menu\n" << RESET;
-                menuChoice(currentUser->houseOwner->listHouseRequest.size() +1, currentUser->houseOwner->listHouseRequest.size() +1);
+            if (!currentUser->acceptRequest(requestID)) {
+                std::cout << CYAN << "\n" << currentUser->houseOwner->listHouseRequest.size() + 1
+                          << ".Back to request menu\n" << RESET;
+                menuChoice(currentUser->houseOwner->listHouseRequest.size() + 1,
+                           currentUser->houseOwner->listHouseRequest.size() + 1);
                 viewRequestMenu();
-            }
-            else {
+            } else {
                 std::cout << GREEN << "\nRequest accepted\n" << RESET;
-            memberMenu();
-            break;
+                memberMenu();
+                break;
             }
         case 3:
             //Return owner to request menu once there is no valid accept yet
-            if(!currentUser->declineRequest(requestID)) {
+            if (!currentUser->declineRequest(requestID)) {
                 std::cout << RED << "You can not decline a request that has been accpeted and declinded" << RESET;
-                std::cout << CYAN <<  "\n" << currentUser->houseOwner->listHouseRequest.size() +1 << ".Back to request menu\n" << RESET;
-                menuChoice(currentUser->houseOwner->listHouseRequest.size() +1, currentUser->houseOwner->listHouseRequest.size() +1);
+                std::cout << CYAN << "\n" << currentUser->houseOwner->listHouseRequest.size() + 1
+                          << ".Back to request menu\n" << RESET;
+                menuChoice(currentUser->houseOwner->listHouseRequest.size() + 1,
+                           currentUser->houseOwner->listHouseRequest.size() + 1);
                 viewRequestMenu();
+            } else {
+                std::cout << GREEN << "\nRequest Declined\n" << RESET;
+                memberMenu();
+                break;
             }
-            else {
-            std::cout << GREEN << "\nRequest Declined\n" << RESET;
-            memberMenu();
-            break;
-            }
-            
+
     }
 }
 
@@ -1029,43 +1047,55 @@ void System::viewUnratedTenantList() {
         memberMenu();
     } else {
         std::string comment;
-        int score;
+        std::string score;
         std::cout << CYAN << "\nPlease leave a comment to this tenant: " << RESET;
         std::cin.ignore();
         std::getline(std::cin, comment);
-        std::cout << CYAN <<"\nPlease score the Tenant: " << RESET;
-        std::cin >> score;
-        currentUser->reviewTenant(choice - 1, score, comment);
+        std::cout << CYAN << "\nPlease score the Tenant: " << RESET;
+        while (true) {
+            std::cout << CYAN << "\n\t\tPlease leave a score: " << RESET;
+            std::cin >> score;
+            if (!isValidNum(score)) {
+                continue;
+            }
+            if (std::stoi(score) < -10 || std::stoi(score) > 10) {
+                std::cout << RED << "The rating scores can only be from -10 to 10: " << RESET;
+                continue;
+            }else{
+                break;
+            }
+        }
+        currentUser->reviewTenant(choice - 1, std::stoi(score), comment);
         memberMenu();
     }
 
 }
 
 void System::viewRequestMenu() {
-   int choice;
+    int choice;
     std::cout << CYAN << "\n\n\tYour request today:\n\n" << RESET;
-    if(currentUser->houseOwner == nullptr ){
-        std::cout << RED <<  "You do not have a house. So you do not have any request! \n" << RESET;
+    if (currentUser->houseOwner == nullptr) {
+        std::cout << RED << "You do not have a house. So you do not have any request! \n" << RESET;
         memberMenu();
-    }else{
-           int numberRequest = currentUser->viewAllRequest();
-    std::cout << GREEN << "\n\tChoose your option:\n\n" << RESET;
-    std::cout << CYAN << "\n\n--> 1.\tPoint the Request:\n\n"
-              << "--> 2.\tBack to Menu\n" << RESET;
-    choice = menuChoice(1, 3);
-    switch (choice) {
-        case 1: {
-            std::cout << GREEN << "Enter the request you want to proceed: \n" << RESET;
-            int newChoice = menuChoice(1, numberRequest);
-            actionRequestMenu(newChoice - 1);
-            break;
+    } else {
+        int numberRequest = currentUser->viewAllRequest();
+        std::cout << GREEN << "\n\tChoose your option:\n\n" << RESET;
+        std::cout << CYAN << "\n\n--> 1.\tPoint the Request:\n\n"
+                  << "--> 2.\tBack to Menu\n" << RESET;
+        choice = menuChoice(1, 3);
+        switch (choice) {
+            case 1: {
+                std::cout << GREEN << "Enter the request you want to proceed: \n" << RESET;
+                int newChoice = menuChoice(1, numberRequest);
+                actionRequestMenu(newChoice - 1);
+                break;
+            }
+            case 2:
+                memberMenu();
+                break;
         }
-        case 2:
-            memberMenu();
-            break;
     }
-    }
- 
+
 }
 
 bool System::memRequestHouse(Date *startDate, Date *endDate, int houseId) {
@@ -1179,7 +1209,7 @@ bool System::getValidEndHouses(Date *end, std::string location) {
         return false;
     }
 
-    std::cout << GREEN<< "\nThe suitable house list:\n\n" << RESET;
+    std::cout << GREEN << "\nThe suitable house list:\n\n" << RESET;
     for (int i = 0; i < memberSuitableHouseList.size(); i++) {
         std::cout << "--> " << i + 1 << ". ";
         std::cout << CYAN << "House Id: " << memberSuitableHouseList[i]->houseID << "\tLocation: "
@@ -1653,7 +1683,7 @@ bool System::loginMember(std::string username, std::string password) {
                 }
             }
             if (count == 0) {
-                std::cout << RED <<"The app do not support you in your region! \n" << RESET;
+                std::cout << RED << "The app do not support you in your region! \n" << RESET;
                 mainMenu();
                 return false;
             }
@@ -1672,7 +1702,7 @@ void System::registerMember() {
     std::cout << GREEN << "\t---MEMBER REGISTRATION---\n" << RESET;
     std::cin.ignore();
     do {
-        std::cout << CYAN<< "Enter your username: " << RESET;
+        std::cout << CYAN << "Enter your username: " << RESET;
         getline(std::cin, username);
     } while (!isValidUserName(username));
 
@@ -1687,18 +1717,18 @@ void System::registerMember() {
     } while (!isValidFullname(fullname));
 
     do {
-        std::cout << CYAN <<"Enter your phone number: " << RESET;
+        std::cout << CYAN << "Enter your phone number: " << RESET;
         getline(std::cin, phoneNum);
     } while (!isValidPhoneNum(phoneNum));
 
 
-    std::cout <<CYAN << "1. Choose the locations the app support \n" << RESET;
+    std::cout << CYAN << "1. Choose the locations the app support \n" << RESET;
     std::cout << CYAN << "2. Enter the location yourself \n" << RESET;
     choice = menuChoice(1, 2);
     switch (choice) {
         case 1:
-            std::cout << CYAN <<"Choose the following locations: \n" << RESET;
-            std::cout << GREEN <<"1.HANOI\t2.HUE\t3.SAIGON\n" << RESET;
+            std::cout << CYAN << "Choose the following locations: \n" << RESET;
+            std::cout << GREEN << "1.HANOI\t2.HUE\t3.SAIGON\n" << RESET;
             subChoice = menuChoice(1, 3);
             switch (subChoice) {
                 case 1:
@@ -1714,7 +1744,7 @@ void System::registerMember() {
             break;
         case 2:
             std::cin.ignore();
-            std::cout << CYAN <<"Enter your location: " << RESET;
+            std::cout << CYAN << "Enter your location: " << RESET;
             getline(std::cin, location);
             break;
     }
