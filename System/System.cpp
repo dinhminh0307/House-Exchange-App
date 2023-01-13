@@ -1663,7 +1663,7 @@ void System::outputHouseToFile() {
                   << house->owner->memberId << ";"
                   << house->location << ";"
                   << house->houseDescription << ";"
-                  << house->houseScores << "\n";
+                  << house->getRatingScore() << "\n";
     }
     writeFile.close();
 

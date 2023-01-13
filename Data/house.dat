@@ -1,8 +1,8 @@
-HOU2;MEM4;HANOI;asdfasdfasdf;0
-HOU3;MEM5;HUE;nha nhu cac;0
+HOU2;MEM4;HANOI;asdfasdfasdf;5.5
+HOU3;MEM5;HUE;nha nhu cac;10
 HOU4;MEM6;HANOI;nha nhu cl;0
-HOU5;MEM7;HANOI;nha nhu cc;0
-HOU1;MEM3;HUE;nha nhu cl;0
-HOU6;MEM1;SAIGON;rewtqwetqwertqwt;0
-HOU7;MEM2;SAIGON;dsfhsdhustywerty;0
-HOU8;MEM9;HANOI;nha dep;0
+HOU5;MEM7;HANOI;nha nhu cc;10
+HOU1;MEM3;HUE;nha nhu cl;7
+HOU6;MEM1;SAIGON;rewtqwetqwertqwt;2
+HOU7;MEM2;SAIGON;dsfhsdhustywerty;6
+HOU8;MEM9;HANOI;nha dep;10
