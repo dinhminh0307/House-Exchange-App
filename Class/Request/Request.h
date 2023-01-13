@@ -20,7 +20,6 @@ public:
     Request(Date *startDate, Date *endDate, Member *requestedByMember, std::string status);
 
 
-
     friend class System;
 
     friend class Member;

@@ -807,10 +807,10 @@ void System::rateTenantMenu(int leaveID) {
 }
 
 void System::showRequestSent() {
+    std::cout << "\nEnter the index of request that you want to cancel:\n";
     std::cout << "List of the request you have sent: \n";
     currentUser->showRequestSent();
     std::cout << currentUser->requestList.size() + 1 << ".Back to Member Menu\n";
-    std::cout << "\nEnter the index of request that you want to cancel:\n";
     int choice = menuChoice(1, currentUser->requestList.size() + 1);
     if(choice == currentUser->requestList.size() + 1) {
         memberMenu();
@@ -831,6 +831,7 @@ void System:: cancelRequestMenu(int ID) {
             std::cout << "\nRequest canceled\nBack to menu:\n";
             showRequestSent();
             break;
+            
         case 2:
             showRequestSent();
             break;
@@ -990,7 +991,7 @@ void System::actionRequestMenu(int requestID) {
                 viewRequestMenu();
             }
             else {
-                std::cout << "\nRequest Declined\n";
+            std::cout << "\nRequest Declined\n";
             memberMenu();
             break;
             }

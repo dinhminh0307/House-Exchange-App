@@ -225,7 +225,8 @@ bool Member:: showRequestSent() {
 }
 
 bool Member::cancelRequest(int ID) {
-    if(ID > requestList.size()){
+    int index = 0;
+    if(ID - 1 > requestList.size()){
         return false;
     }
     auto request = requestList[ID-1];
@@ -257,9 +258,9 @@ bool Member::declineRequest(int ID) {
             continue;
         }
         indice++;
-        houseOwner->listHouseRequest[indice]->requestStatus = RE_STATUS[2];
+        i->requestStatus = RE_STATUS[2];
     }
-
+    houseOwner->listHouseRequest[ID]->requestStatus = RE_STATUS[2];
 
 
     return true;

@@ -117,7 +117,6 @@ public:
 
     void getHouseIndex(int houseID);
 
-    void cancelRequest();
     friend class House;
 
     friend class System;
