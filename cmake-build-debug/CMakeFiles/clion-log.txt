@@ -1,4 +1,4 @@
-/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" -S /Users/vonguyenkien/Desktop/HOUSE-VACATION-RENT -B /Users/vonguyenkien/Desktop/HOUSE-VACATION-RENT/cmake-build-debug
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" -S /Users/vonguyenkien/Downloads/Group26_ProgramSources -B /Users/vonguyenkien/Downloads/Group26_ProgramSources/cmake-build-debug
 -- The C compiler identification is AppleClang 13.0.0.13000029
 -- The CXX compiler identification is AppleClang 13.0.0.13000029
 -- Detecting C compiler ABI info
@@ -13,4 +13,4 @@
 -- Detecting CXX compile features - done
 -- Configuring done
 -- Generating done
--- Build files have been written to: /Users/vonguyenkien/Desktop/HOUSE-VACATION-RENT/cmake-build-debug
+-- Build files have been written to: /Users/vonguyenkien/Downloads/Group26_ProgramSources/cmake-build-debug

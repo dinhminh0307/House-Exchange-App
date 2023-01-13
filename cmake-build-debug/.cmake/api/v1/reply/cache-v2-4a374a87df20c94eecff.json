@@ -55,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/Users/vonguyenkien/Desktop/HOUSE-VACATION-RENT/cmake-build-debug"
+			"value" : "/Users/vonguyenkien/Downloads/Group26_ProgramSources/cmake-build-debug"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -615,7 +615,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/Users/vonguyenkien/Desktop/HOUSE-VACATION-RENT"
+			"value" : "/Users/vonguyenkien/Downloads/Group26_ProgramSources"
 		},
 		{
 			"name" : "CMAKE_INSTALL_NAME_TOOL",
@@ -1207,7 +1207,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/Users/vonguyenkien/Desktop/HOUSE-VACATION-RENT/cmake-build-debug"
+			"value" : "/Users/vonguyenkien/Downloads/Group26_ProgramSources/cmake-build-debug"
 		},
 		{
 			"name" : "dapdixaylai_IS_TOP_LEVEL",
@@ -1231,7 +1231,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/Users/vonguyenkien/Desktop/HOUSE-VACATION-RENT"
+			"value" : "/Users/vonguyenkien/Downloads/Group26_ProgramSources"
 		}
 	],
 	"kind" : "cache",

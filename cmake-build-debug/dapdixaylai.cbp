@@ -8,23 +8,23 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/Users/vonguyenkien/Desktop/HOUSE-VACATION-RENT/cmake-build-debug"/>
+				<Option working_dir="/Users/vonguyenkien/Downloads/Group26_ProgramSources/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/vonguyenkien/Desktop/HOUSE-VACATION-RENT/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/vonguyenkien/Desktop/HOUSE-VACATION-RENT/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/vonguyenkien/Desktop/HOUSE-VACATION-RENT/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/vonguyenkien/Desktop/HOUSE-VACATION-RENT/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/vonguyenkien/Downloads/Group26_ProgramSources/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/vonguyenkien/Downloads/Group26_ProgramSources/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/vonguyenkien/Downloads/Group26_ProgramSources/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/vonguyenkien/Downloads/Group26_ProgramSources/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="dapdixaylai">
-				<Option output="/Users/vonguyenkien/Desktop/HOUSE-VACATION-RENT/cmake-build-debug/dapdixaylai" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/vonguyenkien/Desktop/HOUSE-VACATION-RENT/cmake-build-debug"/>
+				<Option output="/Users/vonguyenkien/Downloads/Group26_ProgramSources/cmake-build-debug/dapdixaylai" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/vonguyenkien/Downloads/Group26_ProgramSources/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/Users/vonguyenkien/Desktop/HOUSE-VACATION-RENT/System"/>
+					<Add directory="/Users/vonguyenkien/Downloads/Group26_ProgramSources/System"/>
 					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
 					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/13.0.0/include"/>
 					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
@@ -32,20 +32,20 @@
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/vonguyenkien/Desktop/HOUSE-VACATION-RENT/cmake-build-debug/Makefile&quot;  VERBOSE=1 dapdixaylai"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/vonguyenkien/Desktop/HOUSE-VACATION-RENT/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/vonguyenkien/Desktop/HOUSE-VACATION-RENT/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/vonguyenkien/Desktop/HOUSE-VACATION-RENT/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/vonguyenkien/Downloads/Group26_ProgramSources/cmake-build-debug/Makefile&quot;  VERBOSE=1 dapdixaylai"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/vonguyenkien/Downloads/Group26_ProgramSources/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/vonguyenkien/Downloads/Group26_ProgramSources/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/vonguyenkien/Downloads/Group26_ProgramSources/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="dapdixaylai/fast">
-				<Option output="/Users/vonguyenkien/Desktop/HOUSE-VACATION-RENT/cmake-build-debug/dapdixaylai" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/vonguyenkien/Desktop/HOUSE-VACATION-RENT/cmake-build-debug"/>
+				<Option output="/Users/vonguyenkien/Downloads/Group26_ProgramSources/cmake-build-debug/dapdixaylai" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/vonguyenkien/Downloads/Group26_ProgramSources/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/Users/vonguyenkien/Desktop/HOUSE-VACATION-RENT/System"/>
+					<Add directory="/Users/vonguyenkien/Downloads/Group26_ProgramSources/System"/>
 					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
 					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/13.0.0/include"/>
 					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
@@ -53,100 +53,100 @@
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/vonguyenkien/Desktop/HOUSE-VACATION-RENT/cmake-build-debug/Makefile&quot;  VERBOSE=1 dapdixaylai/fast"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/vonguyenkien/Desktop/HOUSE-VACATION-RENT/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/vonguyenkien/Desktop/HOUSE-VACATION-RENT/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/vonguyenkien/Desktop/HOUSE-VACATION-RENT/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/vonguyenkien/Downloads/Group26_ProgramSources/cmake-build-debug/Makefile&quot;  VERBOSE=1 dapdixaylai/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/vonguyenkien/Downloads/Group26_ProgramSources/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/vonguyenkien/Downloads/Group26_ProgramSources/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/vonguyenkien/Downloads/Group26_ProgramSources/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/Users/vonguyenkien/Desktop/HOUSE-VACATION-RENT/cmake-build-debug"/>
+				<Option working_dir="/Users/vonguyenkien/Downloads/Group26_ProgramSources/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/vonguyenkien/Desktop/HOUSE-VACATION-RENT/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/vonguyenkien/Desktop/HOUSE-VACATION-RENT/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/vonguyenkien/Desktop/HOUSE-VACATION-RENT/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/vonguyenkien/Desktop/HOUSE-VACATION-RENT/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/vonguyenkien/Downloads/Group26_ProgramSources/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/vonguyenkien/Downloads/Group26_ProgramSources/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/vonguyenkien/Downloads/Group26_ProgramSources/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/vonguyenkien/Downloads/Group26_ProgramSources/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/Users/vonguyenkien/Desktop/HOUSE-VACATION-RENT/cmake-build-debug"/>
+				<Option working_dir="/Users/vonguyenkien/Downloads/Group26_ProgramSources/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/vonguyenkien/Desktop/HOUSE-VACATION-RENT/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/vonguyenkien/Desktop/HOUSE-VACATION-RENT/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/vonguyenkien/Desktop/HOUSE-VACATION-RENT/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/vonguyenkien/Desktop/HOUSE-VACATION-RENT/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/vonguyenkien/Downloads/Group26_ProgramSources/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/vonguyenkien/Downloads/Group26_ProgramSources/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/vonguyenkien/Downloads/Group26_ProgramSources/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/vonguyenkien/Downloads/Group26_ProgramSources/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/vonguyenkien/Desktop/HOUSE-VACATION-RENT/Class/Admin/Admin.cpp">
+		<Unit filename="/Users/vonguyenkien/Downloads/Group26_ProgramSources/Class/Admin/Admin.cpp">
 			<Option target="dapdixaylai"/>
 		</Unit>
-		<Unit filename="/Users/vonguyenkien/Desktop/HOUSE-VACATION-RENT/Class/Admin/Admin.h">
+		<Unit filename="/Users/vonguyenkien/Downloads/Group26_ProgramSources/Class/Admin/Admin.h">
 			<Option target="dapdixaylai"/>
 		</Unit>
-		<Unit filename="/Users/vonguyenkien/Desktop/HOUSE-VACATION-RENT/Class/Date/Date.cpp">
+		<Unit filename="/Users/vonguyenkien/Downloads/Group26_ProgramSources/Class/Date/Date.cpp">
 			<Option target="dapdixaylai"/>
 		</Unit>
-		<Unit filename="/Users/vonguyenkien/Desktop/HOUSE-VACATION-RENT/Class/Date/Date.h">
+		<Unit filename="/Users/vonguyenkien/Downloads/Group26_ProgramSources/Class/Date/Date.h">
 			<Option target="dapdixaylai"/>
 		</Unit>
-		<Unit filename="/Users/vonguyenkien/Desktop/HOUSE-VACATION-RENT/Class/House/House.cpp">
+		<Unit filename="/Users/vonguyenkien/Downloads/Group26_ProgramSources/Class/House/House.cpp">
 			<Option target="dapdixaylai"/>
 		</Unit>
-		<Unit filename="/Users/vonguyenkien/Desktop/HOUSE-VACATION-RENT/Class/House/House.h">
+		<Unit filename="/Users/vonguyenkien/Downloads/Group26_ProgramSources/Class/House/House.h">
 			<Option target="dapdixaylai"/>
 		</Unit>
-		<Unit filename="/Users/vonguyenkien/Desktop/HOUSE-VACATION-RENT/Class/Member/Member.cpp">
+		<Unit filename="/Users/vonguyenkien/Downloads/Group26_ProgramSources/Class/Member/Member.cpp">
 			<Option target="dapdixaylai"/>
 		</Unit>
-		<Unit filename="/Users/vonguyenkien/Desktop/HOUSE-VACATION-RENT/Class/Member/Member.h">
+		<Unit filename="/Users/vonguyenkien/Downloads/Group26_ProgramSources/Class/Member/Member.h">
 			<Option target="dapdixaylai"/>
 		</Unit>
-		<Unit filename="/Users/vonguyenkien/Desktop/HOUSE-VACATION-RENT/Class/OccupyHouse/OccupyHouse.cpp">
+		<Unit filename="/Users/vonguyenkien/Downloads/Group26_ProgramSources/Class/OccupyHouse/OccupyHouse.cpp">
 			<Option target="dapdixaylai"/>
 		</Unit>
-		<Unit filename="/Users/vonguyenkien/Desktop/HOUSE-VACATION-RENT/Class/OccupyHouse/OccupyHouse.h">
+		<Unit filename="/Users/vonguyenkien/Downloads/Group26_ProgramSources/Class/OccupyHouse/OccupyHouse.h">
 			<Option target="dapdixaylai"/>
 		</Unit>
-		<Unit filename="/Users/vonguyenkien/Desktop/HOUSE-VACATION-RENT/Class/Request/Request.cpp">
+		<Unit filename="/Users/vonguyenkien/Downloads/Group26_ProgramSources/Class/Request/Request.cpp">
 			<Option target="dapdixaylai"/>
 		</Unit>
-		<Unit filename="/Users/vonguyenkien/Desktop/HOUSE-VACATION-RENT/Class/Request/Request.h">
+		<Unit filename="/Users/vonguyenkien/Downloads/Group26_ProgramSources/Class/Request/Request.h">
 			<Option target="dapdixaylai"/>
 		</Unit>
-		<Unit filename="/Users/vonguyenkien/Desktop/HOUSE-VACATION-RENT/Class/Review/Review.cpp">
+		<Unit filename="/Users/vonguyenkien/Downloads/Group26_ProgramSources/Class/Review/Review.cpp">
 			<Option target="dapdixaylai"/>
 		</Unit>
-		<Unit filename="/Users/vonguyenkien/Desktop/HOUSE-VACATION-RENT/Class/Review/Review.h">
+		<Unit filename="/Users/vonguyenkien/Downloads/Group26_ProgramSources/Class/Review/Review.h">
 			<Option target="dapdixaylai"/>
 		</Unit>
-		<Unit filename="/Users/vonguyenkien/Desktop/HOUSE-VACATION-RENT/Class/Tenant/Tenant.cpp">
+		<Unit filename="/Users/vonguyenkien/Downloads/Group26_ProgramSources/Class/Tenant/Tenant.cpp">
 			<Option target="dapdixaylai"/>
 		</Unit>
-		<Unit filename="/Users/vonguyenkien/Desktop/HOUSE-VACATION-RENT/Class/Tenant/Tenant.h">
+		<Unit filename="/Users/vonguyenkien/Downloads/Group26_ProgramSources/Class/Tenant/Tenant.h">
 			<Option target="dapdixaylai"/>
 		</Unit>
-		<Unit filename="/Users/vonguyenkien/Desktop/HOUSE-VACATION-RENT/Class/User/User.cpp">
+		<Unit filename="/Users/vonguyenkien/Downloads/Group26_ProgramSources/Class/User/User.cpp">
 			<Option target="dapdixaylai"/>
 		</Unit>
-		<Unit filename="/Users/vonguyenkien/Desktop/HOUSE-VACATION-RENT/Class/User/User.h">
+		<Unit filename="/Users/vonguyenkien/Downloads/Group26_ProgramSources/Class/User/User.h">
 			<Option target="dapdixaylai"/>
 		</Unit>
-		<Unit filename="/Users/vonguyenkien/Desktop/HOUSE-VACATION-RENT/System/System.cpp">
+		<Unit filename="/Users/vonguyenkien/Downloads/Group26_ProgramSources/System/System.cpp">
 			<Option target="dapdixaylai"/>
 		</Unit>
-		<Unit filename="/Users/vonguyenkien/Desktop/HOUSE-VACATION-RENT/System/System.h">
+		<Unit filename="/Users/vonguyenkien/Downloads/Group26_ProgramSources/System/System.h">
 			<Option target="dapdixaylai"/>
 		</Unit>
-		<Unit filename="/Users/vonguyenkien/Desktop/HOUSE-VACATION-RENT/define.h">
+		<Unit filename="/Users/vonguyenkien/Downloads/Group26_ProgramSources/define.h">
 			<Option target="dapdixaylai"/>
 		</Unit>
-		<Unit filename="/Users/vonguyenkien/Desktop/HOUSE-VACATION-RENT/main.cpp">
+		<Unit filename="/Users/vonguyenkien/Downloads/Group26_ProgramSources/main.cpp">
 			<Option target="dapdixaylai"/>
 		</Unit>
-		<Unit filename="/Users/vonguyenkien/Desktop/HOUSE-VACATION-RENT/CMakeLists.txt">
+		<Unit filename="/Users/vonguyenkien/Downloads/Group26_ProgramSources/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

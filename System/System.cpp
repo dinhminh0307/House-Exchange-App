@@ -1646,7 +1646,7 @@ void System::outputMemberToFile() {
                   << mem->password << ";"
                   << mem->location << ";"
                   << mem->credit << ";"
-                  << mem->score << "\n";
+                  << mem->getRatingScore() << "\n";
     }
 
     writeFile.close();

@@ -4,7 +4,7 @@
 # compile CXX with /Library/Developer/CommandLineTools/usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/Users/vonguyenkien/Desktop/HOUSE-VACATION-RENT/System
+CXX_INCLUDES = -I/Users/vonguyenkien/Downloads/Group26_ProgramSources/System
 
 CXX_FLAGSarm64 = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX12.1.sdk -mmacosx-version-min=11.6 -std=gnu++14
 
